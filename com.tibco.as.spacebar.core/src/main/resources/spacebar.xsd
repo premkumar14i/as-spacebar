@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://as.tibco.com/spacebar" xmlns:as="http://as.tibco.com"
+	targetNamespace="http://as.tibco.com/spacebar" elementFormDefault="unqualified"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0">
+
+	<xsd:annotation>
+		<xsd:appinfo>
+			<jxb:globalBindings optionalProperty="primitive" />
+		</xsd:appinfo>
+	</xsd:annotation>
+
+	<xsd:element name="profiles">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="profile" type="profile" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="profile">
+		<xsd:attribute name="profileName" type="xsd:string" />
+		<xsd:attribute name="metaspace" type="xsd:string" />
+		<xsd:attribute name="member" type="xsd:string" />
+		<xsd:attribute name="discovery" type="xsd:string" />
+		<xsd:attribute name="remote" type="xsd:boolean" />
+		<xsd:attribute name="listen" type="xsd:string" />
+		<xsd:attribute name="timeout" type="xsd:long" />
+		<xsd:attribute name="autoconnect" type="xsd:boolean" />
+	</xsd:complexType>
+
+</xsd:schema>

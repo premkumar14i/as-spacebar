@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faqs title="Frequently Asked Questions" toplink="false">
+
+    <part id="Installation &amp; Configuration">
+		<title>Installation &amp; Configuration</title>
+		
+		<faq id="classNotFound">
+			<question>
+				Exception in thread "main" java.lang.NoClassDefFoundError
+			</question>
+			<answer>
+				The AS_HOME environment variable might not be set properly
+			</answer>
+		</faq>
+		<faq id="dll">
+			<question>
+				Error loading as-common dynamic loadable library.
+			</question>
+			<answer>
+				Check that the environment variable for your platform is correctly
+				set:
+				<ul>
+					<li>
+						Windows:
+						<code>PATH</code>
+					</li>
+					<li>
+						Linux:
+						<code>LD_LIBRARY_PATH</code>
+					</li>
+					<li>
+						Mac OSX:
+						<code>DYLD_LIBRARY_PATH</code>
+					</li>
+					<li>
+						AIX:
+						<code>LIBPATH</code>
+					</li>
+					<li>
+						UX:
+						<code>SHLIB_PATH</code>
+					</li>
+				</ul>
+				Also check that you have the appropriate architecture installed
+				(e.g. 32 vs 64-bit).
+			</answer>
+		</faq>
+	</part>
+	<part id="Metaspace Connection">
+		<title>Metaspace Connection</title>
+		<faq id="discovery">
+			<question>
+				SYS_ERROR (multicast_error - (8) grp_iface not a valid
+				multicast interface)
+			</question>
+			<answer>
+				Specify a discovery URL e.g.
+				<code>file2as -discovery tcp import ...</code>
+			</answer>
+		</faq>
+	</part>
+
+</faqs>

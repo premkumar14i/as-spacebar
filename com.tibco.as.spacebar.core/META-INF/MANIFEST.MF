@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1400470138099
+Build-Jdk: 1.7.0_51
+Built-By: jruaux
+Bundle-Description: SpaceBar core module
+Bundle-DocURL: http://www.tibco.com/
+Bundle-ManifestVersion: 2
+Bundle-Name: SpaceBar Core
+Bundle-SymbolicName: com.tibco.as.spacebar.core
+Bundle-Vendor: TIBCO Software
+Bundle-Version: 2.1.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.tibco.as.spacebar.core;uses:="javax.xml.bind.annotat
+ ion";version="2.1.0.SNAPSHOT"
+Import-Package: javax.xml.bind.annotation
+Tool: Bnd-2.1.0.20130426-122213

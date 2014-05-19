@@ -1,0 +1,62 @@
+package com.tibco.as.spacebar.ui.editor.snapshot;
+
+import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
+import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.config.IEditableRule;
+import org.eclipse.nebula.widgets.nattable.data.convert.DefaultDoubleDisplayConverter;
+import org.eclipse.nebula.widgets.nattable.data.convert.DefaultFloatDisplayConverter;
+import org.eclipse.nebula.widgets.nattable.data.convert.DefaultIntegerDisplayConverter;
+import org.eclipse.nebula.widgets.nattable.data.convert.DefaultLongDisplayConverter;
+import org.eclipse.nebula.widgets.nattable.data.convert.DefaultShortDisplayConverter;
+import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
+import org.eclipse.nebula.widgets.nattable.edit.editor.CheckBoxCellEditor;
+import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
+
+import com.tibco.as.spacebar.ui.editor.AbstractConfiguration;
+import com.tibco.as.spacebar.ui.editor.display.DateTimeDisplayConverter;
+import com.tibco.as.spacebar.ui.preferences.Preferences;
+
+import com.tibco.as.convert.ConverterFactory;
+
+public class EditConfiguration extends AbstractConfiguration {
+
+	@Override
+	public void configureRegistry(IConfigRegistry configRegistry) {
+		configRegistry.registerConfigAttribute(
+				EditConfigAttributes.CELL_EDITABLE_RULE,
+				IEditableRule.ALWAYS_EDITABLE);
+		super.configureRegistry(configRegistry);
+		DateTimeDisplayConverter dateTimeDisplayConverter = new DateTimeDisplayConverter(
+				ConverterFactory.DEFAULT_PATTERN_DATE,
+				Preferences.getSpaceEditorTimeZone());
+		configRegistry.registerConfigAttribute(
+				CellConfigAttributes.DISPLAY_CONVERTER,
+				dateTimeDisplayConverter, DisplayMode.EDIT,
+				DATETIME_CONFIG_LABEL);
+		configRegistry.registerConfigAttribute(
+				CellConfigAttributes.DISPLAY_CONVERTER,
+				new DefaultDoubleDisplayConverter(), DisplayMode.EDIT,
+				DOUBLE_CONFIG_LABEL);
+		configRegistry.registerConfigAttribute(
+				CellConfigAttributes.DISPLAY_CONVERTER,
+				new DefaultFloatDisplayConverter(), DisplayMode.EDIT,
+				FLOAT_CONFIG_LABEL);
+		configRegistry.registerConfigAttribute(
+				CellConfigAttributes.DISPLAY_CONVERTER,
+				new DefaultIntegerDisplayConverter(), DisplayMode.EDIT,
+				INTEGER_CONFIG_LABEL);
+		configRegistry.registerConfigAttribute(
+				CellConfigAttributes.DISPLAY_CONVERTER,
+				new DefaultLongDisplayConverter(), DisplayMode.EDIT,
+				LONG_CONFIG_LABEL);
+		configRegistry.registerConfigAttribute(
+				CellConfigAttributes.DISPLAY_CONVERTER,
+				new DefaultShortDisplayConverter(), DisplayMode.EDIT,
+				SHORT_CONFIG_LABEL);
+		configRegistry.registerConfigAttribute(
+				EditConfigAttributes.CELL_EDITOR, new CheckBoxCellEditor(),
+				DisplayMode.EDIT, CHECKBOX_EDITOR_CONFIG_LABEL);
+
+	}
+
+}

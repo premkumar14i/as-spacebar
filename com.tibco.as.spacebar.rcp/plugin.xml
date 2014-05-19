@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="com.tibco.as.spacebar.rcp.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.activities">
+      <activity
+            description="Disable plug-in contributions"
+            id="com.tibco.as.spacebar.rcp.disableEclipseIDEContributions"
+            name="DisableIDEContributions">
+      </activity>
+      <activityPatternBinding
+            activityId="com.tibco.as.spacebar.rcp.disableEclipseIDEContributions"
+            pattern="org.eclipse.ui.editors/org.eclipse.ui.edit.text.*">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="com.tibco.as.spacebar.rcp.disableEclipseIDEContributions"
+            pattern="org.eclipse.ui.ide/org.eclipse.ui.*">
+      </activityPatternBinding>      
+   </extension>
+   <extension
+         id="spacebarproduct"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="com.tibco.as.spacebar.rcp.application"
+            description="Editor for TIBCO ActiveSpaces®"
+            name="SpaceBar">
+         <property
+               name="appName"
+               value="SpaceBar">
+         </property>
+         <property
+               name="aboutImage"
+               value="SpaceBar.png">
+         </property>
+         <property
+               name="aboutText"
+               value="SpaceBar for TIBCO ActiveSpaces® Version: 2.1.0&#x0A;&#x0A;Eclipse RCP application for TIBCO ActiveSpaces®.&#x0A;&#x0A;© TIBCO Software 2014. All Rights Reserved.">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/SpaceBar-16.png,icons/SpaceBar-32.png,icons/SpaceBar-48.png,icons/SpaceBar-64.png,icons/SpaceBar-128.png">
+         </property>
+      </product>
+   </extension>
+   <extension
+      point="org.eclipse.ui.views">
+   		<view
+         	name="Progress View"
+         	icon="icons/pview.gif"
+         	category="org.eclipse.ui"
+         	class="org.eclipse.ui.ExtensionFactory:progressView"
+         	id="org.eclipse.ui.views.ProgressView">
+   		</view>
+   </extension>
+</plugin>

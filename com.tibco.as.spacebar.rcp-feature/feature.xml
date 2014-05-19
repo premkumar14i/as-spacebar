@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.tibco.as.spacebar.rcp-feature"
+      label="%featureName"
+      version="2.1.0.qualifier"
+      provider-name="%providerName">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="%updateSiteName" url="http://activespaces.tibco.com/tools/spacebar/"/>
+      <discovery label="%updateSiteName" url="http://activespaces.tibco.com/tools/spacebar/"/>
+   </url>
+
+   <plugin
+         id="com.tibco.as.spacebar.rcp"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.tibco.as.common"
+         download-size="0"
+         install-size="0"
+         version="2.1.2"
+         unpack="false"/>
+
+   <plugin
+         id="com.tibco.as.spacebar.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.tibco.as.spacebar.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.tibco.as.io"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.tibco.as.convert"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.tibco.as.io.file"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+   <plugin
+         id="com.tibco.as.io.simulation"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.tibco.as.io-dependencies"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+</feature>

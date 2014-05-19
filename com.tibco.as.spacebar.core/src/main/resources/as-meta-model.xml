@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<as:AS xmlns="http://www.tibco.com/2012/QL/AS" xmlns:as="http://www.tibco.com/2012/QL/AS"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="AS.model.xsd">
+
+	<as:MemberDefMeta>
+
+		<as:ListOfMeta as:_id="MemberDefClasses">
+
+			<as:Meta as:_element="MemberDef" as:_id="MemberDef"
+				as:displayName="Member Definition" as:javaClass="com.tibco.as.space.MemberDef"
+				as:javaDefaultConstructionMethod="create">
+
+				<as:PropertyListDefinition>
+
+					<as:Property as:_id="MemberName">
+						<as:displayName as:value="Member Name" />
+						<as:dataType as:value="string" />
+						<as:isRequired as:value="true" />
+					</as:Property>
+
+					<as:Property as:_id="Discovery" as:previous_ids="discoveryUrl">
+						<as:displayName as:value="Discovery URL" />
+						<as:dataType as:value="string" />
+						<as:isRequired as:value="true" />
+					</as:Property>
+
+					<as:Property as:_id="Listen" as:previous_ids="listenUrl">
+						<as:displayName as:value="Listen URL" />
+						<as:dataType as:value="string" />
+						<as:isRequired as:value="true" />
+					</as:Property>
+
+					<!-- <as:Property as:_id="RemoteDiscovery"> <as:displayName as:value="Remote 
+						Discovery URL"/> <as:dataType as:value="string"/> <as:isRequired as:value="false"/> 
+						</as:Property> -->
+
+					<as:Property as:_id="RemoteListen">
+						<as:displayName as:value="Remote Listen URL" />
+						<as:dataType as:value="string" />
+						<as:isRequired as:value="false" />
+					</as:Property>
+
+					<!-- <as:Property as:_id="TransportThreadCount"> <as:displayName as:value="Allowed 
+						Transport Thread Count"/> <as:dataType as:value="integer"/> <as:isRequired 
+						as:value="false"/> </as:Property> -->
+
+					<as:Property as:_id="WorkerThreadCount">
+						<as:displayName as:value="Allowed Invocation Thread Count" />
+						<as:dataType as:value="integer" />
+						<as:isRequired as:value="false" />
+					</as:Property>
+
+					<as:Property as:_id="ConnectTimeout">
+						<as:displayName as:value="Connect timeout (milliseconds)" />
+						<as:dataType as:value="long" />
+						<as:isRequired as:value="false" />
+					</as:Property>
+
+					<!-- <as:Property as:_id="RxBufferSize"> <as:displayName as:value="Pre-allocated 
+						Buffer Size"/> <as:dataType as:value="long"/> <as:isRequired as:value="false"/> 
+						</as:Property> -->
+
+					<as:Property as:_id="DataStore">
+						<as:displayName as:value="Data Store Location" />
+						<as:dataType as:value="string" />
+						<as:isRequired as:value="false" />
+					</as:Property>
+
+					<as:Property as:_id="SecurityPolicyFile">
+						<as:displayName as:value="Security Policy File" />
+						<as:dataType as:value="string" />
+						<as:isRequired as:value="false" />
+					</as:Property>
+
+					<as:Property as:_id="SecurityTokenFile">
+						<as:displayName as:value="Security Token File" />
+						<as:dataType as:value="string" />
+						<as:isRequired as:value="false" />
+					</as:Property>
+
+					<as:Property as:_id="ConnectTimeout">
+						<as:displayName as:value="Connect timeout" />
+						<as:dataType as:value="long" />
+						<as:isRequired as:value="false" />
+					</as:Property>
+
+				</as:PropertyListDefinition>
+
+			</as:Meta>
+
+		</as:ListOfMeta>
+
+	</as:MemberDefMeta>
+
+	<as:SpaceDefMeta>
+
+		<as:ListOfMeta as:_id="SpaceDefClasses">
+
+			<as:Meta as:_element="FieldDef" as:_id="FieldDef"
+				as:displayName="Field Definition" as:javaClass="com.tibco.as.space.FieldDef"
+				as:javaDefaultConstructionMethod="create"
+				as:javaDefaultConstructionParams="Name,Type">
+
+				<as:PropertyListDefinition>
+
+					<as:Property as:_id="Name" as:previous_ids="name">
+						<as:displayName as:value="Field Name" />
+						<as:dataType as:value="string" />
+						<as:isRequired as:value="true" />
+						<as:isReadOnly as:value="true" />
+						<as:allowedValues as:value="^[a-zA-Z_]\w*" />
+					</as:Property>
+
+					<as:Property as:_id="Type" as:previous_ids="fieldtype">
+						<as:displayName as:value="Field Type" />
+						<as:dataType as:value="enumeration" />
+						<as:enumerationType as:value="string" />
+						<as:enumerationJavaClass as:value="com.tibco.as.space.FieldDef.FieldType" />
+						<as:defaultValue as:value="STRING" />
+						<as:isRequired as:value="true" />
+						<as:isReadOnly as:value="true" />
+					</as:Property>
+
+					<as:Property as:_id="Nullable" as:previous_ids="isnullable">
+						<as:displayName as:value="Allow Field to be Null" />
+						<as:dataType as:value="boolean" />
+						<as:defaultValue as:value="false" />
+						<!-- overriding default getter method from getNullable to isNullable -->
+						<as:getJavaMethodOverride as:value="isNullable" />
+					</as:Property>
+
+					<as:Property as:_id="Encrypted">
+						<as:displayName as:value="Encrypt Non-Key Data Field" />
+						<as:dataType as:value="boolean" />
+						<as:defaultValue as:value="false" />
+						<!-- overriding default getter method from getEncrypted to isEncrypted -->
+						<as:getJavaMethodOverride as:value="isEncrypted" />
+					</as:Property>
+
+				</as:PropertyListDefinition>
+
+			</as:Meta>
+
+			<as:Meta as:_element="IndexDef" as:_id="IndexDef"
+				as:displayName="Index Definition" as:javaClass="com.tibco.as.space.IndexDef"
+				as:javaDefaultConstructionMethod="create"
+				as:javaDefaultConstructionParams="Name">
+
+				<as:PropertyListDefinition>
+
+					<as:Property as:_id="Name">
+						<as:displayName as:value="Index Name" />
+						<as:dataType as:value="string" />
+						<as:isRequired as:value="true" />
+						<as:allowedValues as:value="^[a-zA-Z_]\w*" />
+					</as:Property>
+
+					<as:Property as:_id="IndexType">
+						<as:displayName as:value="Index Type" />
+						<as:dataType as:value="enumeration" />
+						<as:enumerationType as:value="string" />
+						<as:enumerationJavaClass as:value="com.tibco.as.space.IndexDef.IndexType" />
+						<as:defaultValue as:value="HASH" />
+						<as:isRequired as:value="true" />
+					</as:Property>
+
+					<as:Property as:_id="FieldNames">
+						<as:displayName as:value="Index Field Names" />
+						<as:dataType as:value="string[]" />
+						<as:isRequired as:value="true" />
+					</as:Property>
+
+				</as:PropertyListDefinition>
+
+			</as:Meta>
+
+			<as:Meta as:_element="KeyDef" as:_id="KeyDef" as:displayName="Key Definition"
+				as:javaClass="com.tibco.as.space.KeyDef"
+				as:javaDefaultConstructionMethod="create"
+				as:javaDefaultConstructionParms="">
+
+				<as:PropertyListDefinition>
+
+					<as:Property as:_id="IndexType">
+						<as:displayName as:value="Key Index Type" />
+						<as:dataType as:value="enumeration" />
+						<as:enumerationType as:value="string" />
+						<as:enumerationJavaClass as:value="com.tibco.as.space.IndexDef.IndexType" />
+						<as:defaultValue as:value="HASH" />
+						<as:isRequired as:value="true" />
+					</as:Property>
+
+					<as:Property as:_id="FieldNames">
+						<as:displayName as:value="Key Field Names" />
+						<as:dataType as:value="string[]" />
+						<as:isRequired as:value="true" />
+					</as:Property>
+
+				</as:PropertyListDefinition>
+
+			</as:Meta>
+
+			<as:Meta as:_element="SpaceDef" as:_id="SpaceDef"
+				as:displayName="Space Definition" as:javaClass="com.tibco.as.space.SpaceDef"
+				as:javaDefaultConstructionMethod="create">
+
+				<as:PropertyListDefinition>
+
+					<as:Property as:_id="LabelGeneral">
+						<as:displayName as:value="General" />
+						<as:dataType as:value="label" />
+					</as:Property>
+
+					<as:Property as:_id="Name" as:previous_ids="name">
+						<as:displayName as:value="Space Name" />
+						<as:dataType as:value="string" />
+						<as:isRequired as:value="true" />
+					</as:Property>
+
+					<as:Property as:_id="LabelDataInMemory">
+						<as:displayName as:value="Data in Memory" />
+						<as:dataType as:value="label" />
+					</as:Property>
+
+					<as:Property as:_id="DistributionPolicy"
+						as:previous_ids="distributionPolicy">
+						<as:displayName as:value="Distribution Policy" />
+						<as:dataType as:value="enumeration" />
+						<as:enumerationType as:value="string" />
+						<as:enumerationJavaClass
+							as:value="com.tibco.as.space.SpaceDef.DistributionPolicy" />
+						<as:defaultValue as:value="DISTRIBUTED" />
+					</as:Property>
+
+					<as:Property as:_id="Capacity" as:previous_ids="capacity">
+						<as:displayName as:value="Capacity" />
+						<as:dataType as:value="long" />
+						<as:defaultValue as:value="" />
+						<as:minValue as:value="-1" />
+					</as:Property>
+
+					<as:Property as:_id="EvictionPolicy" as:previous_ids="evictionPolicy">
+						<as:displayName as:value="Eviction Policy" />
+						<as:dataType as:value="enumeration" />
+						<as:enumerationType as:value="string" />
+						<as:enumerationJavaClass
+							as:value="com.tibco.as.space.SpaceDef.EvictionPolicy" />
+						<as:defaultValue as:value="NONE" />
+					</as:Property>
+
+					<as:Property as:_id="LabelPersistence">
+						<as:displayName as:value="Persistence" />
+						<as:dataType as:value="label" />
+					</as:Property>
+
+					<as:Property as:_id="PersistenceType" as:previous_ids="persisted">
+						<as:displayName as:value="Persistence Type" />
+						<as:dataType as:value="enumeration" />
+						<as:enumerationType as:value="string" />
+						<as:enumerationJavaClass
+							as:value="com.tibco.as.space.SpaceDef.PersistenceType" />
+						<as:defaultValue as:value="NONE" />
+					</as:Property>
+
+					<as:Property as:_id="PersistencePolicy">
+						<as:displayName as:value="Persistence Policy" />
+						<as:dataType as:value="enumeration" />
+						<as:enumerationType as:value="string" />
+						<as:enumerationJavaClass
+							as:value="com.tibco.as.space.SpaceDef.PersistencePolicy" />
+						<as:defaultValue as:value="SYNC" />
+					</as:Property>
+
+					<!-- <as:Property as:_id="PersistenceDistributionPolicy"> <as:displayName 
+						as:value="Persistence Distribution Policy"/> <as:dataType as:value="enumeration"/> 
+						<as:enumerationType as:value="string"/> <as:enumerationJavaClass as:value="com.tibco.as.space.SpaceDef.DistributionPolicy"/> 
+						<as:defaultValue as:value="DISTRIBUTED"/> </as:Property> -->
+
+					<as:Property as:_id="LabelReplication">
+						<as:displayName as:value="Data Replication" />
+						<as:dataType as:value="label" />
+					</as:Property>
+
+					<as:Property as:_id="MinSeederCount" as:previous_ids="minimumSeederCount">
+						<as:displayName as:value="Minimum Seeder Count" />
+						<as:dataType as:value="integer" />
+						<as:defaultValue as:value="1" />
+						<as:minValue as:value="0" />
+					</as:Property>
+
+					<as:Property as:_id="ReplicationCount" as:previous_ids="replicationCount">
+						<as:displayName as:value="Replication Count" />
+						<as:dataType as:value="integer" />
+						<as:defaultValue as:value="0" />
+						<as:minValue as:value="-1" />
+					</as:Property>
+
+					<as:Property as:_id="ReplicationPolicy"
+						as:previous_ids="syncReplicated">
+						<as:displayName as:value="Replication Policy" />
+						<as:dataType as:value="enumeration" />
+						<as:enumerationType as:value="string" />
+						<as:enumerationJavaClass
+							as:value="com.tibco.as.space.SpaceDef.ReplicationPolicy" />
+						<as:defaultValue as:value="SYNC" />
+					</as:Property>
+
+					<as:Property as:_id="HostAwareReplication"
+						as:previous_ids="HostAwareReplication">
+						<as:displayName as:value="HostAware Replication" />
+						<as:dataType as:value="boolean" />
+						<as:defaultValue as:value="true" />
+						<as:getJavaMethodOverride as:value="isHostAwareReplication" />
+					</as:Property>
+
+					<as:Property as:_id="LabelExpiry">
+						<as:displayName as:value="Entry Expiry" />
+						<as:dataType as:value="label" />
+					</as:Property>
+
+					<as:Property as:_id="TTL" as:previous_ids="spaceDefTtl">
+						<as:displayName as:value="Entry Time to Live (milliseconds)" />
+						<as:dataType as:value="long" />
+						<as:defaultValue as:value="" />
+						<as:minValue as:value="-1" />
+					</as:Property>
+
+					<as:Property as:_id="LabelLock">
+						<as:displayName as:value="Locking" />
+						<as:dataType as:value="label" />
+					</as:Property>
+
+					<as:Property as:_id="LockTTL" as:previous_ids="spaceDefLockTtl">
+						<as:displayName as:value="Lock Time to Live (milliseconds)" />
+						<as:dataType as:value="long" />
+						<as:defaultValue as:value="" />
+						<as:minValue as:value="-1" />
+					</as:Property>
+
+					<as:Property as:_id="LockWait" as:previous_ids="spaceDefLockWait">
+						<as:displayName as:value="Lock wait (milliseconds)" />
+						<as:dataType as:value="long" />
+						<as:defaultValue as:value="" />
+						<as:minValue as:value="-1" />
+					</as:Property>
+
+					<as:Property as:_id="LockScope">
+						<as:displayName as:value="Lock Scope" />
+						<as:dataType as:value="enumeration" />
+						<as:enumerationType as:value="string" />
+						<as:enumerationJavaClass as:value="com.tibco.as.space.SpaceDef.LockScope" />
+						<as:defaultValue as:value="THREAD" />
+						<as:isHidden as:value="true" />
+					</as:Property>
+
+					<as:Property as:_id="LabelTimeout">
+						<as:displayName as:value="Timeouts" />
+						<as:dataType as:value="label" />
+					</as:Property>
+
+					<as:Property as:_id="SpaceWait" as:previous_ids="spaceWait">
+						<as:displayName as:value="Space Wait (milliseconds)" />
+						<as:dataType as:value="long" />
+						<as:defaultValue as:value="60000" />
+						<as:minValue as:value="-1" />
+					</as:Property>
+
+					<as:Property as:_id="WriteTimeout" as:previous_ids="writeTimeout">
+						<as:displayName as:value="Write Timeout (milliseconds)" />
+						<as:dataType as:value="long" />
+						<as:defaultValue as:value="60000" />
+						<as:minValue as:value="-1" />
+					</as:Property>
+
+					<as:Property as:_id="ReadTimeout" as:previous_ids="readTimeout">
+						<as:displayName as:value="Read Timeout (milliseconds)" />
+						<as:dataType as:value="long" />
+						<as:defaultValue as:value="60000" />
+						<as:minValue as:value="-1" />
+					</as:Property>
+
+					<as:Property as:_id="QueryLimit" as:previous_ids="queryLimit">
+						<as:displayName as:value="Query Limit" />
+						<as:dataType as:value="long" />
+						<as:defaultValue as:value="-1" />
+						<as:minValue as:value="-1" />
+					</as:Property>
+				</as:PropertyListDefinition>
+
+			</as:Meta>
+
+		</as:ListOfMeta>
+
+	</as:SpaceDefMeta>
+</as:AS>

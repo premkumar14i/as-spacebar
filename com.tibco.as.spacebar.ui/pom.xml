@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.tibco.as.spacebar</groupId>
+		<artifactId>com.tibco.as.spacebar.parent</artifactId>
+		<version>2.1.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>com.tibco.as.spacebar.ui</artifactId>
+	<name>SpaceBar Eclipse Plugin</name>
+	<packaging>eclipse-plugin</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.tibco.as</groupId>
+						<artifactId>as-common</artifactId>
+						<version>${as.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<extraClasspathElements>
+						<extraClasspathElement>
+							<groupId>com.tibco.as</groupId>
+							<artifactId>as-common</artifactId>
+							<version>${as.version}</version>
+						</extraClasspathElement>
+					</extraClasspathElements>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
