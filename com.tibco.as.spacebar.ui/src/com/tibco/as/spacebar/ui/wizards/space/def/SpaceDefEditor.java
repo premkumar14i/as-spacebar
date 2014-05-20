@@ -24,22 +24,21 @@ import org.eclipse.swt.widgets.Text;
 
 import com.tibco.as.spacebar.core.Property;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
-
-import com.tibco.as.space.SpaceDef;
+import com.tibco.as.spacebar.ui.model.Space;
 
 public class SpaceDefEditor extends Composite {
 
 	private DataBindingContext bindingContext;
-	private SpaceDef spaceDef;
+	private Space space;
 
-	public SpaceDefEditor(Composite parent, int style, SpaceDef newSpaceDef) {
+	public SpaceDefEditor(Composite parent, int style, Space newSpace) {
 		super(parent, style);
-		spaceDef = newSpaceDef;
+		space = newSpace;
 		bindingContext = new DataBindingContext();
 		setLayout(new GridLayout());
 		TabFolder folder = new TabFolder(this, SWT.NONE);
-		Map<Property, List<Property>> properties = SpaceBarPlugin
-				.getDefault().getSpaceDefProperties();
+		Map<Property, List<Property>> properties = SpaceBarPlugin.getDefault()
+				.getSpaceDefProperties();
 		for (Entry<Property, List<Property>> entry : properties.entrySet()) {
 			Property label = entry.getKey();
 			if ("LabelGeneral".equals(label.getId())) {
@@ -54,7 +53,7 @@ public class SpaceDefEditor extends Composite {
 	}
 
 	private void createControl(Composite parent, Property property) {
-		IObservableValue observeValue = PojoObservables.observeValue(spaceDef,
+		IObservableValue observeValue = PojoObservables.observeValue(space,
 				getPropertyName(property.getId()));
 		IObservableValue observeWidget = getObserveWidget(parent, property);
 		bindingContext.bindValue(observeWidget, observeValue, null, null);

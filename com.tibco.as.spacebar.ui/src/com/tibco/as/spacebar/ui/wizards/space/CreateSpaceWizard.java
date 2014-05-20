@@ -28,7 +28,7 @@ public class CreateSpaceWizard extends AbstractWizard implements INewWizard {
 
 	@Override
 	public void addPages() {
-		addPage(new SpaceDefWizardPage(space.getSpaceDef()));
+		addPage(new SpaceDefWizardPage(space));
 		addPage(new FieldsWizardPage(space.getFields()));
 		addPage(new KeyWizardPage(space));
 		if (ASUtils.hasMethod(SpaceDef.class, "setDistributionFields")) {
@@ -42,7 +42,7 @@ public class CreateSpaceWizard extends AbstractWizard implements INewWizard {
 		monitor.beginTask("Defining space", 1);
 		Connection connection = space.getParent().getMetaspace()
 				.getConnection();
-		SpaceDef spaceDef = space.getActualSpaceDef();
+		SpaceDef spaceDef = space.getSpaceDef();
 		connection.getMetaspace().defineSpace(spaceDef);
 		monitor.worked(1);
 	}
@@ -52,7 +52,7 @@ public class CreateSpaceWizard extends AbstractWizard implements INewWizard {
 		Object element = selection.getFirstElement();
 		if (element instanceof Spaces) {
 			Spaces spaces = (Spaces) element;
-			space = new Space(spaces, SpaceDef.create());
+			space = new Space(spaces);
 		}
 	}
 }

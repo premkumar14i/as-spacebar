@@ -11,22 +11,22 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import com.tibco.as.spacebar.ui.SWTFactory;
-
+import com.tibco.as.spacebar.ui.model.Space;
 import com.tibco.as.space.SpaceDef;
 
 public class SpaceDefWizardPage extends WizardPage {
 
-	private SpaceDef spaceDef;
+	private Space space;
 	private Text nameText;
 
 	/**
 	 * Create the wizard.
 	 */
-	public SpaceDefWizardPage(SpaceDef spaceDef) {
+	public SpaceDefWizardPage(Space space) {
 		super("spaceDefWizardPage");
 		setTitle("Space Definition");
 		setDescription("Enter space definition");
-		this.spaceDef = spaceDef;
+		this.space = space;
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class SpaceDefWizardPage extends WizardPage {
 		GridDataFactory.defaultsFor(nameText).applyTo(nameText);
 
 		SpaceDefEditor defEditor = new SpaceDefEditor(composite, SWT.NONE,
-				spaceDef);
+				space);
 		GridDataFactory.defaultsFor(defEditor).applyTo(defEditor);
 
 		setControl(composite);
@@ -58,11 +58,12 @@ public class SpaceDefWizardPage extends WizardPage {
 	protected void determinePageCompletion() {
 		String name = nameText.getText().trim();
 		try {
-			spaceDef.setName(name);
+			SpaceDef.create(name);
+			space.setName(name);
 		} catch (Throwable e) {
 			setErrorMessage(e.getMessage());
 		}
-		setPageComplete(spaceDef.getName() != null);
+		setPageComplete(space.getName() != null);
 	}
 
 }

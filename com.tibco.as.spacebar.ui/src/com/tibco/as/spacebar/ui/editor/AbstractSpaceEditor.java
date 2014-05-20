@@ -188,7 +188,7 @@ public abstract class AbstractSpaceEditor<T extends Map<String, Object>>
 			setInput(input);
 			Space space = input.getSpace();
 			setPartName(space.getName());
-			spaceDef = space.getActualSpaceDef();
+			spaceDef = space.getSpaceDef();
 			fieldDefs = ASUtils.getFieldDefs(spaceDef);
 			fieldNames = ASUtils.getFieldNames(spaceDef);
 			nonKeyFieldNames = ASUtils.getNonKeyFieldNames(spaceDef);

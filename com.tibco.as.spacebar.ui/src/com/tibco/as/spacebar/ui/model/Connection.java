@@ -143,8 +143,8 @@ public class Connection {
 						members.addChild(child);
 					}
 				} catch (ASException e) {
-					SpaceBarPlugin.logException(
-							"Could not get space members", e);
+					SpaceBarPlugin.logException("Could not get space members",
+							e);
 				}
 			}
 
