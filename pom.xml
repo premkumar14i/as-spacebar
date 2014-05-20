@@ -169,12 +169,12 @@
 		<repository>
 			<id>releases</id>
 			<name>Release Repository</name>
-			<url>${site-url}nexus/content/repositories/releases</url>
+			<url>http://localhost:8081/nexus/content/repositories/releases</url>
 		</repository>
 		<snapshotRepository>
 			<id>snapshots</id>
 			<name>Snapshot Repository</name>
-			<url>${site-url}nexus/content/repositories/snapshots</url>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<site>
 			<id>${project.artifactId}</id>
