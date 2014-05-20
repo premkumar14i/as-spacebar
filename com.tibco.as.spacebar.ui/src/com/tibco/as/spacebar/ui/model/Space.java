@@ -9,7 +9,6 @@ import com.tibco.as.space.FieldDef;
 import com.tibco.as.space.FieldDef.FieldType;
 import com.tibco.as.space.IndexDef;
 import com.tibco.as.space.KeyDef;
-import com.tibco.as.space.MemberDef;
 import com.tibco.as.space.SpaceDef;
 import com.tibco.as.space.SpaceDef.CachePolicy;
 import com.tibco.as.space.SpaceDef.DistributionPolicy;
