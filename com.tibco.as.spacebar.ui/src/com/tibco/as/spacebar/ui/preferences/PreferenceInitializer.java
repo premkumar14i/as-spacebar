@@ -79,6 +79,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 				ConverterFactory.DEFAULT_PATTERN_DATE);
 		store.setDefault(Preferences.IMPORT_EXCEL_HEADER, true);
 		store.setDefault(Preferences.IMPORT_EXCEL_FORMAT_BLOB, Blob.HEX.name());
+		store.setDefault(Preferences.SPACE_EDITOR_THEME,
+				Preferences.THEME_MODERN);
 		PreferenceConverter.setDefault(store,
 				Preferences.SPACE_EDITOR_COLOR_BLINK, new RGB(255, 204, 0));
 		PreferenceConverter.setDefault(store,

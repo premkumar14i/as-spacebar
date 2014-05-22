@@ -54,8 +54,8 @@ public class ColumnHeaderLayerStack<T> extends AbstractLayerTransform {
 				sortableColumnHeaderLayer, selectionLayer, columnGroupModel);
 		CompositeMatcherEditor<T> matcherEditor = new CompositeMatcherEditor<T>();
 		filterList.setMatcherEditor(matcherEditor);
-		filterStrategy = new DefaultGlazedListsFilterStrategy<T>(matcherEditor,
-				propertyAccessor, configRegistry);
+		filterStrategy = new DefaultGlazedListsFilterStrategy<T>(filterList,
+				matcherEditor, propertyAccessor, configRegistry);
 		composite = new FilterRowHeaderComposite<T>(filterStrategy,
 				sortableColumnHeaderLayer, columnHeaderDataProvider,
 				configRegistry);

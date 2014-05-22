@@ -42,6 +42,10 @@ import org.eclipse.nebula.widgets.nattable.resize.event.ColumnResizeEventMatcher
 import org.eclipse.nebula.widgets.nattable.resize.mode.ColumnResizeDragMode;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.sort.config.SingleClickSortConfiguration;
+import org.eclipse.nebula.widgets.nattable.style.theme.DarkNatTableThemeConfiguration;
+import org.eclipse.nebula.widgets.nattable.style.theme.DefaultNatTableThemeConfiguration;
+import org.eclipse.nebula.widgets.nattable.style.theme.ModernNatTableThemeConfiguration;
+import org.eclipse.nebula.widgets.nattable.style.theme.ThemeConfiguration;
 import org.eclipse.nebula.widgets.nattable.tooltip.NatTableContentTooltip;
 import org.eclipse.nebula.widgets.nattable.ui.action.ClearCursorAction;
 import org.eclipse.nebula.widgets.nattable.ui.action.NoOpMouseAction;
@@ -62,7 +66,9 @@ import org.eclipse.ui.part.EditorPart;
 
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.model.Space;
+import com.tibco.as.spacebar.ui.preferences.Preferences;
 import com.tibco.as.spacebar.ui.transfer.MetaspaceTransferJob;
+
 import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.FilterList;
 import ca.odell.glazedlists.GlazedLists;
@@ -319,7 +325,19 @@ public abstract class AbstractSpaceEditor<T extends Map<String, Object>>
 				rowHeaderLayer, cornerLayer);
 		natTable = createNatTable(parent, layer, registry);
 		natTable.configure();
+		natTable.setTheme(getTheme());
 		copyDataAction = new CopyDataAction();
+	}
+
+	private ThemeConfiguration getTheme() {
+		String theme = Preferences.getString(Preferences.SPACE_EDITOR_THEME);
+		if (Preferences.THEME_MODERN.equals(theme)) {
+			return new ModernNatTableThemeConfiguration();
+		}
+		if (Preferences.THEME_DARK.equals(theme)) {
+			return new DarkNatTableThemeConfiguration();
+		}
+		return new DefaultNatTableThemeConfiguration();
 	}
 
 	protected abstract IUniqueIndexLayer getLayer(

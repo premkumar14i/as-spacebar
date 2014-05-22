@@ -8,8 +8,15 @@ import org.eclipse.swt.widgets.Group;
 
 public class SpaceEditorDisplayPreferencePage extends AbstractPreferencePage {
 
+	public static final String[][] THEMES = {
+			{ "Default", Preferences.THEME_DEFAULT },
+			{ "Modern", Preferences.THEME_MODERN },
+			{ "Dark", Preferences.THEME_DARK } };
+
 	@Override
 	protected void createFieldEditors(Composite parent) {
+		addComboField(Preferences.SPACE_EDITOR_THEME, "&Theme:", THEMES,
+				parent, "Theme styling of space editor table");
 		Group formatGroup = new Group(parent, SWT.NONE);
 		formatGroup.setFont(parent.getFont());
 		formatGroup.setText("Formats");

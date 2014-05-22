@@ -26,6 +26,7 @@ import com.tibco.as.space.Member.DistributionRole;
  */
 public class Preferences {
 
+	public static final String SPACE_EDITOR_THEME = "spaceEditorTheme";
 	public static final String SPACE_EDITOR_BROWSE_TIME_SCOPE = "spaceEditorBrowseTimeScope";
 	public static final String SPACE_EDITOR_BROWSE_PREFETCH = "spaceEditorBrowsePrefetch";
 	public static final String SPACE_EDITOR_BROWSE_TIMEOUT = "spaceEditorBrowseTimeout";
@@ -80,6 +81,9 @@ public class Preferences {
 	public static final String TIMESCOPE_NEW = "NEW";
 	public static final String TIMESCOPE_CURRENT = "CURRENT";
 	public static final String TIMESCOPE_SNAPSHOT = "SNAPSHOT";
+	public static final String THEME_DEFAULT = "Default";
+	public static final String THEME_MODERN = "Modern";
+	public static final String THEME_DARK = "Dark";
 
 	public static String getPreferenceName(String... parts) {
 		String name = "";
@@ -106,7 +110,8 @@ public class Preferences {
 		config.setBatchSize(getInteger(IMPORT_BATCH_SIZE));
 		config.setWorkerCount(getInteger(IMPORT_WORKER_COUNT));
 		config.setOperation(Operation.valueOf(getString(IMPORT_OPERATION)));
-		config.setDistributionRole(DistributionRole.valueOf(getString(IMPORT_DISTRIBUTION_ROLE)));
+		config.setDistributionRole(DistributionRole
+				.valueOf(getString(IMPORT_DISTRIBUTION_ROLE)));
 		config.setWaitForReadyTimeout(getLong(IMPORT_WAIT_FOR_READY_TIMEOUT));
 	}
 
@@ -212,7 +217,8 @@ public class Preferences {
 		configureExport(config);
 		config.setHeader(getBoolean(EXPORT_EXCEL_HEADER));
 		Attributes conversion = new Attributes();
-		conversion.put(Attribute.FORMAT_DATE, getString(EXPORT_EXCEL_FORMAT_DATE));
+		conversion.put(Attribute.FORMAT_DATE,
+				getString(EXPORT_EXCEL_FORMAT_DATE));
 		conversion.put(Attribute.FORMAT_BLOB,
 				Blob.valueOf(getString(EXPORT_EXCEL_FORMAT_BLOB)));
 		config.getAttributes().putAll(conversion);
@@ -247,9 +253,12 @@ public class Preferences {
 		Attributes conversion = new Attributes();
 		conversion.put(Attribute.FORMAT_BLOB,
 				Blob.valueOf(getString(IMPORT_CSV_FORMAT_BLOB)));
-		conversion.put(Attribute.FORMAT_BOOLEAN, getString(IMPORT_CSV_FORMAT_BOOLEAN));
-		conversion.put(Attribute.FORMAT_DATE, getString(IMPORT_CSV_FORMAT_DATE));
-		conversion.put(Attribute.FORMAT_NUMBER, getString(IMPORT_CSV_FORMAT_NUMBER));
+		conversion.put(Attribute.FORMAT_BOOLEAN,
+				getString(IMPORT_CSV_FORMAT_BOOLEAN));
+		conversion
+				.put(Attribute.FORMAT_DATE, getString(IMPORT_CSV_FORMAT_DATE));
+		conversion.put(Attribute.FORMAT_NUMBER,
+				getString(IMPORT_CSV_FORMAT_NUMBER));
 		config.getAttributes().putAll(conversion);
 	}
 
@@ -262,9 +271,12 @@ public class Preferences {
 		Attributes conversion = new Attributes();
 		conversion.put(Attribute.FORMAT_BLOB,
 				Blob.valueOf(getString(EXPORT_CSV_FORMAT_BLOB)));
-		conversion.put(Attribute.FORMAT_BOOLEAN, getString(EXPORT_CSV_FORMAT_BOOLEAN));
-		conversion.put(Attribute.FORMAT_DATE, getString(EXPORT_CSV_FORMAT_DATE));
-		conversion.put(Attribute.FORMAT_NUMBER, getString(EXPORT_CSV_FORMAT_NUMBER));
+		conversion.put(Attribute.FORMAT_BOOLEAN,
+				getString(EXPORT_CSV_FORMAT_BOOLEAN));
+		conversion
+				.put(Attribute.FORMAT_DATE, getString(EXPORT_CSV_FORMAT_DATE));
+		conversion.put(Attribute.FORMAT_NUMBER,
+				getString(EXPORT_CSV_FORMAT_NUMBER));
 		config.getAttributes().putAll(conversion);
 
 	}
