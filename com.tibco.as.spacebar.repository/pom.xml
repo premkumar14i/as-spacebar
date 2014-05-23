@@ -3,14 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.tibco.as.spacebar</groupId>
-		<artifactId>com.tibco.as.spacebar.parent</artifactId>
+		<artifactId>spacebar-parent</artifactId>
 		<version>2.1.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>com.tibco.as.spacebar.repository</artifactId>
 	<name>SpaceBar Repository</name>
 	<description>SpaceBar Update Site</description>
 	<packaging>eclipse-repository</packaging>
-	<url>${spacebar-site-url}</url>
+	<url>${site-url}</url>
 
 	<inceptionYear>2014</inceptionYear>
 

@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.tibco.as.spacebar</groupId>
-	<artifactId>com.tibco.as.spacebar.parent</artifactId>
+	<artifactId>spacebar-parent</artifactId>
 	<version>2.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>SpaceBar Parent</name>
@@ -17,9 +17,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<tycho.version>0.20.0</tycho.version>
 		<as.version>2.1.2</as.version>
-		<site-url>http://activespaces.tibco.com/</site-url>
-		<tools-site-url>${site-url}tools/</tools-site-url>
-		<spacebar-site-url>${tools-site-url}spacebar/</spacebar-site-url>
+		<site-url>http://activespaces.tibco.com/tools/spacebar/</site-url>
 		<site.deploy.url>file:///var/www/html/tools/spacebar/</site.deploy.url>
 	</properties>
 
@@ -154,7 +152,6 @@
 						<artifactId>reflow-velocity-tools</artifactId>
 						<version>1.1.0</version>
 					</dependency>
-					<!-- Reflow skin requires Velocity >= 1.7 -->
 					<dependency>
 						<groupId>org.apache.velocity</groupId>
 						<artifactId>velocity</artifactId>
