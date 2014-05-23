@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="SpaceBar" uid="spacebar-2.1" id="spacebar-rcp.spacebarproduct" application="com.tibco.as.spacebar.rcp.application" version="2.1.0.qualifier" useFeatures="true" includeLaunchers="true">
+
+   <aboutInfo>
+      <image path="/spacebar-rcp/SpaceBar.png"/>
+      <text>
+         SpaceBar for TIBCO ActiveSpaces® Version: 2.1.0
+
+Eclipse RCP application for TIBCO ActiveSpaces.
+
+© TIBCO Software 2014. All Rights Reserved.
+      </text>
+   </aboutInfo>
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+   </launcherArgs>
+
+   <windowImages i16="/spacebar-rcp/icons/SpaceBar-16.png" i32="/spacebar-rcp/icons/SpaceBar-32.png" i48="/spacebar-rcp/icons/SpaceBar-48.png" i64="/spacebar-rcp/icons/SpaceBar-64.png" i128="/spacebar-rcp/icons/SpaceBar-128.png"/>
+
+   <launcher name="spacebar">
+      <linux icon="icons/SpaceBar.xpm"/>
+      <macosx icon="icons/SpaceBar.icns"/>
+      <solaris/>
+      <win useIco="true">
+         <ico path="icons/SpaceBar.ico"/>
+         <bmp
+            winSmallHigh="icons/SpaceBar-16-32bit.bmp"
+            winSmallLow="icons/SpaceBar-16-8bit.bmp"
+            winMediumHigh="icons/SpaceBar-32-32bit.bmp"
+            winMediumLow="icons/SpaceBar-32-8bit.bmp"
+            winLargeHigh="icons/SpaceBar-48-32bit.bmp"
+            winLargeLow="icons/SpaceBar-48-8bit.bmp"
+            winExtraLargeHigh="icons/SpaceBar-256-32bit.bmp"/>
+      </win>
+   </launcher>
+
+
+   <vm>
+   </vm>
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="org.eclipse.equinox.p2.core.feature"/>
+      <feature id="org.eclipse.equinox.p2.rcp.feature"/>
+      <feature id="org.eclipse.equinox.p2.extras.feature"/>
+      <feature id="org.eclipse.equinox.p2.user.ui"/>
+      <feature id="org.eclipse.rcp"/>
+      <feature id="org.eclipse.emf.ecore"/>
+      <feature id="org.eclipse.e4.rcp"/>
+      <feature id="org.eclipse.emf.common"/>
+      <feature id="spacebar-eclipse-feature" version="2.1.0.qualifier"/>
+      <feature id="spacebar-feature" version="2.1.0.qualifier"/>
+      <feature id="spacebar-rcp-feature" version="2.1.0.qualifier"/>
+   </features>
+
+   <configurations>
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.p2.reconciler.dropins" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+      <plugin id="org.eclipse.update.configurator" autoStart="true" startLevel="4" />
+      <property name="org.eclipse.update.reconcile" value="false" />
+   </configurations>
+
+</product>

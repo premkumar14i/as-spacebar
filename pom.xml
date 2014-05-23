@@ -22,12 +22,12 @@
 	</properties>
 
 	<modules>
-		<module>com.tibco.as.spacebar.ui</module>
-		<module>com.tibco.as.spacebar.eclipse-feature</module>
-		<module>com.tibco.as.spacebar.feature</module>
-		<module>com.tibco.as.spacebar.rcp</module>
-		<module>com.tibco.as.spacebar.rcp-feature</module>
-		<module>com.tibco.as.spacebar.repository</module>
+		<module>spacebar-ui</module>
+		<module>spacebar-eclipse-feature</module>
+		<module>spacebar-feature</module>
+		<module>spacebar-rcp</module>
+		<module>spacebar-rcp-feature</module>
+		<module>spacebar-repository</module>
 	</modules>
 
 	<dependencies>
@@ -63,7 +63,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.tibco.as.spacebar</groupId>
-			<artifactId>com.tibco.as.spacebar.core</artifactId>
+			<artifactId>spacebar-core</artifactId>
 			<version>2.1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
