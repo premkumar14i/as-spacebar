@@ -57,7 +57,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(Preferences.IMPORT_BATCH_SIZE, 1000);
 		store.setDefault(Preferences.IMPORT_WORKER_COUNT, 1);
 		store.setDefault(Preferences.IMPORT_OPERATION, "PUT");
-		store.setDefault(Preferences.IMPORT_DISTRIBUTION_ROLE, "SEEDER");
+		store.setDefault(Preferences.IMPORT_DISTRIBUTION_ROLE, "LEECH");
 		store.setDefault(Preferences.IMPORT_WAIT_FOR_READY_TIMEOUT, 30000L);
 		store.setDefault(Preferences.IMPORT_CSV_HEADER, true);
 		store.setDefault(Preferences.IMPORT_CSV_ESCAPE_CHARACTER,

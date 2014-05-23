@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="SpaceBar" uid="spacebar-2.1" id="spacebar-rcp.spacebarproduct" application="com.tibco.as.spacebar.rcp.application" version="2.1.0.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="SpaceBar" uid="spacebar-2.1" id="spacebar-rcp.spacebarproduct" application="spacebar-rcp.application" version="2.1.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/spacebar-rcp/SpaceBar.png"/>
@@ -39,7 +39,6 @@ Eclipse RCP application for TIBCO ActiveSpaces.
             winExtraLargeHigh="icons/SpaceBar-256-32bit.bmp"/>
       </win>
    </launcher>
-
 
    <vm>
    </vm>

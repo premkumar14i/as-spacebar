@@ -1,5 +1,6 @@
 package com.tibco.as.spacebar.ui.preferences;
 
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -15,17 +16,21 @@ public class SpaceEditorDisplayPreferencePage extends AbstractPreferencePage {
 
 	@Override
 	protected void createFieldEditors(Composite parent) {
+		Composite composite = new Composite(parent, SWT.NONE);
+		composite.setFont(parent.getFont());
+		GridLayout basicLayout = new GridLayout();
+		basicLayout.numColumns = 2;
+		composite.setLayout(basicLayout);
+		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+		gridData.horizontalSpan = 2;
+		composite.setLayoutData(gridData);
 		addComboField(Preferences.SPACE_EDITOR_THEME, "&Theme:", THEMES,
-				parent, "Theme styling of space editor table");
+				composite, "Theme styling of space editor table");
 		Group formatGroup = new Group(parent, SWT.NONE);
 		formatGroup.setFont(parent.getFont());
 		formatGroup.setText("Formats");
-		GridLayout layout = new GridLayout();
-		layout.horizontalSpacing = 8;
-		layout.numColumns = 2;
-		formatGroup.setLayout(layout);
-		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-		formatGroup.setLayoutData(gd);
+		GridDataFactory.defaultsFor(formatGroup).grab(true, false).span(2, 1)
+				.applyTo(formatGroup);
 		addStringField(
 				Preferences.SPACE_EDITOR_INTEGER_FORMAT,
 				"&Integer:",
@@ -49,13 +54,8 @@ public class SpaceEditorDisplayPreferencePage extends AbstractPreferencePage {
 		Group colorGroup = new Group(parent, SWT.NONE);
 		colorGroup.setFont(parent.getFont());
 		colorGroup.setText("Colors");
-		GridLayout colorLayout = new GridLayout();
-		colorLayout.horizontalSpacing = 8;
-		colorLayout.numColumns = 2;
-		colorGroup.setLayout(colorLayout);
-		GridData colorGridData = new GridData(GridData.FILL_HORIZONTAL);
-		colorGridData.horizontalSpan = 2;
-		colorGroup.setLayoutData(colorGridData);
+		GridDataFactory.defaultsFor(colorGroup).grab(true, false).span(2, 1)
+				.applyTo(colorGroup);
 		addColorField(Preferences.SPACE_EDITOR_COLOR_BLINK, "Change:",
 				colorGroup, "Background color for change in cell value");
 		addColorField(Preferences.SPACE_EDITOR_COLOR_BLINK_UP, "Increase:",
