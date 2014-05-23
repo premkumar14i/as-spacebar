@@ -54,8 +54,7 @@
 				multicast interface)
 			</question>
 			<answer>
-				Specify a discovery URL e.g.
-				<code>file2as -discovery tcp import ...</code>
+				Specify a discovery URL e.g. <code>tcp</code>
 			</answer>
 		</faq>
 	</part>
