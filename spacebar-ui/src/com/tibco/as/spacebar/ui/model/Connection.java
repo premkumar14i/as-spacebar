@@ -18,25 +18,28 @@ public class Connection {
 	private com.tibco.as.space.Metaspace ms;
 
 	public void connect(final Metaspace metaspace) throws Exception {
-		final MemberDef memberDef = MemberDef.create();
-		if (metaspace.getMemberName() != null) {
-			memberDef.setMemberName(metaspace.getMemberName());
-		}
-		if (metaspace.getDiscovery() != null) {
-			if (metaspace.isRemote()) {
-				memberDef.setRemoteDiscovery(metaspace.getDiscovery());
-			} else {
-				memberDef.setDiscovery(metaspace.getDiscovery());
+		ms = ASCommon.getMetaspace(ASUtils.getMetaspaceName(metaspace.getMetaspaceName()));
+		if (ms == null) {
+			final MemberDef memberDef = MemberDef.create();
+			if (metaspace.getMemberName() != null) {
+				memberDef.setMemberName(metaspace.getMemberName());
 			}
+			if (metaspace.getDiscovery() != null) {
+				if (metaspace.isRemote()) {
+					memberDef.setRemoteDiscovery(metaspace.getDiscovery());
+				} else {
+					memberDef.setDiscovery(metaspace.getDiscovery());
+				}
+			}
+			if (metaspace.getListen() != null) {
+				memberDef.setListen(metaspace.getListen());
+			}
+			if (ASUtils.hasMethod(MemberDef.class, "setConnectTimeout")) {
+				memberDef.setConnectTimeout(metaspace.getTimeout());
+			}
+			ms = com.tibco.as.space.Metaspace.connect(
+					metaspace.getMetaspaceName(), memberDef);
 		}
-		if (metaspace.getListen() != null) {
-			memberDef.setListen(metaspace.getListen());
-		}
-		if (ASUtils.hasMethod(MemberDef.class, "setConnectTimeout")) {
-			memberDef.setConnectTimeout(metaspace.getTimeout());
-		}
-		ms = com.tibco.as.space.Metaspace.connect(metaspace.getMetaspaceName(),
-				memberDef);
 		Members members = new Members(metaspace, "Members");
 		metaspace.setMembers(members);
 		Spaces spaces = new Spaces(metaspace, "Spaces");

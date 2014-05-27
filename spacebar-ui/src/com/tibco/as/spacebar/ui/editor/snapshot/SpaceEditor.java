@@ -21,11 +21,6 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 
-import com.tibco.as.spacebar.ui.SpaceBarPlugin;
-import com.tibco.as.spacebar.ui.editor.AbstractConfiguration;
-import com.tibco.as.spacebar.ui.editor.AbstractSpaceEditor;
-import com.tibco.as.spacebar.ui.editor.snapshot.Change.Type;
-import com.tibco.as.spacebar.ui.model.Space;
 import ca.odell.glazedlists.SortedList;
 
 import com.tibco.as.convert.ConvertException;
@@ -36,6 +31,11 @@ import com.tibco.as.io.IOutputStream;
 import com.tibco.as.space.Metaspace;
 import com.tibco.as.space.SpaceDef;
 import com.tibco.as.space.Tuple;
+import com.tibco.as.spacebar.ui.SpaceBarPlugin;
+import com.tibco.as.spacebar.ui.editor.AbstractConfiguration;
+import com.tibco.as.spacebar.ui.editor.AbstractSpaceEditor;
+import com.tibco.as.spacebar.ui.editor.snapshot.Change.Type;
+import com.tibco.as.spacebar.ui.model.Space;
 
 public class SpaceEditor extends AbstractSpaceEditor<Tuple> {
 
@@ -164,11 +164,12 @@ public class SpaceEditor extends AbstractSpaceEditor<Tuple> {
 	}
 
 	public void insert() {
-		Tuple tuple = Tuple.create();
-		SortedList<Tuple> list = getSortedList();
-		list.add(tuple);
+		final Tuple tuple = Tuple.create();
 		NatTable natTable = getNatTable();
-		getViewportLayer().moveRowPositionIntoViewport(list.size() - 1);
+		getSortedList().add(tuple);
+		natTable.refresh();
+		getViewportLayer().moveRowPositionIntoViewport(
+				getSortedList().indexOf(tuple));
 		ILayerCell cell = natTable.getCellByPosition(1,
 				natTable.getRowCount() - 1);
 		IConfigRegistry registry = natTable.getConfigRegistry();

@@ -22,14 +22,14 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            category="com.tibco.as.spacebar.ui.views"
+            category="com.tibco.as.views"
             class="com.tibco.as.spacebar.ui.navigator.MetaspaceNavigator"
             icon="icons/activespaces.gif"
             id="com.tibco.as.spacebar.ui.navigator"
             name="Metaspaces">
       </view>
       <category
-            id="com.tibco.as.spacebar.ui.views"
+            id="com.tibco.as.views"
             name="ActiveSpaces">
       </category>
    </extension>
