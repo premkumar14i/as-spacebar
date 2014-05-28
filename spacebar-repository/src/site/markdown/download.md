@@ -15,5 +15,5 @@
 # Eclipse Update Site
 
 <big><pre>
-[${spacebar-site-url}](${spacebar-site-url})
+[http://activespaces.tibco.com/tools/spacebar/](http://activespaces.tibco.com/tools/spacebar/)
 </pre></big>

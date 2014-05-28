@@ -48,18 +48,18 @@
 				<executions>
 					<execution>
 						<id>upload-eclipse-repository</id>
-						<phase>site</phase>
+						<phase>deploy</phase>
 						<configuration>
 							<tasks>
-								<copy todir="${project.build.directory}/site">
+								<copy todir="${site.deploy.url}">
 									<fileset dir="${project.build.directory}/repository"
 										includes="**/*" />
 								</copy>
-								<copy todir="${project.build.directory}/site">
+								<copy todir="${site.deploy.url}">
 									<fileset dir="${project.build.directory}/products"
 										includes="**/*.zip" />
 								</copy>
-								<copy todir="${project.build.directory}/site">
+								<copy todir="${site.deploy.url}">
 									<fileset dir="${project.build.directory}" includes="*.zip" />
 								</copy>
 							</tasks>

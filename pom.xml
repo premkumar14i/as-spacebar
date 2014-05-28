@@ -18,7 +18,7 @@
 		<tycho.version>0.20.0</tycho.version>
 		<as.version>2.1.2</as.version>
 		<site-url>http://activespaces.tibco.com/tools/spacebar/</site-url>
-		<site.deploy.url>file:///var/www/html/tools/spacebar/</site.deploy.url>
+		<site.deploy.url>file:///opt/products/apache2/htdocs/tools/spacebar/</site.deploy.url>
 	</properties>
 
 	<modules>
@@ -179,8 +179,8 @@
 		</site>
 	</distributionManagement>
 	<scm>
-		<url>scm:svn:http://svn.tibco.com/fieldprojects/trunk/as/spacebar2</url>
-		<connection>scm:svn:http://svn.tibco.com/fieldprojects/trunk/as/spacebar2</connection>
-		<developerConnection>scm:svn:http://svn.tibco.com/fieldprojects/trunk/as/spacebar2</developerConnection>
+		<url>https://github.com/TIBCOSoftware/as-spacebar</url>
+		<connection>scm:git:git://github.com/TIBCOSoftware/as-spacebar.git</connection>
+		<developerConnection>scm:git:git@github.com:TIBCOSoftware/as-spacebar.git</developerConnection>
 	</scm>
 </project>
