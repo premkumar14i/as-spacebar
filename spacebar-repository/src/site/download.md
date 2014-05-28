@@ -11,7 +11,7 @@
 
 ---
 
-<a href="https://raw.githubusercontent.com/TIBCOSoftware/as-spacebar/master/LICENSE?token=7562719__eyJzY29wZSI6IlJhd0Jsb2I6VElCQ09Tb2Z0d2FyZS9hcy1zcGFjZWJhci9tYXN0ZXIvTElDRU5TRSIsImV4cGlyZXMiOjE0MDE4MzM3OTV9--123170426c82cfe04d7f16c855c5770a71a48de2" target="_blank">Licenses</a>
+<a href="https://raw.githubusercontent.com/TIBCOSoftware/as-spacebar/master/LICENSE" target="_blank">Licenses</a>
 
 # Eclipse Update Site
 
