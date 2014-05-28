@@ -146,6 +146,7 @@
 				<configuration>
 					<generateProjectInfo>false</generateProjectInfo>
 					<generateReports>false</generateReports>
+					<skip>true</skip>
 				</configuration>
 				<dependencies>
 					<dependency>
