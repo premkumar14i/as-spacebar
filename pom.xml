@@ -146,7 +146,7 @@
 				<configuration>
 					<generateProjectInfo>false</generateProjectInfo>
 					<generateReports>false</generateReports>
-					<skip>true</skip>
+					<siteDirectory>${basedir}/src/dummysite</siteDirectory>
 				</configuration>
 				<dependencies>
 					<dependency>
