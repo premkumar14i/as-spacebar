@@ -18,7 +18,8 @@
 		<tycho.version>0.20.0</tycho.version>
 		<as.version>2.1.2</as.version>
 		<site-url>http://activespaces.tibco.com/tools/spacebar/</site-url>
-		<site.deploy.url>file:///opt/products/apache2/htdocs/tools/spacebar/</site.deploy.url>
+		<site.deploy.path>/opt/products/apache2/htdocs/tools/spacebar/</site.deploy.path>
+		<site.deploy.url>file://${site.deploy.path}</site.deploy.url>
 	</properties>
 
 	<modules>
