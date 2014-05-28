@@ -81,7 +81,7 @@
 			<item name="FAQ" href="faq.html" />
 		</menu>
 		<menu name="ActiveSpaces" inherit="bottom">
-			<item name="Tools" href="${tools-site-url}" />
+			<item name="Tools" href="/tools" />
 		</menu>
 	</body>
 
