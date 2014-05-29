@@ -1,4 +1,5 @@
 <div id="myCarousel" class="carousel slide">
+	<!--
 	<ol class="carousel-indicators">
 	  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 	  <li data-target="#myCarousel" data-slide-to="1" class=""></li>
@@ -9,6 +10,7 @@
 	  <li data-target="#myCarousel" data-slide-to="6" class=""></li>
 	  <li data-target="#myCarousel" data-slide-to="7" class=""></li>
 	</ol>
+	-->
 	<div class="carousel-inner">
 	  <div class="item">
 	    <img src="images/screenshots/continuous-browse.gif" alt="">
