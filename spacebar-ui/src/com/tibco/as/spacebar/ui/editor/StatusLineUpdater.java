@@ -6,9 +6,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorSite;
 
+import com.tibco.as.io.IInputStream;
 import com.tibco.as.io.ITransfer;
 import com.tibco.as.io.ITransferListener;
-import com.tibco.as.io.SpaceInputStream;
 
 public class StatusLineUpdater implements ITransferListener {
 
@@ -40,9 +40,8 @@ public class StatusLineUpdater implements ITransferListener {
 				if (site.getShell() == null || site.getShell().isDisposed()) {
 					return;
 				}
-				SpaceInputStream in = (SpaceInputStream) transfer
-						.getInputStream();
-				double duration = (double) in.getBrowseTime() / 1000000d;
+				IInputStream<?> in = transfer.getInputStream();
+				double duration = (double) in.getOpenTime() / 1000000d;
 				String message = MessageFormat.format(
 						"{0} tuples - {1,number,###,###.000} ms",
 						in.getPosition(), duration);
