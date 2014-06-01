@@ -31,7 +31,7 @@ public class Preferences {
 	public static final String SPACE_EDITOR_BROWSE_PREFETCH = "spaceEditorBrowsePrefetch";
 	public static final String SPACE_EDITOR_BROWSE_TIMEOUT = "spaceEditorBrowseTimeout";
 	public static final String SPACE_EDITOR_BROWSE_QUERY_LIMIT = "spaceEditorBrowseQueryLimit";
-	public static final String SPACE_EDITOR_BROWSE_MAX = "spaceEditorBrowseMax";
+	public static final String SPACE_EDITOR_BROWSE_LIMIT = "spaceEditorBrowseLimit";
 	public static final String SPACE_EDITOR_BOOLEAN_FORMAT = "spaceEditorBooleanFormat";
 	public static final String SPACE_EDITOR_DATE_FORMAT = "spaceEditorDateFormat";
 	public static final String SPACE_EDITOR_DECIMAL_FORMAT = "spaceEditorDecimalFormat";
@@ -236,6 +236,7 @@ public class Preferences {
 
 	public static Export getSpaceEditorExport(String timeScope) {
 		Export export = new Export();
+		export.setLimit(getLong(Preferences.SPACE_EDITOR_BROWSE_LIMIT));
 		export.setTimeScope(com.tibco.as.space.browser.BrowserDef.TimeScope
 				.valueOf(timeScope));
 		export.setPrefetch(getBrowsePrefetch(timeScope));

@@ -11,7 +11,6 @@ import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.editor.continuous.ContinuousBrowser;
 import com.tibco.as.spacebar.ui.editor.snapshot.SpaceEditor;
 import com.tibco.as.spacebar.ui.model.Space;
-
 import com.tibco.as.io.Export;
 
 public class SpaceEditorInput implements IEditorInput {
@@ -64,8 +63,7 @@ public class SpaceEditorInput implements IEditorInput {
 
 	@Override
 	public String getName() {
-		return NLS.bind("{0} {1}", space.getName(),
-				export.getTimeScope());
+		return NLS.bind("{0} {1}", space.getName(), export.getTimeScope());
 	}
 
 	public String getEditorId() {
@@ -73,6 +71,37 @@ public class SpaceEditorInput implements IEditorInput {
 			return ContinuousBrowser.EDITOR_ID;
 		}
 		return SpaceEditor.EDITOR_ID;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((export == null) ? 0 : export.hashCode());
+		result = prime * result + ((space == null) ? 0 : space.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SpaceEditorInput other = (SpaceEditorInput) obj;
+		if (export == null) {
+			if (other.export != null)
+				return false;
+		} else if (!export.equals(other.export))
+			return false;
+		if (space == null) {
+			if (other.space != null)
+				return false;
+		} else if (!space.equals(other.space))
+			return false;
+		return true;
 	}
 
 }

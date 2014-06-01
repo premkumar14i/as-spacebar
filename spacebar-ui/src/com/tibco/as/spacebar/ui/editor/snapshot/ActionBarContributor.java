@@ -1,7 +1,9 @@
 package com.tibco.as.spacebar.ui.editor.snapshot;
 
+import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.action.StatusLineContributionItem;
 import org.eclipse.ui.IEditorPart;
 
 import com.tibco.as.spacebar.ui.editor.AbstractActionBarContributor;
@@ -19,23 +21,38 @@ public class ActionBarContributor extends AbstractActionBarContributor {
 	private ExcelExportAction excelExportAction;
 	private TupleSizeAction sizeAction;
 
+	private StatusLineContributionItem sizeItem;
+	private StatusLineContributionItem browseTimeItem;
+
 	public ActionBarContributor() {
 		this.insertAction = new InsertAction();
 		this.deleteAction = new DeleteAction();
 		this.csvExportAction = new CSVExportAction();
 		this.excelExportAction = new ExcelExportAction();
 		this.sizeAction = new TupleSizeAction();
+		sizeItem = new StatusLineContributionItem("size", 25);
+		browseTimeItem = new StatusLineContributionItem("browseTime", 25);
+	}
+
+	@Override
+	public void contributeToStatusLine(IStatusLineManager statusLineManager) {
+		super.contributeToStatusLine(statusLineManager);
+		statusLineManager.add(sizeItem);
+		statusLineManager.add(new Separator());
+		statusLineManager.add(browseTimeItem);
 	}
 
 	@Override
 	public void setActiveEditor(IEditorPart editor) {
 		super.setActiveEditor(editor);
-		SpaceEditor browser = (SpaceEditor) editor;
-		insertAction.setEditor(browser);
-		deleteAction.setEditor(browser);
-		csvExportAction.setEditor(browser);
-		excelExportAction.setEditor(browser);
-		sizeAction.setEditor(browser);
+		SpaceEditor spaceEditor = (SpaceEditor) editor;
+		insertAction.setEditor(spaceEditor);
+		deleteAction.setEditor(spaceEditor);
+		csvExportAction.setEditor(spaceEditor);
+		excelExportAction.setEditor(spaceEditor);
+		sizeAction.setEditor(spaceEditor);
+		spaceEditor.setSizeItem(sizeItem);
+		spaceEditor.setBrowseTimeItem(browseTimeItem);
 	}
 
 	@Override
@@ -50,6 +67,10 @@ public class ActionBarContributor extends AbstractActionBarContributor {
 		excelExportAction = null;
 		sizeAction.dispose();
 		sizeAction = null;
+		sizeItem.dispose();
+		sizeItem = null;
+		browseTimeItem.dispose();
+		browseTimeItem = null;
 		super.dispose();
 	}
 

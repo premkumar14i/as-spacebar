@@ -267,4 +267,5 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		toolbar.add(getAction(ActionFactory.NEW_WIZARD_DROP_DOWN.getId()));
 		coolBar.add(toolbar);
 	}
+
 }

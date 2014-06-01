@@ -23,9 +23,8 @@ public class SpaceEditorPreferencePage extends TabbedPreferencePage {
 
 	@Override
 	protected void addFields(Composite parent) {
-		addIntegerField(Preferences.SPACE_EDITOR_BROWSE_MAX,
-				"&Maximum entries:", parent,
-				"Maximum number of entries to be fetched");
+		addIntegerField(Preferences.SPACE_EDITOR_BROWSE_LIMIT, "&Limit:",
+				parent, "Maximum number of entries to fetch and display");
 		addComboField(Preferences.SPACE_EDITOR_BROWSE_TIME_SCOPE,
 				"Default &time scope:", TIME_SCOPES, parent,
 				"Default browse time scope");

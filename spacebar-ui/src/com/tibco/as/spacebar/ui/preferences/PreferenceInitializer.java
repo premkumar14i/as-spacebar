@@ -8,13 +8,13 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.graphics.RGB;
 
-import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import au.com.bytecode.opencsv.CSVParser;
 import au.com.bytecode.opencsv.CSVWriter;
 
 import com.tibco.as.convert.ConverterFactory;
 import com.tibco.as.convert.ConverterFactory.Blob;
 import com.tibco.as.io.file.excel.ExcelExporter;
+import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 
 /**
  * Class used to initialize default preference values.
@@ -92,7 +92,7 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(Preferences.SPACE_EDITOR_TIME_ZONE, TimeZone
 				.getTimeZone("GMT").getID());
 		store.setDefault(Preferences.SPACE_EDITOR_BROWSE_TIME_SCOPE, "CURRENT");
-		store.setDefault(Preferences.SPACE_EDITOR_BROWSE_MAX, 10000L);
+		store.setDefault(Preferences.SPACE_EDITOR_BROWSE_LIMIT, 10000L);
 		setBrowseDefaults(store, Preferences.TIMESCOPE_ALL, 1000L, 10000L, -1L);
 		setBrowseDefaults(store, Preferences.TIMESCOPE_NEW, null, null, -1L);
 		setBrowseDefaults(store, Preferences.TIMESCOPE_SNAPSHOT, 1000L,

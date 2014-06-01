@@ -64,11 +64,6 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
-import com.tibco.as.spacebar.ui.SpaceBarPlugin;
-import com.tibco.as.spacebar.ui.model.Space;
-import com.tibco.as.spacebar.ui.preferences.Preferences;
-import com.tibco.as.spacebar.ui.transfer.MetaspaceTransferJob;
-
 import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.FilterList;
 import ca.odell.glazedlists.GlazedLists;
@@ -76,12 +71,14 @@ import ca.odell.glazedlists.SortedList;
 import ca.odell.glazedlists.util.concurrent.Lock;
 
 import com.tibco.as.io.Exporter;
-import com.tibco.as.io.IMetaspaceTransferListener;
 import com.tibco.as.io.IOutputStream;
-import com.tibco.as.io.ITransfer;
 import com.tibco.as.space.FieldDef;
 import com.tibco.as.space.Metaspace;
 import com.tibco.as.space.SpaceDef;
+import com.tibco.as.spacebar.ui.SpaceBarPlugin;
+import com.tibco.as.spacebar.ui.model.Space;
+import com.tibco.as.spacebar.ui.preferences.Preferences;
+import com.tibco.as.spacebar.ui.transfer.MetaspaceTransferJob;
 import com.tibco.as.utils.ASUtils;
 
 public abstract class AbstractSpaceEditor<T extends Map<String, Object>>
@@ -224,19 +221,6 @@ public abstract class AbstractSpaceEditor<T extends Map<String, Object>>
 		Exporter<T> exporter = getExporter(metaspace);
 		exporter.addTransfer(input.getExport());
 		exporter.setOutputStream(this);
-		exporter.addListener(new IMetaspaceTransferListener() {
-
-			@Override
-			public void opening(Collection<ITransfer> transfers) {
-			}
-
-			@Override
-			public void executing(ITransfer transfer) {
-				transfer.addListener(new StatusLineUpdater(transfer,
-						getEditorSite()));
-			}
-
-		});
 		String jobName = NLS.bind("Browsing space ''{0}''", space.getName());
 		String task = "Browsing";
 		String error = "Could not browse";

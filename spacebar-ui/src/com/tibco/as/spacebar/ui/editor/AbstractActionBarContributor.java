@@ -13,6 +13,7 @@ public abstract class AbstractActionBarContributor extends
 
 	private CopyAction copyAction;
 	private BrowseAction browseAction;
+	private IEditorPart activeEditor;
 
 	public AbstractActionBarContributor() {
 		this.copyAction = new CopyAction();
@@ -21,6 +22,14 @@ public abstract class AbstractActionBarContributor extends
 
 	@Override
 	public void setActiveEditor(IEditorPart editor) {
+		if (activeEditor == editor) {
+			return;
+		}
+		activeEditor = editor;
+		doSetActiveEditor(editor);
+	}
+
+	protected void doSetActiveEditor(IEditorPart editor) {
 		AbstractSpaceEditor<?> browser = (AbstractSpaceEditor<?>) editor;
 		getActionBars().setGlobalActionHandler(ActionFactory.COPY.getId(),
 				copyAction);

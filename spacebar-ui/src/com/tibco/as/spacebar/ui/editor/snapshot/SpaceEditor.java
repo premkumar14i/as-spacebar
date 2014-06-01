@@ -1,10 +1,13 @@
 package com.tibco.as.spacebar.ui.editor.snapshot;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Stack;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.action.StatusLineContributionItem;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.IColumnPropertyAccessor;
@@ -27,7 +30,9 @@ import com.tibco.as.convert.ConvertException;
 import com.tibco.as.convert.IConverter;
 import com.tibco.as.convert.UnsupportedConversionException;
 import com.tibco.as.io.Exporter;
+import com.tibco.as.io.IMetaspaceTransferListener;
 import com.tibco.as.io.IOutputStream;
+import com.tibco.as.io.ITransfer;
 import com.tibco.as.space.Metaspace;
 import com.tibco.as.space.SpaceDef;
 import com.tibco.as.space.Tuple;
@@ -46,6 +51,14 @@ public class SpaceEditor extends AbstractSpaceEditor<Tuple> {
 	private Stack<Change> changeList;
 
 	private DropAdapter dropAdapter;
+
+	private StatusLineContributionItem sizeItem;
+
+	private StatusLineContributionItem browseTimeItem;
+
+	private long size;
+
+	private double browseTime;
 
 	@Override
 	public void dispose() {
@@ -208,7 +221,7 @@ public class SpaceEditor extends AbstractSpaceEditor<Tuple> {
 
 	@Override
 	protected Exporter<Tuple> getExporter(Metaspace metaspace) {
-		return new Exporter<Tuple>(metaspace) {
+		Exporter<Tuple> exporter = new Exporter<Tuple>(metaspace) {
 
 			@Override
 			protected IConverter<Tuple, Tuple> getConverter(
@@ -223,7 +236,51 @@ public class SpaceEditor extends AbstractSpaceEditor<Tuple> {
 
 				};
 			}
-
 		};
+		exporter.addListener(new IMetaspaceTransferListener() {
+
+			@Override
+			public void opening(Collection<ITransfer> transfers) {
+			}
+
+			@Override
+			public void executing(ITransfer transfer) {
+				transfer.addListener(new TransferListener(transfer,
+						SpaceEditor.this));
+			}
+
+		});
+
+		return exporter;
 	}
+
+	public void setSizeItem(StatusLineContributionItem sizeItem) {
+		this.sizeItem = sizeItem;
+		updateSizeItem();
+	}
+
+	private void updateSizeItem() {
+		sizeItem.setText(MessageFormat.format("{0} tuples", size));
+	}
+
+	public void setBrowseTimeItem(StatusLineContributionItem browseTimeItem) {
+		this.browseTimeItem = browseTimeItem;
+		updateBrowseTimeItem();
+	}
+
+	public void setSize(long size) {
+		this.size = size;
+		updateSizeItem();
+	}
+
+	public void setBrowseTime(double browseTime) {
+		this.browseTime = browseTime;
+		updateBrowseTimeItem();
+	}
+
+	private void updateBrowseTimeItem() {
+		browseTimeItem.setText(MessageFormat.format(
+				"{0,number,###,###.000} ms", browseTime));
+	}
+
 }

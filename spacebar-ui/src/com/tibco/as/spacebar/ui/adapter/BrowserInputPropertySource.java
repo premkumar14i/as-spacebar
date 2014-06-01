@@ -15,7 +15,7 @@ public class BrowserInputPropertySource implements IPropertySource {
 	private static final String PROPERTY_PREFETCH = "prefetch";
 	private static final String PROPERTY_QUERY_LIMIT = "queryLimit";
 	private static final String PROPERTY_FILTER = "filter";
-	private static final String PROPERTY_MAX = "max";
+	private static final String PROPERTY_LIMIT = "limit";
 
 	private SpaceEditorInput input;
 
@@ -39,7 +39,7 @@ public class BrowserInputPropertySource implements IPropertySource {
 				new PropertyDescriptor(PROPERTY_PREFETCH, "Prefetch"),
 				new PropertyDescriptor(PROPERTY_QUERY_LIMIT, "Query limit"),
 				new PropertyDescriptor(PROPERTY_FILTER, "Filter"),
-				new PropertyDescriptor(PROPERTY_MAX, "Max") };
+				new PropertyDescriptor(PROPERTY_LIMIT, "Limit") };
 	}
 
 	@Override
@@ -53,8 +53,8 @@ public class BrowserInputPropertySource implements IPropertySource {
 		if (PROPERTY_FILTER.equals(id)) {
 			return input.getExport().getFilter();
 		}
-		if (PROPERTY_MAX.equals(id)) {
-			return input.getExport().getMax();
+		if (PROPERTY_LIMIT.equals(id)) {
+			return input.getExport().getLimit();
 		}
 		if (PROPERTY_PREFETCH.equals(id)) {
 			return input.getExport().getPrefetch();

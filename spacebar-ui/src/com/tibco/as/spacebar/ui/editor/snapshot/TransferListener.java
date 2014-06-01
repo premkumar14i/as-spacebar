@@ -1,6 +1,4 @@
-package com.tibco.as.spacebar.ui.editor;
-
-import java.text.MessageFormat;
+package com.tibco.as.spacebar.ui.editor.snapshot;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -10,18 +8,27 @@ import com.tibco.as.io.IInputStream;
 import com.tibco.as.io.ITransfer;
 import com.tibco.as.io.ITransferListener;
 
-public class StatusLineUpdater implements ITransferListener {
+public class TransferListener implements ITransferListener {
 
 	private ITransfer transfer;
-	private IEditorSite site;
+	private SpaceEditor editor;
 
-	public StatusLineUpdater(ITransfer transfer, IEditorSite site) {
+	public TransferListener(ITransfer transfer, SpaceEditor editor) {
 		this.transfer = transfer;
-		this.site = site;
+		this.editor = editor;
+	}
+
+	@Override
+	public void opened() {
+	}
+
+	@Override
+	public void transferred(int count) {
 	}
 
 	@Override
 	public void closed() {
+		IEditorSite site = editor.getEditorSite();
 		if (site == null) {
 			return;
 		}
@@ -37,25 +44,17 @@ public class StatusLineUpdater implements ITransferListener {
 
 			@Override
 			public void run() {
+				IEditorSite site = editor.getEditorSite();
 				if (site.getShell() == null || site.getShell().isDisposed()) {
 					return;
 				}
 				IInputStream<?> in = transfer.getInputStream();
-				double duration = (double) in.getOpenTime() / 1000000d;
-				String message = MessageFormat.format(
-						"{0} tuples - {1,number,###,###.000} ms",
-						in.getPosition(), duration);
-				site.getActionBars().getStatusLineManager().setMessage(message);
+				long size = in.getPosition();
+				double browseTime = (double) in.getOpenTime() / 1000000d;
+				editor.setSize(size);
+				editor.setBrowseTime(browseTime);
 			}
 		});
-	}
-
-	@Override
-	public void opened() {
-	}
-
-	@Override
-	public void transferred(int count) {
 	}
 
 }
