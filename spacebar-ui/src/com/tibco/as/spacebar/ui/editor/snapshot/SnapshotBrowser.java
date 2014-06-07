@@ -38,11 +38,11 @@ import com.tibco.as.space.SpaceDef;
 import com.tibco.as.space.Tuple;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.editor.AbstractConfiguration;
-import com.tibco.as.spacebar.ui.editor.AbstractSpaceEditor;
+import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
 import com.tibco.as.spacebar.ui.editor.snapshot.Change.Type;
 import com.tibco.as.spacebar.ui.model.Space;
 
-public class SpaceEditor extends AbstractSpaceEditor<Tuple> {
+public class SnapshotBrowser extends AbstractBrowser<Tuple> {
 
 	public static final String EDITOR_ID = "com.tibco.as.spacebar.ui.editor.snapshot";
 
@@ -173,7 +173,7 @@ public class SpaceEditor extends AbstractSpaceEditor<Tuple> {
 
 	@Override
 	protected AbstractConfiguration getConfiguration() {
-		return new EditConfiguration();
+		return new SnapshotConfiguration();
 	}
 
 	public void insert() {
@@ -246,7 +246,7 @@ public class SpaceEditor extends AbstractSpaceEditor<Tuple> {
 			@Override
 			public void executing(ITransfer transfer) {
 				transfer.addListener(new TransferListener(transfer,
-						SpaceEditor.this));
+						SnapshotBrowser.this));
 			}
 
 		});

@@ -4,7 +4,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.nebula.widgets.nattable.layer.ILayerListener;
 
 import com.tibco.as.spacebar.ui.Image;
-import com.tibco.as.spacebar.ui.editor.AbstractSpaceEditor;
+import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
 
 public abstract class LayerListenerEditorAction extends SpaceEditorAction implements
 		ILayerListener {
@@ -19,7 +19,7 @@ public abstract class LayerListenerEditorAction extends SpaceEditorAction implem
 	}
 
 	@Override
-	public void setEditor(AbstractSpaceEditor<?> editor) {
+	public void setEditor(AbstractBrowser<?> editor) {
 		editor.getSelectionLayer().addLayerListener(this);
 		super.setEditor(editor);
 	}

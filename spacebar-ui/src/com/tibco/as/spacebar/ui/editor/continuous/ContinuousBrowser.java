@@ -15,7 +15,7 @@ import org.eclipse.nebula.widgets.nattable.layer.IUniqueIndexLayer;
 import org.eclipse.swt.widgets.Display;
 
 import com.tibco.as.spacebar.ui.editor.AbstractConfiguration;
-import com.tibco.as.spacebar.ui.editor.AbstractSpaceEditor;
+import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
 import com.tibco.as.spacebar.ui.editor.StringPropertyAccessor;
 import com.tibco.as.spacebar.ui.editor.continuous.coder.BlobHashCoder;
 import com.tibco.as.spacebar.ui.editor.continuous.coder.FieldHashCoder;
@@ -30,7 +30,7 @@ import com.tibco.as.space.FieldDef;
 import com.tibco.as.space.Metaspace;
 import com.tibco.as.space.SpaceDef;
 
-public class ContinuousBrowser extends AbstractSpaceEditor<ObservableTuple> {
+public class ContinuousBrowser extends AbstractBrowser<ObservableTuple> {
 
 	public static final String EDITOR_ID = "com.tibco.as.spacebar.ui.editor.continuous";
 

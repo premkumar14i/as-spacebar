@@ -6,11 +6,11 @@ import org.eclipse.swt.widgets.Event;
 
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.Image;
-import com.tibco.as.spacebar.ui.editor.AbstractSpaceEditor;
+import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
 
 public abstract class SpaceEditorAction extends Action {
 
-	private AbstractSpaceEditor<?> editor;
+	private AbstractBrowser<?> editor;
 
 	public SpaceEditorAction(String text, String toolTip, Image image) {
 		this(text, toolTip, SpaceBarPlugin.getDefault().getImageDescriptor(image));
@@ -24,11 +24,11 @@ public abstract class SpaceEditorAction extends Action {
 		setHoverImageDescriptor(imageDescriptor);
 	}
 
-	public void setEditor(AbstractSpaceEditor<?> editor) {
+	public void setEditor(AbstractBrowser<?> editor) {
 		this.editor = editor;
 	}
 
-	public AbstractSpaceEditor<?> getEditor() {
+	public AbstractBrowser<?> getEditor() {
 		return editor;
 	}
 
@@ -37,7 +37,7 @@ public abstract class SpaceEditorAction extends Action {
 		runWithEvent(event, editor);
 	}
 
-	protected abstract void runWithEvent(Event event, AbstractSpaceEditor<?> editor);
+	protected abstract void runWithEvent(Event event, AbstractBrowser<?> editor);
 
 	public void dispose() {
 		editor = null;

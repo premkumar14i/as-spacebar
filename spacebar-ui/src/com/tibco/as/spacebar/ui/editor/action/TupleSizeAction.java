@@ -5,8 +5,8 @@ import java.util.List;
 import org.eclipse.swt.widgets.Event;
 
 import com.tibco.as.spacebar.ui.Image;
-import com.tibco.as.spacebar.ui.editor.AbstractSpaceEditor;
-import com.tibco.as.spacebar.ui.editor.snapshot.SpaceEditor;
+import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
+import com.tibco.as.spacebar.ui.editor.snapshot.SnapshotBrowser;
 
 import com.tibco.as.space.Tuple;
 
@@ -17,8 +17,8 @@ public class TupleSizeAction extends SpaceEditorAction {
 	}
 
 	@Override
-	protected void runWithEvent(Event event, AbstractSpaceEditor<?> editor) {
-		SpaceEditor spaceEditor = (SpaceEditor) editor;
+	protected void runWithEvent(Event event, AbstractBrowser<?> editor) {
+		SnapshotBrowser spaceEditor = (SnapshotBrowser) editor;
 		List<Tuple> tuples = spaceEditor.getSelection();
 		if (tuples.isEmpty()) {
 			tuples = spaceEditor.getSortedList();

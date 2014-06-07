@@ -18,7 +18,7 @@ import com.tibco.as.spacebar.ui.preferences.Preferences;
 
 import com.tibco.as.convert.ConverterFactory;
 
-public class EditConfiguration extends AbstractConfiguration {
+public class SnapshotConfiguration extends AbstractConfiguration {
 
 	@Override
 	public void configureRegistry(IConfigRegistry configRegistry) {

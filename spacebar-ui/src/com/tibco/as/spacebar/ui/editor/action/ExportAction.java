@@ -11,8 +11,8 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 
 import com.tibco.as.spacebar.ui.Image;
-import com.tibco.as.spacebar.ui.editor.AbstractSpaceEditor;
-import com.tibco.as.spacebar.ui.editor.snapshot.SpaceEditor;
+import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
+import com.tibco.as.spacebar.ui.editor.snapshot.SnapshotBrowser;
 import com.tibco.as.spacebar.ui.model.TupleSelection;
 
 import com.tibco.as.space.Tuple;
@@ -28,8 +28,8 @@ public abstract class ExportAction extends SpaceEditorAction {
 	}
 
 	@Override
-	protected void runWithEvent(Event event, AbstractSpaceEditor<?> editor) {
-		SpaceEditor snapshotEditor = (SpaceEditor) editor;
+	protected void runWithEvent(Event event, AbstractBrowser<?> editor) {
+		SnapshotBrowser snapshotEditor = (SnapshotBrowser) editor;
 		List<Tuple> tuples = snapshotEditor.getSelection();
 		if (tuples.isEmpty()) {
 			tuples = snapshotEditor.getSortedList();

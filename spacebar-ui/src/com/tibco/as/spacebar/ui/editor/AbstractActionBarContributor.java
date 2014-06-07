@@ -30,7 +30,7 @@ public abstract class AbstractActionBarContributor extends
 	}
 
 	protected void doSetActiveEditor(IEditorPart editor) {
-		AbstractSpaceEditor<?> browser = (AbstractSpaceEditor<?>) editor;
+		AbstractBrowser<?> browser = (AbstractBrowser<?>) editor;
 		getActionBars().setGlobalActionHandler(ActionFactory.COPY.getId(),
 				copyAction);
 		copyAction.setEditor(browser);

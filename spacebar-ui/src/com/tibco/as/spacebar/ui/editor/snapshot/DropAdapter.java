@@ -29,9 +29,9 @@ public class DropAdapter extends DropTargetAdapter {
 
 	private FileTransfer fileTransfer;
 
-	private SpaceEditor editor;
+	private SnapshotBrowser editor;
 
-	public DropAdapter(FileTransfer fileTransfer, SpaceEditor browser) {
+	public DropAdapter(FileTransfer fileTransfer, SnapshotBrowser browser) {
 		this.fileTransfer = fileTransfer;
 		this.editor = browser;
 	}

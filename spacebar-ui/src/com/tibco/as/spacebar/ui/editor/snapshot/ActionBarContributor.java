@@ -45,7 +45,7 @@ public class ActionBarContributor extends AbstractActionBarContributor {
 	@Override
 	public void setActiveEditor(IEditorPart editor) {
 		super.setActiveEditor(editor);
-		SpaceEditor spaceEditor = (SpaceEditor) editor;
+		SnapshotBrowser spaceEditor = (SnapshotBrowser) editor;
 		insertAction.setEditor(spaceEditor);
 		deleteAction.setEditor(spaceEditor);
 		csvExportAction.setEditor(spaceEditor);

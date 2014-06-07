@@ -8,9 +8,9 @@ import com.tibco.as.space.Tuple;
 
 public class EditablePropertyAccessor extends StringPropertyAccessor<Tuple> {
 
-	private SpaceEditor editor;
+	private SnapshotBrowser editor;
 
-	public EditablePropertyAccessor(List<String> fieldNames, SpaceEditor editor) {
+	public EditablePropertyAccessor(List<String> fieldNames, SnapshotBrowser editor) {
 		super(fieldNames);
 		this.editor = editor;
 	}

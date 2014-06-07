@@ -6,7 +6,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
-import com.tibco.as.spacebar.ui.editor.AbstractSpaceEditor;
+import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
 
 public class CopyAction extends LayerListenerEditorAction {
 
@@ -20,7 +20,7 @@ public class CopyAction extends LayerListenerEditorAction {
 	}
 
 	@Override
-	protected void runWithEvent(Event event, AbstractSpaceEditor<?> editor) {
+	protected void runWithEvent(Event event, AbstractBrowser<?> editor) {
 		editor.copy(event);
 	}
 

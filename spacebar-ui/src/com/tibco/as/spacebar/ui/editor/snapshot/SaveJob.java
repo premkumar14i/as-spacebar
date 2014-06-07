@@ -18,9 +18,9 @@ import com.tibco.as.space.Tuple;
 
 public class SaveJob extends Job {
 
-	private SpaceEditor editor;
+	private SnapshotBrowser editor;
 
-	public SaveJob(String name, SpaceEditor editor) {
+	public SaveJob(String name, SnapshotBrowser editor) {
 		super(name);
 		setUser(true);
 		this.editor = editor;

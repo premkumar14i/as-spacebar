@@ -1005,7 +1005,7 @@
             name="Continuous Browser">
       </editor>
       <editor
-            class="com.tibco.as.spacebar.ui.editor.snapshot.SpaceEditor"
+            class="com.tibco.as.spacebar.ui.editor.snapshot.SnapshotBrowser"
             contributorClass="com.tibco.as.spacebar.ui.editor.snapshot.ActionBarContributor"
             icon="icons/space_editor.gif"
             id="com.tibco.as.spacebar.ui.editor.snapshot"

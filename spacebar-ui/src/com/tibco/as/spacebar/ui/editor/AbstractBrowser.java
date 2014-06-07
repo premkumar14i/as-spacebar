@@ -81,7 +81,7 @@ import com.tibco.as.spacebar.ui.preferences.Preferences;
 import com.tibco.as.spacebar.ui.transfer.MetaspaceTransferJob;
 import com.tibco.as.utils.ASUtils;
 
-public abstract class AbstractSpaceEditor<T extends Map<String, Object>>
+public abstract class AbstractBrowser<T extends Map<String, Object>>
 		extends EditorPart implements IOutputStream<T> {
 
 	private NatTable natTable;
@@ -258,7 +258,7 @@ public abstract class AbstractSpaceEditor<T extends Map<String, Object>>
 				if (isDisposed()) {
 					return;
 				}
-				getSite().getPage().closeEditor(AbstractSpaceEditor.this, save);
+				getSite().getPage().closeEditor(AbstractBrowser.this, save);
 			}
 		});
 	}

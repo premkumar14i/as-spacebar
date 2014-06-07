@@ -3,8 +3,8 @@ package com.tibco.as.spacebar.ui.editor.action;
 import org.eclipse.swt.widgets.Event;
 
 import com.tibco.as.spacebar.ui.Image;
-import com.tibco.as.spacebar.ui.editor.AbstractSpaceEditor;
-import com.tibco.as.spacebar.ui.editor.snapshot.SpaceEditor;
+import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
+import com.tibco.as.spacebar.ui.editor.snapshot.SnapshotBrowser;
 
 public class InsertAction extends SpaceEditorAction {
 
@@ -13,8 +13,8 @@ public class InsertAction extends SpaceEditorAction {
 	}
 
 	@Override
-	protected void runWithEvent(Event event, AbstractSpaceEditor<?> editor) {
-		((SpaceEditor) editor).insert();
+	protected void runWithEvent(Event event, AbstractBrowser<?> editor) {
+		((SnapshotBrowser) editor).insert();
 	}
 
 }

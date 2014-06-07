@@ -11,9 +11,9 @@ import com.tibco.as.io.ITransferListener;
 public class TransferListener implements ITransferListener {
 
 	private ITransfer transfer;
-	private SpaceEditor editor;
+	private SnapshotBrowser editor;
 
-	public TransferListener(ITransfer transfer, SpaceEditor editor) {
+	public TransferListener(ITransfer transfer, SnapshotBrowser editor) {
 		this.transfer = transfer;
 		this.editor = editor;
 	}

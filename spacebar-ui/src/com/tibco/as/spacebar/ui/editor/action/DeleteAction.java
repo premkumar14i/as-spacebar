@@ -5,8 +5,8 @@ import org.eclipse.nebula.widgets.nattable.selection.event.ISelectionEvent;
 import org.eclipse.swt.widgets.Event;
 
 import com.tibco.as.spacebar.ui.Image;
-import com.tibco.as.spacebar.ui.editor.AbstractSpaceEditor;
-import com.tibco.as.spacebar.ui.editor.snapshot.SpaceEditor;
+import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
+import com.tibco.as.spacebar.ui.editor.snapshot.SnapshotBrowser;
 
 public class DeleteAction extends LayerListenerEditorAction {
 
@@ -16,8 +16,8 @@ public class DeleteAction extends LayerListenerEditorAction {
 	}
 
 	@Override
-	protected void runWithEvent(Event event, AbstractSpaceEditor<?> editor) {
-		((SpaceEditor) editor).deleteSelected();
+	protected void runWithEvent(Event event, AbstractBrowser<?> editor) {
+		((SnapshotBrowser) editor).deleteSelected();
 	}
 
 	@Override

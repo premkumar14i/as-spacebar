@@ -9,7 +9,7 @@ import org.eclipse.ui.IPersistableElement;
 import com.tibco.as.spacebar.ui.Image;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.editor.continuous.ContinuousBrowser;
-import com.tibco.as.spacebar.ui.editor.snapshot.SpaceEditor;
+import com.tibco.as.spacebar.ui.editor.snapshot.SnapshotBrowser;
 import com.tibco.as.spacebar.ui.model.Space;
 import com.tibco.as.io.Export;
 
@@ -70,7 +70,7 @@ public class SpaceEditorInput implements IEditorInput {
 		if (export.isAllOrNew()) {
 			return ContinuousBrowser.EDITOR_ID;
 		}
-		return SpaceEditor.EDITOR_ID;
+		return SnapshotBrowser.EDITOR_ID;
 	}
 
 	@Override
