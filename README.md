@@ -6,9 +6,9 @@ SpaceBar is a Graphical User Interface (GUI) tool for TIBCO ActiveSpaces that he
 
 SpaceBar provides the following features:
 
-* **Explore Metaspaces**
+* **Metaspaces**
 
-   * Connect to metaspaces
+   * Connect to a metaspace
 
    * Create/delete a metaspace
 
@@ -20,7 +20,7 @@ SpaceBar provides the following features:
 
    * Resume/suspend a metaspace
 
-* **Explore Spaces**
+* **Spaces**
 
    * Show space definitions
 
@@ -28,29 +28,31 @@ SpaceBar provides the following features:
 
    * Drop/resume/recover a space
 
-Add a new field to an existing space
+   * Add a new field to an existing space
 
-Add and drop indexes
+   * Add and drop indexes
 
-Space Browser
-Browse space data
+* **Browsing**
 
-Show real-time updates (continuous browse)
+   * Browse space data
 
-Retrieve space size
+   * Show real-time updates (continuous browse)
 
-Sort and filter tuples
+   * Retrieve space size
 
-Create, read, update, and delete tuples
+   * Sort and filter tuples
 
-Compute average tuple size
+   * Create, read, update, and delete tuples
 
-Import/Export
-Tuple selection
+   * Compute average tuple size
 
-CSV files
+* **Import/Export**
 
-Excel spreadsheets
+   * Tuple selection
 
-Data simulations
+   * CSV files
+
+   * Spreadsheets
+
+   * Data simulations
 
