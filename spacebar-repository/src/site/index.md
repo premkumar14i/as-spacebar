@@ -1,3 +1,8 @@
+SpaceBar for TIBCO ActiveSpaces<sup>®</sup>
+===========
+
+SpaceBar is a Graphical User Interface (GUI) tool for TIBCO ActiveSpaces that helps developers and operators view and edit the contents of metaspaces.
+
 <div id="myCarousel" class="carousel slide">
 	<!--
 	<ol class="carousel-indicators">
@@ -67,55 +72,54 @@
 </div>
 
 
-### Metaspace Explorer
+SpaceBar provides the following features:
 
-Connect to metaspaces
+* **Metaspaces**
 
-Create/delete a metaspace
+   * Connect to a metaspace
 
-Show current members
+   * Create/delete a metaspace
 
-Show current spaces
+   * Show current members
 
-Open a system space
+   * Show current spaces
 
-Resume/suspend a metaspace
+   * Open a system space
 
+   * Resume/suspend a metaspace
 
-### Space Explorer
+* **Spaces**
 
-Show space definitions
+   * Show space definitions
 
-Create a space definition
+   * Create a space definition
 
-Drop/resume/recover a space
+   * Drop/resume/recover a space
 
-Add a new field to an existing space
+   * Add a new field to an existing space
 
-Add and drop indexes
+   * Add and drop indexes
 
+* **Browsing**
 
-### Space Browser
+   * Browse space data
 
-Browse space data
+   * Show real-time updates (continuous browse)
 
-Show real-time updates (continuous browse)
+   * Retrieve space size
 
-Retrieve space size
+   * Sort and filter tuples
 
-Sort and filter tuples
+   * Create, read, update, and delete tuples
 
-Create, read, update, and delete tuples
+   * Compute average tuple size
 
-Compute average tuple size
+* **Import/Export**
 
+   * Tuple selection
 
-### Import/Export
+   * CSV files
 
-Tuple selection
+   * Spreadsheets
 
-CSV files
-
-Excel spreadsheets
-
-Data simulations
+   * Data simulations
