@@ -3,13 +3,13 @@ package com.tibco.as.spacebar.ui.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import com.tibco.as.space.ASException;
 import com.tibco.as.space.FieldDef;
 import com.tibco.as.space.FieldDef.FieldType;
 import com.tibco.as.space.IndexDef;
+import com.tibco.as.space.IndexDef.IndexType;
 import com.tibco.as.space.KeyDef;
 import com.tibco.as.space.SpaceDef;
 import com.tibco.as.space.SpaceDef.CachePolicy;
@@ -25,38 +25,40 @@ import com.tibco.as.util.Utils;
 public class Space extends AbstractElement implements Cloneable {
 
 	private Spaces spaces;
-	private String name;
 	private SpaceMembers members = new SpaceMembers(this);
 	private SpaceFields fields = new SpaceFields(this);
 	private Keys keys = new Keys(this);
 	private Distribution distribution = new Distribution(this);
 	private Indexes indexes = new Indexes(this);
-	private int replicationCount;
-	private ReplicationPolicy replicationPolicy;
-	private EvictionPolicy evictionPolicy;
 	private CachePolicy cachePolicy;
-	private PersistencePolicy persistencePolicy;
-	private PersistenceType persistenceType;
-	private DistributionPolicy persistenceDistributionPolicy;
-	private int minSeederCount;
-	private DistributionPolicy distributionPolicy;
-	private LockScope lockScope;
 	private long capacity;
-	private long ttl;
-	private long lockTtl;
-	private long lockWait;
-	private int phaseCount;
-	private long spaceWait;
-	private long writeTimeout;
-	private long readTimeout;
-	private long queryTimeout;
-	private UpdateTransport updateTransport;
-	private int virtualNodeCount;
+	private DistributionPolicy distributionPolicy;
+	private EvictionPolicy evictionPolicy;
+	private long fileSyncInterval;
 	private boolean forgetOldValue;
 	private boolean hostAwareReplication;
-	private boolean routed;
+	private IndexType keyIndexType;
+	private LockScope lockScope;
+	private long lockTtl;
+	private long lockWait;
+	private int minSeederCount;
+	private String name;
+	private DistributionPolicy persistenceDistributionPolicy;
+	private PersistencePolicy persistencePolicy;
+	private PersistenceType persistenceType;
+	private int phaseCount;
 	private int phaseRatio;
 	private long queryLimit;
+	private long queryTimeout;
+	private long readTimeout;
+	private int replicationCount;
+	private ReplicationPolicy replicationPolicy;
+	private boolean routed;
+	private long spaceWait;
+	private long ttl;
+	private UpdateTransport updateTransport;
+	private int virtualNodeCount;
+	private long writeTimeout;
 
 	public Space(Spaces spaces) {
 		this.spaces = spaces;
@@ -72,47 +74,52 @@ public class Space extends AbstractElement implements Cloneable {
 	}
 
 	public void setSpaceDef(SpaceDef spaceDef) {
-		setName(spaceDef.getName());
 		setCachePolicy(spaceDef.getCachePolicy());
 		setCapacity(spaceDef.getCapacity());
 		setDistributionPolicy(spaceDef.getDistributionPolicy());
 		setEvictionPolicy(spaceDef.getEvictionPolicy());
+		if (Utils.hasSpaceDefMethod("getFileSyncInterval")) {
+			setFileSyncInterval(spaceDef.getFileSyncInterval());
+		}
 		setForgetOldValue(spaceDef.isForgetOldValue());
 		setHostAwareReplication(spaceDef.isHostAwareReplication());
-		if (Utils.hasMethod(SpaceDef.class, "isRouted")) {
-			setRouted(spaceDef.isRouted());
-		}
+		setKeyIndexType(spaceDef.getKeyDef().getIndexType());
 		setLockScope(spaceDef.getLockScope());
 		setLockTTL(spaceDef.getLockTTL());
 		setLockWait(spaceDef.getLockWait());
 		setMinSeederCount(spaceDef.getMinSeederCount());
+		setName(spaceDef.getName());
 		setPersistenceDistributionPolicy(spaceDef
 				.getPersistenceDistributionPolicy());
 		setPersistencePolicy(spaceDef.getPersistencePolicy());
 		setPersistenceType(spaceDef.getPersistenceType());
 		setPhaseCount(spaceDef.getPhaseCount());
-		if (Utils.hasMethod(SpaceDef.class, "getPhaseRatio")) {
+		if (Utils.hasSpaceDefMethod("getPhaseRatio")) {
 			setPhaseRatio(spaceDef.getPhaseRatio());
 		}
-		if (Utils.hasMethod(SpaceDef.class, "getQueryLimit")) {
+		if (Utils.hasSpaceDefMethod("getQueryLimit")) {
 			setQueryLimit(spaceDef.getQueryLimit());
 		}
-		if (Utils.hasMethod(SpaceDef.class, "getQueryTimeout")) {
+		if (Utils.hasSpaceDefMethod("getQueryTimeout")) {
 			setQueryTimeout(spaceDef.getQueryTimeout());
 		}
 		setReadTimeout(spaceDef.getReadTimeout());
 		setReplicationCount(spaceDef.getReplicationCount());
 		setReplicationPolicy(spaceDef.getReplicationPolicy());
+		if (Utils.hasSpaceDefMethod("isRouted")) {
+			setRouted(spaceDef.isRouted());
+		}
 		setSpaceWait(spaceDef.getSpaceWait());
 		setTTL(spaceDef.getTTL());
 		setUpdateTransport(spaceDef.getUpdateTransport());
 		setVirtualNodeCount(spaceDef.getVirtualNodeCount());
 		setWriteTimeout(spaceDef.getWriteTimeout());
 		Collection<String> keyFields = spaceDef.getKeyDef().getFieldNames();
-		Collection<String> distributionFields = spaceDef
-				.getDistributionFields();
-		if (distributionFields == null) {
-			distributionFields = Collections.emptyList();
+		Collection<String> distributionFields = new ArrayList<String>();
+		if (Utils.hasSpaceDefMethod("getDistributionFields")) {
+			if (spaceDef.getDistributionFields() != null) {
+				distributionFields = spaceDef.getDistributionFields();
+			}
 		}
 		for (FieldDef fieldDef : spaceDef.getFieldDefs()) {
 			String fieldName = fieldDef.getName();
@@ -120,7 +127,7 @@ public class Space extends AbstractElement implements Cloneable {
 			field.setName(fieldName);
 			field.setType(fieldDef.getType());
 			field.setNullable(fieldDef.isNullable());
-			if (Utils.hasMethod(FieldDef.class, "isEncrypted")) {
+			if (Utils.hasFieldDefMethod("isEncrypted")) {
 				field.setEncrypted(fieldDef.isEncrypted());
 			}
 			field.setKey(keyFields.contains(fieldName));
@@ -131,13 +138,8 @@ public class Space extends AbstractElement implements Cloneable {
 			Field field = fields.getField(keyField);
 			keys.addChild(field);
 		}
-		if (Utils.hasMethod(SpaceDef.class, "getDistributionFields")) {
-			if (distributionFields != null) {
-				for (String distributionField : distributionFields) {
-					Field field = fields.getField(distributionField);
-					distribution.addChild(field);
-				}
-			}
+		for (String fieldName : distributionFields) {
+			distribution.addChild(fields.getField(fieldName));
 		}
 		for (Index index : indexes.getIndexes()) {
 			if (spaceDef.getIndexDef(index.getName()) == null) {
@@ -171,36 +173,40 @@ public class Space extends AbstractElement implements Cloneable {
 	}
 
 	public SpaceDef getSpaceDef() {
-		SpaceDef spaceDef = SpaceDef.create(getName());
+		SpaceDef spaceDef = SpaceDef.create();
 		spaceDef.setCachePolicy(cachePolicy);
 		spaceDef.setCapacity(capacity);
 		spaceDef.setDistributionPolicy(distributionPolicy);
 		spaceDef.setEvictionPolicy(evictionPolicy);
+		if (Utils.hasSpaceDefMethod("setFileSyncInterval")) {
+			spaceDef.setFileSyncInterval(fileSyncInterval);
+		}
 		spaceDef.setForgetOldValue(forgetOldValue);
 		spaceDef.setHostAwareReplication(hostAwareReplication);
-		if (Utils.hasMethod(SpaceDef.class, "setRouted")) {
-			spaceDef.setRouted(routed);
-		}
 		spaceDef.setLockScope(lockScope);
 		spaceDef.setLockTTL(lockTtl);
 		spaceDef.setLockWait(lockWait);
 		spaceDef.setMinSeederCount(minSeederCount);
+		spaceDef.setName(getName());
 		spaceDef.setPersistenceDistributionPolicy(persistenceDistributionPolicy);
 		spaceDef.setPersistencePolicy(persistencePolicy);
 		spaceDef.setPersistenceType(persistenceType);
 		spaceDef.setPhaseCount(phaseCount);
-		if (Utils.hasMethod(SpaceDef.class, "setPhaseRatio")) {
+		if (Utils.hasSpaceDefMethod("setPhaseRatio")) {
 			spaceDef.setPhaseRatio(phaseRatio);
 		}
-		if (Utils.hasMethod(SpaceDef.class, "setQueryLimit")) {
+		if (Utils.hasSpaceDefMethod("setQueryLimit")) {
 			spaceDef.setQueryLimit(queryLimit);
 		}
-		if (Utils.hasMethod(SpaceDef.class, "setQueryTimeout")) {
+		if (Utils.hasSpaceDefMethod("setQueryTimeout")) {
 			spaceDef.setQueryTimeout(queryTimeout);
 		}
 		spaceDef.setReadTimeout(readTimeout);
 		spaceDef.setReplicationCount(replicationCount);
 		spaceDef.setReplicationPolicy(replicationPolicy);
+		if (Utils.hasSpaceDefMethod("setRouted")) {
+			spaceDef.setRouted(routed);
+		}
 		spaceDef.setSpaceWait(spaceWait);
 		spaceDef.setTTL(ttl);
 		spaceDef.setUpdateTransport(updateTransport);
@@ -210,21 +216,20 @@ public class Space extends AbstractElement implements Cloneable {
 			Field field = (Field) element;
 			FieldDef fieldDef = FieldDef.create(field.getName(),
 					FieldType.valueOf(field.getType().name()));
-			if (Utils.hasMethod(FieldDef.class, "setEncrypted")) {
+			if (Utils.hasFieldDefMethod("setEncrypted")) {
 				fieldDef.setEncrypted(field.isEncrypted());
 			}
 			fieldDef.setNullable(field.isNullable());
-			spaceDef.getFieldDefs().add(fieldDef);
+			spaceDef.putFieldDef(fieldDef);
 		}
 		for (Index index : indexes.getIndexes()) {
 			IndexDef indexDef = IndexDef.create(index.getName());
 			indexDef.setIndexType(index.getType());
-			List<String> indexFieldNames = new ArrayList<String>();
-			for (Field field : index.getChildren()) {
-				indexFieldNames.add(field.getName());
+			List<String> fields = new ArrayList<String>();
+			for (Field indexField : index.getChildren()) {
+				fields.add(indexField.getName());
 			}
-			indexDef.setFieldNames(indexFieldNames
-					.toArray(new String[indexFieldNames.size()]));
+			indexDef.setFieldNames(fields.toArray(new String[fields.size()]));
 			spaceDef.addIndexDef(indexDef);
 		}
 		List<Field> distributionFields = distribution.getChildren();
@@ -232,15 +237,18 @@ public class Space extends AbstractElement implements Cloneable {
 		for (int index = 0; index < distribution.length; index++) {
 			distribution[index] = distributionFields.get(index).getName();
 		}
-		if (Utils.hasMethod(SpaceDef.class, "setDistributionFields")) {
+		if (Utils.hasSpaceDefMethod("setDistributionFields")) {
 			spaceDef.setDistributionFields(distribution);
 		}
 		KeyDef keyDef = spaceDef.getKeyDef();
-		String[] keyFields = new String[keys.getChildren().size()];
-		for (int index = 0; index < keyFields.length; index++) {
-			keyFields[index] = keys.getChildren().get(index).getName();
+		keyDef.setIndexType(keyIndexType);
+		if (!keys.getChildren().isEmpty()) {
+			List<String> keyFields = new ArrayList<String>();
+			for (Field keyField : keys.getChildren()) {
+				keyFields.add(keyField.getName());
+			}
+			keyDef.setFieldNames(keyFields.toArray(new String[keyFields.size()]));
 		}
-		keyDef.setFieldNames(keyFields);
 		spaceDef.setKeyDef(keyDef);
 		return spaceDef;
 	}
@@ -501,6 +509,14 @@ public class Space extends AbstractElement implements Cloneable {
 		this.hostAwareReplication = hostAwareReplication;
 	}
 
+	public IndexType getKeyIndexType() {
+		return keyIndexType;
+	}
+
+	public void setKeyIndexType(IndexType keyIndexType) {
+		this.keyIndexType = keyIndexType;
+	}
+
 	public boolean isRouted() {
 		return routed;
 	}
@@ -523,6 +539,14 @@ public class Space extends AbstractElement implements Cloneable {
 
 	public void setQueryLimit(long queryLimit) {
 		this.queryLimit = queryLimit;
+	}
+
+	public long getFileSyncInterval() {
+		return fileSyncInterval;
+	}
+
+	public void setFileSyncInterval(long fileSyncInterval) {
+		this.fileSyncInterval = fileSyncInterval;
 	}
 
 	@Override

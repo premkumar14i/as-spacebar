@@ -16,7 +16,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import com.tibco.as.space.FieldDef;
 import com.tibco.as.space.FieldDef.FieldType;
 import com.tibco.as.util.Utils;
 
@@ -65,9 +64,7 @@ public class FieldEditor extends Composite {
 		encryptedButton.setText("Encrypted");
 		GridDataFactory.defaultsFor(encryptedButton).span(2, 1)
 				.applyTo(encryptedButton);
-		encryptedButton.setVisible(Utils.hasMethod(FieldDef.class,
-				"setEncrypted"));
-
+		encryptedButton.setVisible(Utils.hasFieldDefMethod("setEncrypted"));
 		if (field != null) {
 			m_bindingContext = initDataBindings();
 		}

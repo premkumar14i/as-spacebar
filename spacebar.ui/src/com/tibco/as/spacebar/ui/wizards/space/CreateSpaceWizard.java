@@ -5,6 +5,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
+import com.tibco.as.space.SpaceDef;
 import com.tibco.as.spacebar.ui.model.Connection;
 import com.tibco.as.spacebar.ui.model.Space;
 import com.tibco.as.spacebar.ui.model.Spaces;
@@ -14,7 +15,6 @@ import com.tibco.as.spacebar.ui.wizards.space.distribution.DistributionWizardPag
 import com.tibco.as.spacebar.ui.wizards.space.field.FieldsWizardPage;
 import com.tibco.as.spacebar.ui.wizards.space.index.IndexesWizardPage;
 import com.tibco.as.spacebar.ui.wizards.space.key.KeyWizardPage;
-import com.tibco.as.space.SpaceDef;
 import com.tibco.as.util.Utils;
 
 public class CreateSpaceWizard extends AbstractWizard implements INewWizard {
@@ -30,7 +30,7 @@ public class CreateSpaceWizard extends AbstractWizard implements INewWizard {
 		addPage(new SpaceDefWizardPage(space));
 		addPage(new FieldsWizardPage(space.getFields()));
 		addPage(new KeyWizardPage(space));
-		if (Utils.hasMethod(SpaceDef.class, "setDistributionFields")) {
+		if (Utils.hasSpaceDefMethod("setDistributionFields")) {
 			addPage(new DistributionWizardPage(space));
 		}
 		addPage(new IndexesWizardPage(space.getIndexes()));

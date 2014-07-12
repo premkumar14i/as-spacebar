@@ -5,13 +5,13 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
-import com.tibco.as.spacebar.ui.model.Field;
-import com.tibco.as.spacebar.ui.model.SpaceFields;
-import com.tibco.as.spacebar.ui.wizards.AbstractWizard;
 import com.tibco.as.space.FieldDef;
 import com.tibco.as.space.FieldDef.FieldType;
 import com.tibco.as.space.Space;
 import com.tibco.as.space.SpaceDef;
+import com.tibco.as.spacebar.ui.model.Field;
+import com.tibco.as.spacebar.ui.model.SpaceFields;
+import com.tibco.as.spacebar.ui.wizards.AbstractWizard;
 import com.tibco.as.util.Utils;
 
 public class AddFieldWizard extends AbstractWizard implements INewWizard {
@@ -44,7 +44,7 @@ public class AddFieldWizard extends AbstractWizard implements INewWizard {
 				.getParent()).getSpace();
 		SpaceDef spaceDef = space.getSpaceDef();
 		FieldDef fieldDef = FieldDef.create(field.getName(), field.getType());
-		if (Utils.hasMethod(FieldDef.class, "setEncrypted")) {
+		if (Utils.hasFieldDefMethod("setEncrypted")) {
 			fieldDef.setEncrypted(field.isNullable());
 		}
 		fieldDef.setNullable(field.isNullable());

@@ -13,17 +13,17 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 import com.tibco.as.space.IndexDef.IndexType;
-import com.tibco.as.space.KeyDef;
+import com.tibco.as.spacebar.ui.model.Space;
 
 public class KeyIndexTypeEditor extends Composite {
 
 	private DataBindingContext m_bindingContext;
-	private KeyDef keys;
+	private Space space;
 	private ComboViewer keyIndexTypeCombo;
 
-	public KeyIndexTypeEditor(Composite parent, int style, KeyDef spaceDef) {
+	public KeyIndexTypeEditor(Composite parent, int style, Space space) {
 		this(parent, style);
-		setKeys(spaceDef);
+		setSpace(space);
 	}
 
 	public KeyIndexTypeEditor(Composite parent, int style) {
@@ -39,7 +39,7 @@ public class KeyIndexTypeEditor extends Composite {
 				.setContentProvider(ArrayContentProvider.getInstance());
 		keyIndexTypeCombo.setInput(IndexType.values());
 
-		if (keys != null) {
+		if (space != null) {
 			m_bindingContext = initDataBindings();
 		}
 	}
@@ -53,7 +53,7 @@ public class KeyIndexTypeEditor extends Composite {
 		IObservableValue keyIndexTypeObserveWidget = ViewersObservables
 				.observeSingleSelection(keyIndexTypeCombo);
 		IObservableValue keyIndexTypeObserveValue = PojoObservables
-				.observeValue(keys, "indexType");
+				.observeValue(space, "keyIndexType");
 		//
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
@@ -63,22 +63,22 @@ public class KeyIndexTypeEditor extends Composite {
 		return bindingContext;
 	}
 
-	public KeyDef getKeys() {
-		return keys;
+	public Space getSpace() {
+		return space;
 	}
 
-	public void setKeys(KeyDef newKeys) {
-		setKeys(newKeys, true);
+	public void setSpace(Space newSpace) {
+		setSpace(newSpace, true);
 	}
 
-	public void setKeys(KeyDef newKeys, boolean update) {
-		keys = newKeys;
+	public void setSpace(Space newSpace, boolean update) {
+		space = newSpace;
 		if (update) {
 			if (m_bindingContext != null) {
 				m_bindingContext.dispose();
 				m_bindingContext = null;
 			}
-			if (keys != null) {
+			if (space != null) {
 				m_bindingContext = initDataBindings();
 			}
 		}

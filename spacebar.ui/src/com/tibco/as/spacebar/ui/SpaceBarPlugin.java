@@ -33,7 +33,6 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 import com.tibco.as.io.EventManager;
-import com.tibco.as.space.SpaceDef;
 import com.tibco.as.spacebar.ui.model.Metaspace;
 import com.tibco.as.spacebar.ui.model.Metaspaces;
 import com.tibco.as.util.AS;
@@ -153,8 +152,9 @@ public class SpaceBarPlugin extends AbstractUIPlugin {
 						} else {
 							String id = property.getId();
 							if (AS_212_SPACEDEF_PROPERTIES.containsKey(id)) {
-								if (!Utils.hasMethod(SpaceDef.class,
-										AS_212_SPACEDEF_PROPERTIES.get(id))) {
+								if (!Utils
+										.hasSpaceDefMethod(AS_212_SPACEDEF_PROPERTIES
+												.get(id))) {
 									continue;
 								}
 							}

@@ -36,7 +36,7 @@ public class KeyWizardPage extends AbstractWizardPage implements
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setLayout(new GridLayout());
 		KeyIndexTypeEditor indexTypeEditor = new KeyIndexTypeEditor(composite,
-				SWT.NONE, space.getSpaceDef().getKeyDef());
+				SWT.NONE, space);
 		GridDataFactory.fillDefaults().grab(true, false)
 				.applyTo(indexTypeEditor);
 		dualList = new DualList<Field>(composite, SWT.NONE, Field.class,
