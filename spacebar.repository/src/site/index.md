@@ -20,49 +20,49 @@ SpaceBar is a Graphical User Interface (GUI) tool for TIBCO ActiveSpaces that he
 	  <div class="item">
 	    <img src="images/screenshots/continuous-browse.gif" alt="">
 	    <div class="carousel-caption">
-	      <h4>Continuous browser</h4>
+	      <span class="othh4">Continuous browser</span>
 	      <p>Continuously browse a space and get a real-time view on its data.</p>
 	    </div>
 	  </div>
 	  <div class="item">
 	    <img src="images/screenshots/browse-editor.png" alt="">
 	    <div class="carousel-caption">
-	      <h4>Browser settings</h4>
+	      <span class="othh4">Browser settings</span>
 	      <p>Set browser options: time scope, prefetch, query limit, filter.</p>
 	    </div>
 	  </div>
 	  <div class="item">
 	    <img src="images/screenshots/field-list-editor.png" alt="">
 	    <div class="carousel-caption">
-	      <h4>Field def editor</h4>
+	      <span class="othh4">Field def editor</span>
 	      <p>Define fields in space def.</p>
 	    </div>
 	  </div>
 	  <div class="item">
 	    <img src="images/screenshots/import.png" alt="">
 	    <div class="carousel-caption">
-	      <h4>Data import</h4>
+	      <span class="othh4">Data import</span>
 	      <p>Import data from CSV, Excel, or simulation files.</p>
 	    </div>
 	  </div>
 	  <div class="item">
 	    <img src="images/screenshots/properties.png" alt="">
 	    <div class="carousel-caption">
-	      <h4>Space properties</h4>
+	      <span class="othh4">Space properties</span>
 	      <p>Space definition attributes.</p>
 	    </div>
 	  </div>
 	  <div class="item">
 	    <img src="images/screenshots/space-def-editor.png" alt="">
 	    <div class="carousel-caption">
-	      <h4>Space default editor</h4>
+	      <span class="othh4">Space default editor</span>
 	      <p>Create space definitions.</p>
 	    </div>
 	  </div>
 	  <div class="item active">
 	    <img src="images/screenshots/space-editor.png" alt="">
 	    <div class="carousel-caption">
-	      <h4>Space data editor</h4>
+	      <span class="othh4">Space data editor</span>
 	      <p>View and edit tuples.</p>
 	    </div>
 	  </div>
