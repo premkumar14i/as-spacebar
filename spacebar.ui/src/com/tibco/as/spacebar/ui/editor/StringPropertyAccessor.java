@@ -1,6 +1,5 @@
 package com.tibco.as.spacebar.ui.editor;
 
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.nebula.widgets.nattable.data.IColumnPropertyAccessor;
@@ -8,9 +7,9 @@ import org.eclipse.nebula.widgets.nattable.data.IColumnPropertyAccessor;
 public class StringPropertyAccessor<T extends Map<String, Object>> implements
 		IColumnPropertyAccessor<T> {
 
-	private List<String> propertyNames;
+	private String[] propertyNames;
 
-	public StringPropertyAccessor(List<String> fieldNames) {
+	public StringPropertyAccessor(String[] fieldNames) {
 		this.propertyNames = fieldNames;
 	}
 
@@ -26,16 +25,21 @@ public class StringPropertyAccessor<T extends Map<String, Object>> implements
 
 	@Override
 	public int getColumnCount() {
-		return propertyNames.size();
+		return propertyNames.length;
 	}
 
 	@Override
 	public String getColumnProperty(int columnIndex) {
-		return propertyNames.get(columnIndex);
+		return propertyNames[columnIndex];
 	}
 
 	@Override
 	public int getColumnIndex(String propertyName) {
-		return propertyNames.indexOf(propertyName);
+		for (int index = 0; index < propertyNames.length; index++) {
+			if (propertyNames[index].equals(propertyName)) {
+				return index;
+			}
+		}
+		return -1;
 	}
 }

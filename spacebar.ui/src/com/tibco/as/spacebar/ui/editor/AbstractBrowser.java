@@ -2,7 +2,6 @@ package com.tibco.as.spacebar.ui.editor;
 
 import java.beans.PropertyChangeListener;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -97,11 +96,11 @@ public abstract class AbstractBrowser<T extends Map<String, Object>> extends
 
 	private CopyDataAction copyDataAction;
 
-	private List<FieldDef> fieldDefs;
+	private FieldDef[] fieldDefs;
 
-	private List<String> fieldNames;
+	private String[] fieldNames;
 
-	private List<String> nonKeyFieldNames;
+	private String[] nonKeyFieldNames;
 
 	private MetaspaceTransferJob browseJob;
 
@@ -230,7 +229,7 @@ public abstract class AbstractBrowser<T extends Map<String, Object>> extends
 
 	protected abstract Exporter<T> getExporter(Metaspace metaspace);
 
-	protected List<String> getFieldNames() {
+	protected String[] getFieldNames() {
 		return fieldNames;
 	}
 
@@ -242,7 +241,7 @@ public abstract class AbstractBrowser<T extends Map<String, Object>> extends
 		return sortedList;
 	}
 
-	protected Collection<String> getNonKeyFieldNames() {
+	protected String[] getNonKeyFieldNames() {
 		return nonKeyFieldNames;
 	}
 
@@ -273,9 +272,9 @@ public abstract class AbstractBrowser<T extends Map<String, Object>> extends
 				bodyDataLayer);
 		bodyDataLayer.setConfigLabelAccumulator(columnLabelAccumulator);
 		AbstractConfiguration configuration = getConfiguration();
-		for (int index = 0; index < fieldDefs.size(); index++) {
+		for (int index = 0; index < fieldDefs.length; index++) {
 			columnLabelAccumulator.registerColumnOverrides(index,
-					configuration.getLabels(fieldDefs.get(index)));
+					configuration.getLabels(fieldDefs[index]));
 		}
 		columnHeaderLayer = new ColumnHeaderLayerStack<T>(sortedList,
 				filterList, fieldNames, fieldToLabelMap, bodyLayer,

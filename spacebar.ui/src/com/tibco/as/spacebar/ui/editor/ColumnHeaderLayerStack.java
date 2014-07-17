@@ -1,6 +1,5 @@
 package com.tibco.as.spacebar.ui.editor;
 
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
@@ -35,14 +34,13 @@ public class ColumnHeaderLayerStack<T> extends AbstractLayerTransform {
 	private FilterRowHeaderComposite<T> composite;
 
 	public ColumnHeaderLayerStack(SortedList<T> sortedList,
-			FilterList<T> filterList, List<String> propertyNames,
+			FilterList<T> filterList, String[] propertyNames,
 			Map<String, String> propertyToLabelMap, ILayer bodyLayer,
 			SelectionLayer selectionLayer, ColumnGroupModel columnGroupModel,
 			IConfigRegistry configRegistry,
 			IColumnPropertyAccessor<T> propertyAccessor) {
 		columnHeaderDataProvider = new DefaultColumnHeaderDataProvider(
-				propertyNames.toArray(new String[propertyNames.size()]),
-				propertyToLabelMap);
+				propertyNames, propertyToLabelMap);
 		columnHeaderDataLayer = new DefaultColumnHeaderDataLayer(
 				columnHeaderDataProvider);
 		columnHeaderLayer = new ColumnHeaderLayer(columnHeaderDataLayer,

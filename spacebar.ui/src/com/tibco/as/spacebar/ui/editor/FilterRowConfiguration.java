@@ -4,8 +4,6 @@ import static org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes.CE
 import static org.eclipse.nebula.widgets.nattable.grid.GridRegion.FILTER_ROW;
 import static org.eclipse.nebula.widgets.nattable.style.DisplayMode.NORMAL;
 
-import java.util.List;
-
 import org.eclipse.nebula.widgets.nattable.config.AbstractRegistryConfiguration;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.convert.DefaultDisplayConverter;
@@ -23,17 +21,16 @@ import org.eclipse.nebula.widgets.nattable.filterrow.config.FilterRowConfigAttri
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.util.GUIHelper;
 
+import com.tibco.as.space.FieldDef;
+import com.tibco.as.space.FieldDef.FieldType;
 import com.tibco.as.spacebar.ui.editor.display.DateTimeFilterDisplayConverter;
 import com.tibco.as.spacebar.ui.preferences.Preferences;
 
-import com.tibco.as.space.FieldDef;
-import com.tibco.as.space.FieldDef.FieldType;
-
 public class FilterRowConfiguration extends AbstractRegistryConfiguration {
 
-	private List<FieldDef> fieldDefs;
+	private FieldDef[] fieldDefs;
 
-	public FilterRowConfiguration(List<FieldDef> fieldDefs) {
+	public FilterRowConfiguration(FieldDef[] fieldDefs) {
 		this.fieldDefs = fieldDefs;
 	}
 
@@ -42,8 +39,8 @@ public class FilterRowConfiguration extends AbstractRegistryConfiguration {
 				CELL_PAINTER,
 				new FilterRowPainter(new FilterIconPainter(GUIHelper
 						.getImage("filter"))), NORMAL, FILTER_ROW);
-		for (int index = 0; index < fieldDefs.size(); index++) {
-			FieldDef field = fieldDefs.get(index);
+		for (int index = 0; index < fieldDefs.length; index++) {
+			FieldDef field = fieldDefs[index];
 			if (isExpression(field)) {
 				configRegistry.registerConfigAttribute(
 						FilterRowConfigAttributes.FILTER_DISPLAY_CONVERTER,

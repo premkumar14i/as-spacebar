@@ -1,16 +1,13 @@
 package com.tibco.as.spacebar.ui.editor.snapshot;
 
-import java.util.List;
-
-import com.tibco.as.spacebar.ui.editor.StringPropertyAccessor;
-
 import com.tibco.as.space.Tuple;
+import com.tibco.as.spacebar.ui.editor.StringPropertyAccessor;
 
 public class EditablePropertyAccessor extends StringPropertyAccessor<Tuple> {
 
 	private SnapshotBrowser editor;
 
-	public EditablePropertyAccessor(List<String> fieldNames, SnapshotBrowser editor) {
+	public EditablePropertyAccessor(String[] fieldNames, SnapshotBrowser editor) {
 		super(fieldNames);
 		this.editor = editor;
 	}
