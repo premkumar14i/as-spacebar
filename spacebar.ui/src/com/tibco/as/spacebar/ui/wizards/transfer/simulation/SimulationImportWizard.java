@@ -18,10 +18,10 @@ import com.tibco.as.spacebar.ui.Image;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.preferences.Preferences;
 import com.tibco.as.spacebar.ui.wizards.transfer.AbstractImportWizard;
-
 import com.tibco.as.io.IMetaspaceTransfer;
 import com.tibco.as.io.Import;
 import com.tibco.as.io.Transfer;
+import com.tibco.as.io.simulation.ObjectFactory;
 import com.tibco.as.io.simulation.Simulation;
 import com.tibco.as.io.simulation.SimulationImport;
 import com.tibco.as.io.simulation.SimulationImporter;
@@ -72,8 +72,7 @@ public class SimulationImportWizard extends AbstractImportWizard<Object[]> {
 	}
 
 	private Simulation getSimulation(File file) throws JAXBException {
-		JAXBContext jc = JAXBContext.newInstance(Simulation.class.getPackage()
-				.getName());
+		JAXBContext jc = JAXBContext.newInstance(ObjectFactory.class);
 		Unmarshaller unmarshaller = jc.createUnmarshaller();
 		@SuppressWarnings("unchecked")
 		JAXBElement<Simulation> element = (JAXBElement<Simulation>) unmarshaller
