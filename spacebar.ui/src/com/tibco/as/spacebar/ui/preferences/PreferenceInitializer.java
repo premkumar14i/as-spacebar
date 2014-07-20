@@ -46,8 +46,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 				ConverterFactory.DEFAULT_PATTERN_BOOLEAN);
 		store.setDefault(Preferences.EXPORT_CSV_FORMAT_NUMBER,
 				IPreferenceStore.STRING_DEFAULT_DEFAULT);
-		store.setDefault(Preferences.EXPORT_CSV_FORMAT_DATE,
-				ConverterFactory.DEFAULT_PATTERN_DATE);
+		// store.setDefault(Preferences.EXPORT_CSV_FORMAT_DATE,
+		// ConverterFactory.DEFAULT_PATTERN_DATE);
 		store.setDefault(Preferences.EXPORT_EXCEL_HEADER, true);
 		store.setDefault(Preferences.EXPORT_EXCEL_VERSION,
 				SpreadsheetVersion.EXCEL2007.name());
@@ -75,8 +75,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 				ConverterFactory.DEFAULT_PATTERN_BOOLEAN);
 		store.setDefault(Preferences.IMPORT_CSV_FORMAT_NUMBER,
 				IPreferenceStore.STRING_DEFAULT_DEFAULT);
-		store.setDefault(Preferences.IMPORT_CSV_FORMAT_DATE,
-				ConverterFactory.DEFAULT_PATTERN_DATE);
+		// store.setDefault(Preferences.IMPORT_CSV_FORMAT_DATE,
+		// ConverterFactory.DEFAULT_PATTERN_DATE);
 		store.setDefault(Preferences.IMPORT_EXCEL_HEADER, true);
 		store.setDefault(Preferences.IMPORT_EXCEL_FORMAT_BLOB, Blob.HEX.name());
 		store.setDefault(Preferences.SPACE_EDITOR_THEME,
@@ -87,8 +87,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 				Preferences.SPACE_EDITOR_COLOR_BLINK_UP, new RGB(0, 204, 0));
 		PreferenceConverter.setDefault(store,
 				Preferences.SPACE_EDITOR_COLOR_BLINK_DOWN, new RGB(204, 0, 0));
-		store.setDefault(Preferences.SPACE_EDITOR_DATE_FORMAT,
-				ConverterFactory.DEFAULT_PATTERN_DATE);
+		// store.setDefault(Preferences.SPACE_EDITOR_DATE_FORMAT,
+		// ConverterFactory.DEFAULT_PATTERN_DATE);
 		store.setDefault(Preferences.SPACE_EDITOR_TIME_ZONE, TimeZone
 				.getTimeZone("GMT").getID());
 		store.setDefault(Preferences.SPACE_EDITOR_BROWSE_TIME_SCOPE, "CURRENT");

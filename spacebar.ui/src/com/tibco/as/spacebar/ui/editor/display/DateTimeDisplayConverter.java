@@ -1,5 +1,6 @@
 package com.tibco.as.spacebar.ui.editor.display;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -27,14 +28,16 @@ public class DateTimeDisplayConverter extends DefaultDateDisplayConverter {
 
 	@Override
 	public Object canonicalToDisplayValue(Object canonicalValue) {
-		return super.canonicalToDisplayValue(converter
-				.dateTimeToDate(canonicalValue));
+		Calendar calendar = converter.dateTimeToCalendar(canonicalValue);
+		return super.canonicalToDisplayValue(calendar.getTime());
 	}
 
 	@Override
 	public Object displayToCanonicalValue(Object displayValue) {
-		return converter.dateToDateTime((Date) super
-				.displayToCanonicalValue(displayValue));
+		Date date = (Date) super.displayToCanonicalValue(displayValue);
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		return converter.calendarToDateTime(calendar);
 	}
 
 }

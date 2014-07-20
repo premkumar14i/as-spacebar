@@ -16,8 +16,6 @@ import com.tibco.as.spacebar.ui.editor.AbstractConfiguration;
 import com.tibco.as.spacebar.ui.editor.display.DateTimeDisplayConverter;
 import com.tibco.as.spacebar.ui.preferences.Preferences;
 
-import com.tibco.as.convert.ConverterFactory;
-
 public class SnapshotConfiguration extends AbstractConfiguration {
 
 	@Override
@@ -27,7 +25,6 @@ public class SnapshotConfiguration extends AbstractConfiguration {
 				IEditableRule.ALWAYS_EDITABLE);
 		super.configureRegistry(configRegistry);
 		DateTimeDisplayConverter dateTimeDisplayConverter = new DateTimeDisplayConverter(
-				ConverterFactory.DEFAULT_PATTERN_DATE,
 				Preferences.getSpaceEditorTimeZone());
 		configRegistry.registerConfigAttribute(
 				CellConfigAttributes.DISPLAY_CONVERTER,

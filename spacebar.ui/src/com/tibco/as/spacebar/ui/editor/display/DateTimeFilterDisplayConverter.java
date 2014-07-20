@@ -3,50 +3,50 @@ package com.tibco.as.spacebar.ui.editor.display;
 import static org.eclipse.nebula.widgets.nattable.util.ObjectUtils.isNotEmpty;
 import static org.eclipse.nebula.widgets.nattable.util.ObjectUtils.isNotNull;
 
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.TimeZone;
 
-import org.eclipse.nebula.widgets.nattable.Messages;
+import javax.xml.bind.DatatypeConverter;
+
 import org.eclipse.nebula.widgets.nattable.data.convert.ConversionFailedException;
 import org.eclipse.nebula.widgets.nattable.data.convert.DisplayConverter;
-
-import com.tibco.as.convert.ConverterFactory;
 
 public class DateTimeFilterDisplayConverter extends DisplayConverter {
 
 	private DateTimeConverter converter = new DateTimeConverter();
 
-	private SimpleDateFormat format;
+	private TimeZone timeZone;
 
 	public DateTimeFilterDisplayConverter(TimeZone timeZone) {
-		format = new SimpleDateFormat(ConverterFactory.DEFAULT_PATTERN_DATE);
-		format.setTimeZone(timeZone);
+		this.timeZone = timeZone;
 	}
 
 	public Object canonicalToDisplayValue(Object canonicalValue) {
-		try {
-			if (isNotNull(canonicalValue)) {
-				return format.format(converter.dateTimeToDate(canonicalValue));
+		if (isNotNull(canonicalValue)) {
+			try {
+				return DatatypeConverter.printDateTime(converter
+						.dateTimeToCalendar(canonicalValue));
+			} catch (Exception e) {
+				return canonicalValue;
 			}
-			return null;
-		} catch (Exception e) {
-			return canonicalValue;
 		}
+		return null;
 	}
 
 	public Object displayToCanonicalValue(Object displayValue) {
-		try {
-			if (isNotNull(displayValue) && isNotEmpty(displayValue.toString())) {
-				return converter.dateToDateTime(format.parse(
-						displayValue.toString(), new ParsePosition(0)));
+		if (isNotNull(displayValue) && isNotEmpty(displayValue.toString())) {
+			try {
+				Calendar calendar = DatatypeConverter
+						.parseDateTime(displayValue.toString());
+				if (calendar.getTimeZone() == null) {
+					calendar.setTimeZone(timeZone);
+				}
+				return converter.calendarToDateTime(calendar);
+			} catch (Exception e) {
+				throw new ConversionFailedException(displayValue.toString(), e);
 			}
-			return null;
-		} catch (Exception e) {
-			throw new ConversionFailedException(Messages.getString(
-					"DefaultDateDisplayConverter.failure", //$NON-NLS-1$
-					new Object[] { displayValue, format.toPattern() }), e);
 		}
+		return null;
 	}
 
 }
