@@ -436,7 +436,15 @@
                   </and>
                </with>
             </visibleWhen>
-         </menu>         
+         </menu>
+         <command
+               commandId="com.tibco.as.spacebar.ui.command.space.leave"
+               label="Leave"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
       </menuContribution>
       <menuContribution
             allPopups="false"
@@ -595,6 +603,12 @@
             description="Join space as seeder"
             id="com.tibco.as.spacebar.ui.command.space.join.seeder"
             name="Join as Seeder">
+      </command>
+      <command
+            categoryId="com.tibco.as.spacebar.category"
+            description="Leave space"
+            id="com.tibco.as.spacebar.ui.command.space.leave"
+            name="Leave">
       </command>
       <command
             categoryId="com.tibco.as.spacebar.category"
@@ -916,6 +930,30 @@
          </enabledWhen>
       </handler>
       <handler
+            class="com.tibco.as.spacebar.ui.handlers.space.Leave"
+            commandId="com.tibco.as.spacebar.ui.command.space.leave">
+         <enabledWhen>
+            <with
+                  variable="selection">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+		               <instanceof
+        	                   value="com.tibco.as.spacebar.ui.model.Space">
+            		   </instanceof>
+            		   <test
+		                   property="com.tibco.as.spacebar.ui.model.space.joined">
+		               </test>
+                  </iterate>
+               </and>
+            </with>
+         </enabledWhen>
+      </handler>
+      <handler
             class="com.tibco.as.spacebar.ui.handlers.space.Drop"
             commandId="com.tibco.as.spacebar.ui.command.space.drop">
          <enabledWhen>
@@ -1014,6 +1052,13 @@
             id="com.tibco.as.spacebar.ui.browseTimeScopeTester"
             namespace="com.tibco.as.spacebar.ui.browseTimeScope"
             properties="name"
+            type="com.tibco.as.spacebar.ui.model.Space">
+      </propertyTester>
+      <propertyTester
+            class="com.tibco.as.spacebar.ui.navigator.SpacePropertyTester"
+            id="com.tibco.as.spacebar.ui.model.space.propertyTester"
+            namespace="com.tibco.as.spacebar.ui.model.space"
+            properties="joined"
             type="com.tibco.as.spacebar.ui.model.Space">
       </propertyTester>
    </extension>

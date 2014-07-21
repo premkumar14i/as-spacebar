@@ -573,4 +573,8 @@ public class Space extends AbstractElement implements Cloneable {
 		space = null;
 	}
 
+	public boolean isJoined() {
+		return space != null;
+	}
+
 }

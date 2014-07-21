@@ -1,12 +1,5 @@
 package com.tibco.as.spacebar.ui.navigator;
 
-import org.eclipse.core.databinding.beans.BeanProperties;
-import org.eclipse.core.databinding.observable.list.IListChangeListener;
-import org.eclipse.core.databinding.observable.list.IObservableList;
-import org.eclipse.core.databinding.observable.list.ListChangeEvent;
-import org.eclipse.core.databinding.observable.list.ListDiffEntry;
-import org.eclipse.core.databinding.observable.value.IValueChangeListener;
-import org.eclipse.core.databinding.observable.value.ValueChangeEvent;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -23,13 +16,15 @@ import com.tibco.as.spacebar.ui.ConnectJob;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.editor.SpaceEditorInput;
 import com.tibco.as.spacebar.ui.model.IElement;
+import com.tibco.as.spacebar.ui.model.IModelListener;
 import com.tibco.as.spacebar.ui.model.Metaspace;
 import com.tibco.as.spacebar.ui.model.Metaspaces;
 import com.tibco.as.spacebar.ui.model.Space;
 import com.tibco.as.spacebar.ui.model.Spaces;
 import com.tibco.as.spacebar.ui.preferences.Preferences;
 
-public class MetaspaceNavigator extends CommonNavigator {
+public class MetaspaceNavigator extends CommonNavigator implements
+		IModelListener {
 
 	@Override
 	protected Metaspaces getInitialInput() {
@@ -40,90 +35,53 @@ public class MetaspaceNavigator extends CommonNavigator {
 	public void createPartControl(Composite parent) {
 		super.createPartControl(parent);
 		CommonViewer treeViewer = getCommonViewer();
-		Metaspaces model = (Metaspaces) treeViewer.getInput();
-		IObservableList observable = BeanProperties.list("children").observe(
-				model);
-		observable.addListChangeListener(new IListChangeListener() {
-
-			@Override
-			public void handleListChange(ListChangeEvent event) {
-				for (ListDiffEntry entry : event.diff.getDifferences()) {
-					if (entry.isAddition()) {
-						observeMetaspace((Metaspace) entry.getElement());
-					}
+		Metaspaces metaspaces = (Metaspaces) treeViewer.getInput();
+		metaspaces.addListener(this);
+		for (Metaspace metaspace : metaspaces.getChildren()) {
+			Spaces spaces = metaspace.getSpaces();
+			if (spaces != null) {
+				reveal(spaces);
+				for (IElement space : spaces.getChildren()) {
+					reveal(space);
 				}
-			}
-
-		});
-		for (IElement element : model.getChildren()) {
-			observeMetaspace((Metaspace) element);
-		}
-	}
-
-	private void observeMetaspace(final Metaspace metaspace) {
-		BeanProperties.value("state").observe(metaspace)
-				.addValueChangeListener(new IValueChangeListener() {
-
-					@Override
-					public void handleValueChange(ValueChangeEvent event) {
-						getCommonViewer().update(metaspace,
-								new String[] { "state" });
-					}
-				});
-		BeanProperties.value("name").observe(metaspace)
-				.addValueChangeListener(new IValueChangeListener() {
-
-					@Override
-					public void handleValueChange(ValueChangeEvent event) {
-						getCommonViewer().update(metaspace,
-								new String[] { "name" });
-					}
-				});
-		IObservableList observable = BeanProperties.list("children").observe(
-				metaspace);
-		observable.addListChangeListener(new IListChangeListener() {
-
-			@Override
-			public void handleListChange(ListChangeEvent event) {
-				for (ListDiffEntry entry : event.diff.getDifferences()) {
-					if (entry.isAddition()) {
-						if (entry.getElement() instanceof Spaces) {
-							Spaces spaces = (Spaces) entry.getElement();
-							reveal(spaces);
-							IObservableList childObservable = BeanProperties
-									.list("children").observe(spaces);
-							childObservable
-									.addListChangeListener(new IListChangeListener() {
-
-										@Override
-										public void handleListChange(
-												ListChangeEvent event) {
-											for (ListDiffEntry entry : event.diff
-													.getDifferences()) {
-												if (entry.isAddition()) {
-													reveal(entry.getElement());
-												}
-											}
-										}
-									});
-							for (IElement element : spaces.getChildren()) {
-								reveal(element);
-							}
-						}
-					}
-				}
-			}
-		});
-		Spaces spaces = metaspace.getSpaces();
-		if (spaces != null) {
-			reveal(spaces);
-			for (IElement space : spaces.getChildren()) {
-				reveal(space);
 			}
 		}
 	}
 
-	private void reveal(final Object element) {
+	@Override
+	public void added(IElement element) {
+		reveal(element);
+	}
+
+	@Override
+	public void removed(final IElement element) {
+		getCommonViewer().getTree().getDisplay().asyncExec(new Runnable() {
+			public void run() {
+				CommonViewer viewer = getCommonViewer();
+				if (viewer.getTree().isDisposed()) {
+					return;
+				}
+				viewer.remove(element);
+//				viewer.refresh(element.getParent());
+			}
+		});
+	}
+
+	@Override
+	public void changed(final IElement element, final String propertyName,
+			Object oldValue, Object newValue) {
+		getCommonViewer().getTree().getDisplay().asyncExec(new Runnable() {
+			public void run() {
+				CommonViewer viewer = getCommonViewer();
+				if (viewer.getTree().isDisposed()) {
+					return;
+				}
+				viewer.update(element, new String[] { propertyName });
+			}
+		});
+	}
+
+	private void reveal(final IElement element) {
 		getCommonViewer().getTree().getDisplay().asyncExec(new Runnable() {
 			public void run() {
 				CommonViewer viewer = getCommonViewer();
@@ -131,8 +89,8 @@ public class MetaspaceNavigator extends CommonNavigator {
 					return;
 				}
 				viewer.reveal(element);
-				// viewer.setExpandedState(element, true);
-				// viewer.refresh(element, false);
+				viewer.setExpandedState(element, true);
+				viewer.refresh(element.getParent(), false);
 			}
 		});
 	}

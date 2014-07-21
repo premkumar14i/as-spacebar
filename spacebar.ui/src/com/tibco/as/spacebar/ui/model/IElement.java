@@ -24,4 +24,6 @@ public interface IElement {
 	void addPropertyChangeListener(String propertyName,
 			PropertyChangeListener listener);
 
+	void addListener(IModelListener listener);
+
 }

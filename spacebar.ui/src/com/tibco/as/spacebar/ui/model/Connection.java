@@ -74,7 +74,7 @@ public class Connection {
 				if (space == null) {
 					return;
 				}
-				Members members = space.getMembers();
+				SpaceMembers members = space.getMembers();
 				members.removeChild(member.getName());
 			}
 

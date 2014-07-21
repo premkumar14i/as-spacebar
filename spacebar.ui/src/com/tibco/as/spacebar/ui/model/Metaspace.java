@@ -18,6 +18,16 @@ public class Metaspace extends AbstractElement {
 		DISCONNECTED, CONNECTED
 	}
 
+	public static final String PROPERTY_NAME = "name";
+	public static final String PROPERTY_METASPACE = "metaspace";
+	public static final String PROPERTY_MEMBER = "member";
+	public static final String PROPERTY_DISCOVERY = "discovery";
+	public static final String PROPERTY_LISTEN = "listen";
+	public static final String PROPERTY_REMOTE = "remote";
+	public static final String PROPERTY_AUTOCONNECT = "autoconnect";
+	public static final String PROPERTY_TIMEOUT = "timeout";
+	public static final String PROPERTY_STATE = "state";
+
 	@XmlTransient
 	private Metaspaces metaspaces;
 
@@ -187,7 +197,7 @@ public class Metaspace extends AbstractElement {
 	}
 
 	public void setState(State state) {
-		firePropertyChange("state", this.state, this.state = state);
+		firePropertyChange(PROPERTY_STATE, this.state, this.state = state);
 	}
 
 	public Connection getConnection() {
