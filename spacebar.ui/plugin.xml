@@ -403,6 +403,40 @@
                </with>
             </visibleWhen>
          </menu>
+         <menu
+               id="com.tibco.as.spacebar.ui.navigator.space.join"
+               label="Join"
+               mnemonic="j">
+            <command
+                  commandId="com.tibco.as.spacebar.ui.command.space.join.leech"
+                  label="Leech"
+                  mnemonic="l"
+                  style="push">
+            </command>
+            <command
+                  commandId="com.tibco.as.spacebar.ui.command.space.join.seeder"
+                  label="Seeder"
+                  mnemonic="s"
+                  style="push">
+            </command>
+            <visibleWhen>
+               <with
+                     variable="selection">
+                  <and>
+                     <count
+                           value="1">
+                     </count>
+                     <iterate
+                           ifEmpty="false"
+                           operator="and">
+                        <instanceof
+                              value="com.tibco.as.spacebar.ui.model.Space">
+                        </instanceof>
+                     </iterate>
+                  </and>
+               </with>
+            </visibleWhen>
+         </menu>         
       </menuContribution>
       <menuContribution
             allPopups="false"
@@ -549,6 +583,18 @@
             description="Browse space with time scope CURRENT"
             id="com.tibco.as.spacebar.ui.command.space.browse.current"
             name="Browse Current">
+      </command>
+      <command
+            categoryId="com.tibco.as.spacebar.category"
+            description="Join space as leech"
+            id="com.tibco.as.spacebar.ui.command.space.join.leech"
+            name="Join as Leech">
+      </command>
+      <command
+            categoryId="com.tibco.as.spacebar.category"
+            description="Join space as seeder"
+            id="com.tibco.as.spacebar.ui.command.space.join.seeder"
+            name="Join as Seeder">
       </command>
       <command
             categoryId="com.tibco.as.spacebar.category"
@@ -822,6 +868,48 @@
                            property="com.tibco.as.spacebar.ui.browseTimeScope.name"
                            value="CURRENT">
                      </test>
+                  </iterate>
+               </and>
+            </with>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="com.tibco.as.spacebar.ui.handlers.space.JoinLeech"
+            commandId="com.tibco.as.spacebar.ui.command.space.join.leech">
+         <enabledWhen>
+            <with
+                  variable="selection">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+		               <instanceof
+        	                   value="com.tibco.as.spacebar.ui.model.Space">
+            		   </instanceof>
+                  </iterate>
+               </and>
+            </with>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="com.tibco.as.spacebar.ui.handlers.space.JoinSeeder"
+            commandId="com.tibco.as.spacebar.ui.command.space.join.seeder">
+         <enabledWhen>
+            <with
+                  variable="selection">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+		               <instanceof
+        	                   value="com.tibco.as.spacebar.ui.model.Space">
+            		   </instanceof>
                   </iterate>
                </and>
             </with>

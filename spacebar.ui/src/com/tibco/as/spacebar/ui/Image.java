@@ -12,8 +12,8 @@ public enum Image {
 			"lock_disabled.gif"), ADD("add.gif"), DELETE("delete.gif"), CSV(
 			"csv.png"), EXCEL("excel.png"), WIZBAN_CSV("wizban-csv.png"), WIZBAN_EXCEL(
 			"wizban-xls.png"), CONFIG("config_obj.gif"), RULER("ruler.png"), MEMBERS(
-			"members.gif"), MEMBER("member.gif"), DISTRIBUTION(
-			"field_distribution.gif"), WIZBAN_SIMULATION(
+			"members.gif"), MEMBER("member.png"), MEMBER_SEEDER(
+			"member_seeder.png"), DISTRIBUTION("field_distribution.gif"), WIZBAN_SIMULATION(
 			"wizban-simulation.png"), NEW_WINDOW("newwindow.gif");
 
 	private String path;

@@ -11,6 +11,7 @@ import com.tibco.as.space.FieldDef.FieldType;
 import com.tibco.as.space.IndexDef;
 import com.tibco.as.space.IndexDef.IndexType;
 import com.tibco.as.space.KeyDef;
+import com.tibco.as.space.Member.DistributionRole;
 import com.tibco.as.space.SpaceDef;
 import com.tibco.as.space.SpaceDef.CachePolicy;
 import com.tibco.as.space.SpaceDef.DistributionPolicy;
@@ -59,6 +60,7 @@ public class Space extends AbstractElement implements Cloneable {
 	private UpdateTransport updateTransport;
 	private int virtualNodeCount;
 	private long writeTimeout;
+	private com.tibco.as.space.Space space;
 
 	public Space(Spaces spaces) {
 		this.spaces = spaces;
@@ -187,7 +189,7 @@ public class Space extends AbstractElement implements Cloneable {
 		spaceDef.setLockTTL(lockTtl);
 		spaceDef.setLockWait(lockWait);
 		spaceDef.setMinSeederCount(minSeederCount);
-		spaceDef.setName(getName());
+		spaceDef.setName(name);
 		spaceDef.setPersistenceDistributionPolicy(persistenceDistributionPolicy);
 		spaceDef.setPersistencePolicy(persistencePolicy);
 		spaceDef.setPersistenceType(persistenceType);
@@ -320,8 +322,7 @@ public class Space extends AbstractElement implements Cloneable {
 	}
 
 	public com.tibco.as.space.Space getSpace() throws ASException {
-		return spaces.getParent().getConnection().getMetaspace()
-				.getSpace(getName());
+		return spaces.getParent().getConnection().getMetaspace().getSpace(name);
 	}
 
 	public int getReplicationCount() {
@@ -552,6 +553,24 @@ public class Space extends AbstractElement implements Cloneable {
 	@Override
 	public List<? extends IElement> getChildren() {
 		return Arrays.asList(members, fields, indexes);
+	}
+
+	public void joinLeech() throws ASException {
+		this.space = spaces.getParent().getConnection().getMetaspace()
+				.getSpace(name, DistributionRole.LEECH);
+	}
+
+	public void joinSeeder() throws ASException {
+		this.space = spaces.getParent().getConnection().getMetaspace()
+				.getSpace(name, DistributionRole.SEEDER);
+	}
+
+	public synchronized void leave() throws ASException {
+		if (space == null) {
+			return;
+		}
+		space.close();
+		space = null;
 	}
 
 }

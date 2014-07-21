@@ -56,8 +56,6 @@ public class MetaspaceNavigator extends CommonNavigator {
 
 		});
 		for (IElement element : model.getChildren()) {
-			// treeViewer.setSelection(new
-			// StructuredSelection(metaspaces.get(0)));
 			observeMetaspace((Metaspace) element);
 		}
 	}

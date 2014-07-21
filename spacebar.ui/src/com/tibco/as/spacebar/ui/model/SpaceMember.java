@@ -20,7 +20,7 @@ public class SpaceMember extends Member {
 		firePropertyChange("distributionRole", this.distributionRole,
 				this.distributionRole = distributionRole);
 	}
-	
+
 	@Override
 	public Member clone() {
 		SpaceMember member = new SpaceMember(members);
@@ -31,6 +31,10 @@ public class SpaceMember extends Member {
 	public void copyTo(SpaceMember target) {
 		super.copyTo(target);
 		target.setDistributionRole(distributionRole);
+	}
+
+	public boolean isSeeder() {
+		return distributionRole == DistributionRole.SEEDER;
 	}
 
 }

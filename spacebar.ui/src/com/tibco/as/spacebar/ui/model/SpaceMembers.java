@@ -1,7 +1,7 @@
 package com.tibco.as.spacebar.ui.model;
 
 public class SpaceMembers extends Members {
-	
+
 	private Space space;
 
 	public SpaceMembers(Space space) {
@@ -12,5 +12,5 @@ public class SpaceMembers extends Members {
 	public Space getParent() {
 		return space;
 	}
-
+	
 }

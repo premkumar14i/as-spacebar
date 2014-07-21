@@ -55,12 +55,14 @@ public class Connection {
 				if (space == null) {
 					return;
 				}
-				Members members = space.getMembers();
-				Member child = (Member) members.getChild(member.getName());
+				SpaceMembers members = space.getMembers();
+				SpaceMember child = (SpaceMember) members.getChild(member
+						.getName());
 				if (child == null) {
 					onJoin(spaceName, member, role);
 				} else {
 					child.setMember(member);
+					child.setDistributionRole(role);
 				}
 			}
 
