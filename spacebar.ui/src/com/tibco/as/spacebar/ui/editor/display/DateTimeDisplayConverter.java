@@ -29,6 +29,9 @@ public class DateTimeDisplayConverter extends DefaultDateDisplayConverter {
 	@Override
 	public Object canonicalToDisplayValue(Object canonicalValue) {
 		Calendar calendar = converter.dateTimeToCalendar(canonicalValue);
+		if (calendar == null) {
+			return null;
+		}
 		return super.canonicalToDisplayValue(calendar.getTime());
 	}
 

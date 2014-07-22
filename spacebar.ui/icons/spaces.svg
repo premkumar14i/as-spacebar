@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" inkscape:version="0.48.0 r9654" sodipodi:docname="activity_category.svg" inkscape:export-xdpi="90" inkscape:export-ydpi="90" inkscape:export-filename="C:\Users\jmietling\Documents\rect3997-9-1.png"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px"
+	 viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+<sodipodi:namedview  inkscape:document-units="px" inkscape:pageopacity="0.0" inkscape:current-layer="layer1-71" inkscape:pageshadow="2" inkscape:window-width="1241" inkscape:window-height="814" inkscape:window-x="411" id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:zoom="22.627416" inkscape:cx="4.1959862" inkscape:cy="9.4897506" showgrid="true" showguides="true" inkscape:window-maximized="0" inkscape:window-y="337" inkscape:guide-bbox="true" inkscape:snap-global="false">
+	<inkscape:grid  snapvisiblegridlinesonly="true" type="xygrid" empspacing="5" visible="true" enabled="true" id="grid3999">
+		</inkscape:grid>
+</sodipodi:namedview>
+<g id="g11331-3-1-1" transform="matrix(0.27903303,0,0,0.27903303,-100.53208,912.07901)">
+	<g id="g13408-8">
+	</g>
+</g>
+<g id="g13813" transform="matrix(0.22815212,0,0,0.22815212,-101.00478,953.54114)">
+	
+		<linearGradient id="rect13693-3_1_" gradientUnits="userSpaceOnUse" x1="-71319.6406" y1="-4170.5234" x2="-71319.6406" y2="-4164.5693" gradientTransform="matrix(0.0039 0 0 0.0039 -5177.7275 -12162.0684)">
+		<stop  offset="0" style="stop-color:#C48A4E"/>
+		<stop  offset="1" style="stop-color:#AD6C24"/>
+	</linearGradient>
+	<path id="rect13693-3" fill="#FDF7EB" stroke="url(#rect13693-3_1_)" stroke-linecap="round" stroke-linejoin="round" d="
+		M457.589-4166.365h14.114c2.099,0,3.801,1.702,3.801,3.799v16.464c0,2.1-1.701,3.801-3.801,3.801h-14.114
+		c-2.095,0-3.799-1.704-3.799-3.801v-16.464C453.79-4164.664,455.491-4166.365,457.589-4166.365z"/>
+	
+		<linearGradient id="rect13693_1_" gradientUnits="userSpaceOnUse" x1="482.2242" y1="-75923.2422" x2="482.2242" y2="-75935.2578" gradientTransform="matrix(0.0039 0 0 0.0039 -5176.5591 -12164.1582)">
+		<stop  offset="0" style="stop-color:#F8D078"/>
+		<stop  offset="1" style="stop-color:#F8F0C8"/>
+	</linearGradient>
+	
+		<linearGradient id="rect13693_2_" gradientUnits="userSpaceOnUse" x1="482.2242" y1="-75921.0469" x2="482.2242" y2="-75934.0625" gradientTransform="matrix(0.0039 0 0 0.0039 -5176.5591 -12164.1582)">
+		<stop  offset="0" style="stop-color:#9E6627"/>
+		<stop  offset="1" style="stop-color:#C38536"/>
+	</linearGradient>
+	
+		<path id="rect13693" inkscape:connector-curvature="0" sodipodi:nodetypes="sssssssss" fill="url(#rect13693_1_)" stroke="url(#rect13693_2_)" stroke-linecap="round" stroke-linejoin="round" d="
+		M453.073-4157.46h45.065c2.106,0,3.801,1.695,3.801,3.801v27.538c0,2.097-1.695,3.81-3.801,3.792l-45.065-0.227
+		c-2.104-0.017-3.799-1.695-3.799-3.792v-27.312C449.274-4155.765,450.969-4157.46,453.073-4157.46z"/>
+	
+		<linearGradient id="path13797_1_" gradientUnits="userSpaceOnUse" x1="451.6456" y1="-4157.46" x2="458.2823" y2="-4157.46" gradientTransform="matrix(0.0039 0 0 0.0039 -5176.5591 -12162.1064)">
+		<stop  offset="0" style="stop-color:#C38536"/>
+		<stop  offset="0.1538" style="stop-color:#F2DC91"/>
+		<stop  offset="0.5" style="stop-color:#FBDC8B"/>
+		<stop  offset="0.75" style="stop-color:#E6BD7A"/>
+		<stop  offset="1" style="stop-color:#BA772F"/>
+	</linearGradient>
+	<path id="path13797" inkscape:connector-curvature="0" fill="none" stroke="url(#path13797_1_)" d="M451.646-4157.46h29.089"/>
+</g>
+<g>
+	<rect x="7.083" y="9.002" fill="#EBFAFF" width="7.917" height="5.998"/>
+	<rect x="4.077" y="9.002" fill="#8BD5EF" width="2.922" height="5.998"/>
+	<rect x="4.077" y="7.002" fill="#2C85B7" width="10.923" height="2"/>
+	
+		<rect x="3.999" y="7.002" fill="none" stroke="#17527A" stroke-linecap="round" stroke-linejoin="round" width="11.001" height="7.998"/>
+	
+		<line fill="none" stroke="#17527A" stroke-linecap="round" stroke-linejoin="round" x1="6.999" y1="7.002" x2="6.999" y2="14.689"/>
+	<line fill="none" stroke="#17527A" stroke-linecap="round" stroke-linejoin="round" x1="10.969" y1="7.002" x2="10.969" y2="15"/>
+	<line fill="none" stroke="#17527A" stroke-linecap="round" stroke-linejoin="round" x1="3.999" y1="13.002" x2="15" y2="13.002"/>
+	<line fill="none" stroke="#17527A" stroke-linecap="round" stroke-linejoin="round" x1="3.999" y1="11.001" x2="15" y2="11.001"/>
+	<line fill="none" stroke="#17527A" stroke-linecap="round" stroke-linejoin="round" x1="3.999" y1="9.002" x2="15" y2="9.002"/>
+</g>
+</svg>

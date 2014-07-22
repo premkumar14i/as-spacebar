@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="activity.svg" inkscape:version="0.48.0 r9654" inkscape:export-ydpi="90" inkscape:export-xdpi="90" inkscape:export-filename="C:\Users\jmietling\Documents\rect3997-9-1.png"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px"
+	 viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+<sodipodi:namedview  showguides="true" showgrid="true" inkscape:cy="9.4897506" inkscape:cx="4.1959862" inkscape:zoom="22.627416" borderopacity="1.0" bordercolor="#666666" pagecolor="#ffffff" id="base" inkscape:snap-global="false" inkscape:guide-bbox="true" inkscape:window-maximized="0" inkscape:window-y="42" inkscape:window-x="153" inkscape:window-height="814" inkscape:window-width="1241" inkscape:pageshadow="2" inkscape:current-layer="layer1-71" inkscape:pageopacity="0.0" inkscape:document-units="px">
+	<inkscape:grid  type="xygrid" enabled="true" visible="true" empspacing="5" id="grid3999" snapvisiblegridlinesonly="true">
+		</inkscape:grid>
+</sodipodi:namedview>
+<g id="layer1" transform="translate(0,-1036.3622)" inkscape:label="Layer 1" inkscape:groupmode="layer">
+	<g id="layer1-71" transform="matrix(1.447537,0,0,1.447537,-3.3953682,-463.26381)" inkscape:label="Layer 1">
+		<g id="g11331-3-1-1" transform="matrix(0.27903303,0,0,0.27903303,-100.53208,912.07901)">
+			<g id="g13408-8">
+			</g>
+		</g>
+		
+			<linearGradient id="path10796-2-6-2-7_1_" gradientUnits="userSpaceOnUse" x1="746.2164" y1="98.2311" x2="746.0522" y2="115.0424" gradientTransform="matrix(0.3017 0 0 -0.3017 -216.8934 1073.1062)">
+			<stop  offset="0" style="stop-color:#FFFFFF"/>
+			<stop  offset="0.4727" style="stop-color:#6FAA49"/>
+			<stop  offset="1" style="stop-color:#F4F4CB"/>
+		</linearGradient>
+		
+			<path id="path10796-2-6-2-7" sodipodi:type="arc" sodipodi:cx="388.125" sodipodi:cy="468.23718" sodipodi:rx="10.625" sodipodi:ry="10.625" fill="url(#path10796-2-6-2-7_1_)" stroke="#71AC4B" stroke-linecap="round" stroke-linejoin="round" d="
+			M10.439,1041.525c0,1.223-0.991,2.215-2.214,2.215s-2.215-0.992-2.215-2.215s0.991-2.215,2.215-2.215
+			S10.439,1040.302,10.439,1041.525z"/>
+	</g>
+</g>
+</svg>

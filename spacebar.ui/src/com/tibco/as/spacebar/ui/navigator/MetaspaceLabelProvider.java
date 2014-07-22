@@ -51,8 +51,10 @@ public class MetaspaceLabelProvider extends LabelProvider implements
 			return getImage(com.tibco.as.spacebar.ui.Image.MEMBERS);
 		}
 		if (object instanceof SpaceMember) {
-			return getImage(((SpaceMember) object).isSeeder() ? com.tibco.as.spacebar.ui.Image.MEMBER_SEEDER
-					: com.tibco.as.spacebar.ui.Image.MEMBER);
+			if (((SpaceMember) object).isSeeder()) {
+				return getImage(com.tibco.as.spacebar.ui.Image.MEMBER_SEEDER);
+			}
+			return getImage(com.tibco.as.spacebar.ui.Image.MEMBER);
 		}
 		if (object instanceof Member) {
 			return getImage(com.tibco.as.spacebar.ui.Image.MEMBER);
@@ -67,12 +69,8 @@ public class MetaspaceLabelProvider extends LabelProvider implements
 			return getImage(com.tibco.as.spacebar.ui.Image.FIELDS);
 		}
 		if (object instanceof Field) {
-			Field field = (Field) object;
-			if (field.isKey()) {
-				if (field.isDistribution()) {
-					return getImage(com.tibco.as.spacebar.ui.Image.DISTRIBUTION);
-				}
-				return getImage(com.tibco.as.spacebar.ui.Image.KEY);
+			if (((Field) object).isDistribution()) {
+				return getImage(com.tibco.as.spacebar.ui.Image.DISTRIBUTION);
 			}
 			return getImage(com.tibco.as.spacebar.ui.Image.FIELD);
 		}
@@ -98,8 +96,12 @@ public class MetaspaceLabelProvider extends LabelProvider implements
 		// }
 		// }
 		if (element instanceof Member) {
-			Member member = (Member) element;
-			if (member.isSelf()) {
+			if (((Member) element).isSelf()) {
+				return getBoldFont();
+			}
+		}
+		if (element instanceof Field) {
+			if (((Field) element).isKey()) {
 				return getBoldFont();
 			}
 		}

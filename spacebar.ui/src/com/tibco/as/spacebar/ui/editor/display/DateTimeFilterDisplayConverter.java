@@ -24,8 +24,12 @@ public class DateTimeFilterDisplayConverter extends DisplayConverter {
 	public Object canonicalToDisplayValue(Object canonicalValue) {
 		if (isNotNull(canonicalValue)) {
 			try {
-				return DatatypeConverter.printDateTime(converter
-						.dateTimeToCalendar(canonicalValue));
+				Calendar calendar = converter
+						.dateTimeToCalendar(canonicalValue);
+				if (calendar == null) {
+					return null;
+				}
+				return DatatypeConverter.printDateTime(calendar);
 			} catch (Exception e) {
 				return canonicalValue;
 			}

@@ -24,7 +24,7 @@
       <view
             category="com.tibco.as.views"
             class="com.tibco.as.spacebar.ui.navigator.MetaspaceNavigator"
-            icon="icons/activespaces.gif"
+            icon="icons/activespaces.png"
             id="com.tibco.as.spacebar.ui.navigator"
             name="Metaspaces">
       </view>
@@ -38,7 +38,7 @@
       <navigatorContent
             name="Metaspaces"
             priority="low"
-            icon="icons/activespaces.gif"
+            icon="icons/activespaces.png"
             activeByDefault="true"
             contentProvider="com.tibco.as.spacebar.ui.navigator.MetaspaceContentProvider"
             labelProvider="com.tibco.as.spacebar.ui.navigator.MetaspaceLabelProvider"
@@ -309,7 +309,7 @@
             locationURI="toolbar:com.tibco.as.spacebar.ui.navigator">
             <command
                   commandId="com.tibco.as.spacebar.ui.command.metaspace.create"
-                  icon="icons/metaspace_create.gif"
+                  icon="icons/metaspace_create.png"
                   label="New Metaspace"
                   style="push">
             </command>
@@ -332,7 +332,7 @@
          </command>
          <command
                commandId="com.tibco.as.spacebar.ui.command.metaspace.openSpace"
-               icon="icons/space.gif"
+               icon="icons/space.png"
                label="Open Space..."
                style="push">
             <visibleWhen
@@ -345,28 +345,28 @@
                mnemonic="b">
             <command
                   commandId="com.tibco.as.spacebar.ui.command.space.browse.snapshot"
-                  icon="icons/browse_snapshot2.gif"
+                  icon="icons/browse.png"
                   label="Snapshot"
                   mnemonic="s"
                   style="push">
             </command>
             <command
                   commandId="com.tibco.as.spacebar.ui.command.space.browse.new"
-                  icon="icons/browse_new2.gif"
+                  icon="icons/browse_new.png"
                   label="New"
                   mnemonic="n"
                   style="push">
             </command>
             <command
                   commandId="com.tibco.as.spacebar.ui.command.space.browse.all"
-                  icon="icons/browse_all2.gif"
+                  icon="icons/browse_all.png"
                   label="All"
                   mnemonic="a"
                   style="push">
             </command>
             <command
                   commandId="com.tibco.as.spacebar.ui.command.space.browse.current"
-                  icon="icons/browse_current2.gif"
+                  icon="icons/browse_current.png"
                   label="Current"
                   mnemonic="c"
                   style="push">
@@ -380,7 +380,7 @@
             </separator>
             <command
                   commandId="com.tibco.as.spacebar.ui.command.space.browse.browse"
-                  icon="icons/browse.gif"
+                  icon="icons/browse.png"
                   label="Browse..."
                   mnemonic="b"
                   style="push">
@@ -409,12 +409,14 @@
                mnemonic="j">
             <command
                   commandId="com.tibco.as.spacebar.ui.command.space.join.leech"
+                  icon="icons/member.png"
                   label="Leech"
                   mnemonic="l"
                   style="push">
             </command>
             <command
                   commandId="com.tibco.as.spacebar.ui.command.space.join.seeder"
+                  icon="icons/member_seeder.png"
                   label="Seeder"
                   mnemonic="s"
                   style="push">
@@ -451,7 +453,7 @@
             locationURI="popup:com.tibco.as.spacebar.ui.navigator#PopupMenu?after=group.edit">
          <command
                commandId="com.tibco.as.spacebar.ui.command.metaspace.delete"
-               icon="icons/delete.gif"
+               icon="icons/delete.png"
                label="Delete"
                style="push">
             <visibleWhen
@@ -460,7 +462,7 @@
          </command>
          <command
                commandId="com.tibco.as.spacebar.ui.command.space.drop"
-               icon="icons/delete.gif"
+               icon="icons/delete.png"
                label="Drop"
                style="push">
             <visibleWhen
@@ -505,6 +507,7 @@
          </command>
          <command
                commandId="com.tibco.as.spacebar.ui.command.index.drop"
+               icon="icons/delete.png"
                label="Drop"
                style="push">
             <visibleWhen
@@ -1067,14 +1070,14 @@
       <editor
             class="com.tibco.as.spacebar.ui.editor.continuous.ContinuousBrowser"
             contributorClass="com.tibco.as.spacebar.ui.editor.continuous.ActionBarContributor"
-            icon="icons/space_editor_continuous.gif"
+            icon="icons/browse_all.png"
             id="com.tibco.as.spacebar.ui.editor.continuous"
             name="Continuous Browser">
       </editor>
       <editor
             class="com.tibco.as.spacebar.ui.editor.snapshot.SnapshotBrowser"
             contributorClass="com.tibco.as.spacebar.ui.editor.snapshot.ActionBarContributor"
-            icon="icons/space_editor.gif"
+            icon="icons/browse.png"
             id="com.tibco.as.spacebar.ui.editor.snapshot"
             name="Space Editor">
       </editor>
@@ -1140,7 +1143,7 @@
             class="com.tibco.as.spacebar.ui.wizards.metaspace.CreateMetaspaceWizard"
             finalPerspective="com.tibco.as.spacebar.ui.perspective"
             hasPages="true"
-            icon="icons/metaspace_create.gif"
+            icon="icons/metaspace_create.png"
             id="com.tibco.as.spacebar.ui.wizards.metaspace.create"
             name="Metaspace"
             preferredPerspectives="com.tibco.as.spacebar.ui.perspective"
@@ -1151,7 +1154,7 @@
             class="com.tibco.as.spacebar.ui.wizards.space.CreateSpaceWizard"
             finalPerspective="com.tibco.as.spacebar.ui.perspective"
             hasPages="true"
-            icon="icons/space_create.gif"
+            icon="icons/space_create.png"
             id="com.tibco.as.spacebar.ui.wizards.space.create"
             name="Space"
             preferredPerspectives="com.tibco.as.spacebar.ui.perspective"
@@ -1165,7 +1168,7 @@
             class="com.tibco.as.spacebar.ui.wizards.space.field.AddFieldWizard"
             finalPerspective="com.tibco.as.spacebar.ui.perspective"
             hasPages="true"
-            icon="icons/field_add.gif"
+            icon="icons/field_add.png"
             id="com.tibco.as.spacebar.ui.wizards.field.add"
             name="Field"
             preferredPerspectives="com.tibco.as.spacebar.ui.perspective"
@@ -1179,7 +1182,7 @@
             class="com.tibco.as.spacebar.ui.wizards.space.index.AddIndexWizard"
             finalPerspective="com.tibco.as.spacebar.ui.perspective"
             hasPages="true"
-            icon="icons/index_add.gif"
+            icon="icons/index_add.png"
             id="com.tibco.as.spacebar.ui.wizards.index.add"
             name="Index"
             preferredPerspectives="com.tibco.as.spacebar.ui.perspective"
@@ -1251,7 +1254,7 @@
       <wizard
             category="com.tibco.as.spacebar.ui.importWizards"
             class="com.tibco.as.spacebar.ui.wizards.transfer.simulation.SimulationImportWizard"
-            icon="icons/simulation.gif"
+            icon="icons/import_config_obj.png"
             id="com.tibco.as.spacebar.ui.wizards.import.Simulation"
             name="Simulation">
          <description>

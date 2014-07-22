@@ -556,13 +556,21 @@ public class Space extends AbstractElement implements Cloneable {
 	}
 
 	public void joinLeech() throws ASException {
-		this.space = spaces.getParent().getConnection().getMetaspace()
-				.getSpace(name, DistributionRole.LEECH);
+		join(DistributionRole.LEECH);
+	}
+
+	private void join(DistributionRole role) throws ASException {
+		com.tibco.as.space.Space oldSpace = space;
+		space = spaces.getParent().getConnection().getMetaspace()
+				.getSpace(name, role);
+		if (oldSpace == null) {
+			return;
+		}
+		oldSpace.close();
 	}
 
 	public void joinSeeder() throws ASException {
-		this.space = spaces.getParent().getConnection().getMetaspace()
-				.getSpace(name, DistributionRole.SEEDER);
+		join(DistributionRole.SEEDER);
 	}
 
 	public synchronized void leave() throws ASException {

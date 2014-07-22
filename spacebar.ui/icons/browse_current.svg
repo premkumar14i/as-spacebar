@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" inkscape:version="0.48.0 r9654" sodipodi:docname="help_search.svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px"
+	 viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+<g>
+	<rect x="3.084" y="3.973" fill="#EBFAFF" width="7.916" height="5.998"/>
+	<rect x="0.078" y="3.973" fill="#8BD5EF" width="2.922" height="5.998"/>
+	<rect x="0.078" y="1.973" fill="#2C85B7" width="10.921" height="2"/>
+	<rect y="1.973" fill="none" stroke="#17527A" stroke-linecap="round" stroke-linejoin="round" width="11" height="7.998"/>
+	<line fill="none" stroke="#17527A" stroke-linecap="round" stroke-linejoin="round" x1="3" y1="1.973" x2="3" y2="9.658"/>
+	<line fill="none" stroke="#17527A" stroke-linecap="round" stroke-linejoin="round" x1="6.968" y1="1.973" x2="6.968" y2="9.971"/>
+	<line fill="none" stroke="#17527A" stroke-linecap="round" stroke-linejoin="round" x1="0" y1="7.972" x2="10.999" y2="7.972"/>
+	<line fill="none" stroke="#17527A" stroke-linecap="round" stroke-linejoin="round" x1="0" y1="5.972" x2="10.999" y2="5.972"/>
+	<line fill="none" stroke="#17527A" stroke-linecap="round" stroke-linejoin="round" x1="0" y1="3.973" x2="10.999" y2="3.973"/>
+</g>
+<sodipodi:namedview  showguides="true" showgrid="true" inkscape:cy="17.133749" inkscape:cx="11.985836" inkscape:zoom="11.313709" borderopacity="1.0" bordercolor="#666666" pagecolor="#ffffff" id="base" inkscape:snap-global="true" inkscape:guide-bbox="true" inkscape:window-maximized="0" inkscape:window-y="184" inkscape:window-x="406" inkscape:window-height="959" inkscape:window-width="1171" inkscape:current-layer="g8472" inkscape:document-units="px" inkscape:pageshadow="2" inkscape:pageopacity="0.0">
+	<inkscape:grid  type="xygrid" id="grid5273"></inkscape:grid>
+</sodipodi:namedview>
+<g id="g8579" transform="translate(-34.986137,7.9937193)">
+	
+		<linearGradient id="path13745_1_" gradientUnits="userSpaceOnUse" x1="847.4881" y1="-920.7559" x2="847.4881" y2="-927.9722" gradientTransform="matrix(1.247 0 0 -1.247 -1012.1772 -1150.8992)">
+		<stop  offset="0" style="stop-color:#F1FDFC"/>
+		<stop  offset="0.4545" style="stop-color:#DBEFF9"/>
+		<stop  offset="0.5455" style="stop-color:#CEE4F0"/>
+		<stop  offset="1" style="stop-color:#DEF1FA"/>
+	</linearGradient>
+	
+		<linearGradient id="path13745_2_" gradientUnits="userSpaceOnUse" x1="847.4881" y1="-920.253" x2="847.4881" y2="-928.2711" gradientTransform="matrix(1.247 0 0 -1.247 -1012.1772 -1150.8992)">
+		<stop  offset="0" style="stop-color:#055797"/>
+		<stop  offset="1" style="stop-color:#184785"/>
+	</linearGradient>
+	
+		<path id="path13745" sodipodi:ry="4" sodipodi:rx="4" sodipodi:cy="-2" sodipodi:cx="26" sodipodi:type="arc" fill="url(#path13745_1_)" stroke="url(#path13745_2_)" stroke-width="0.8019" stroke-linecap="round" stroke-linejoin="round" d="
+		M49.627,1.789c0,2.754-2.232,4.988-4.988,4.988c-2.754,0-4.987-2.234-4.987-4.988c0-2.754,2.233-4.987,4.987-4.987
+		C47.394-3.198,49.627-0.964,49.627,1.789z"/>
+	
+		<path id="path13811" inkscape:connector-curvature="0" sodipodi:nodetypes="cc" fill="none" stroke="#1F4A83" stroke-linecap="round" stroke-linejoin="round" d="
+		M44.669,1.82v-2.03"/>
+	
+		<path id="path13811-9" inkscape:connector-curvature="0" sodipodi:nodetypes="cc" fill="none" stroke="#1F4A83" stroke-linecap="round" stroke-linejoin="round" d="
+		M44.669,1.82l1.458,2.39"/>
+</g>
+</svg>
