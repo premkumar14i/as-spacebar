@@ -15,11 +15,11 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.progress.UIJob;
 
-import com.tibco.as.space.Space;
+import com.tibco.as.space.Metaspace;
 import com.tibco.as.space.SpaceDef;
-
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.model.Index;
+import com.tibco.as.spacebar.ui.model.Space;
 
 public class DropIndex extends AbstractHandler {
 
@@ -51,11 +51,13 @@ public class DropIndex extends AbstractHandler {
 					try {
 						monitor.beginTask(
 								NLS.bind("Dropping index ''{0}''", index), 1);
-						Space space = ((com.tibco.as.spacebar.ui.model.Space) index
-								.getParent().getParent()).getSpace();
-						SpaceDef spaceDef = space.getSpaceDef();
+						Space space = index.getIndexes().getSpace();
+						Metaspace metaspace = space.getSpaces().getMetaspace()
+								.getConnection().getMetaspace();
+						SpaceDef spaceDef = metaspace.getSpaceDef(space
+								.getName());
 						spaceDef.removeIndexDef(index.getName());
-						space.getMetaspace().alterSpace(spaceDef);
+						metaspace.alterSpace(spaceDef);
 						monitor.worked(1);
 					} catch (Exception e) {
 						return SpaceBarPlugin.createStatus(e,

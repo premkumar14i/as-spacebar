@@ -10,11 +10,11 @@ import org.eclipse.ui.IWorkbench;
 import com.tibco.as.spacebar.ui.model.Field;
 import com.tibco.as.spacebar.ui.model.Index;
 import com.tibco.as.spacebar.ui.model.Indexes;
+import com.tibco.as.spacebar.ui.model.Space;
 import com.tibco.as.spacebar.ui.wizards.AbstractWizard;
-
 import com.tibco.as.space.IndexDef;
 import com.tibco.as.space.IndexDef.IndexType;
-import com.tibco.as.space.Space;
+import com.tibco.as.space.Metaspace;
 import com.tibco.as.space.SpaceDef;
 
 public class AddIndexWizard extends AbstractWizard implements INewWizard {
@@ -34,7 +34,8 @@ public class AddIndexWizard extends AbstractWizard implements INewWizard {
 
 	@Override
 	public void addPages() {
-		index = new Index(indexes, null);
+		index = new Index();
+		index.setIndexes(indexes);
 		index.setType(IndexType.HASH);
 		addPage(new EditIndexWizardPage(null, index));
 	}
@@ -42,8 +43,10 @@ public class AddIndexWizard extends AbstractWizard implements INewWizard {
 	@Override
 	protected void finish(IProgressMonitor monitor) throws Exception {
 		monitor.beginTask("Adding index", 1);
-		Space space = indexes.getParent().getSpace();
-		SpaceDef spaceDef = space.getSpaceDef();
+		Space space = indexes.getSpace();
+		Metaspace metaspace = space.getSpaces().getMetaspace().getConnection()
+				.getMetaspace();
+		SpaceDef spaceDef = metaspace.getSpaceDef(space.getName());
 		IndexDef indexDef = IndexDef.create(index.getName());
 		indexDef.setIndexType(index.getType());
 		List<Field> fields = index.getChildren();
@@ -53,7 +56,7 @@ public class AddIndexWizard extends AbstractWizard implements INewWizard {
 		}
 		indexDef.setFieldNames(fieldNames);
 		spaceDef.addIndexDef(indexDef);
-		space.getMetaspace().alterSpace(spaceDef);
+		metaspace.alterSpace(spaceDef);
 		monitor.worked(1);
 	}
 

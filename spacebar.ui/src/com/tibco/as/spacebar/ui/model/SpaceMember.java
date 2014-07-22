@@ -7,8 +7,16 @@ public class SpaceMember extends Member {
 	private SpaceMembers members;
 	private DistributionRole distributionRole;
 
-	public SpaceMember(SpaceMembers members) {
-		super(members);
+	@Override
+	public Members getParent() {
+		return members;
+	}
+
+	public SpaceMembers getMembers() {
+		return members;
+	}
+
+	public void setMembers(SpaceMembers members) {
 		this.members = members;
 	}
 
@@ -23,13 +31,14 @@ public class SpaceMember extends Member {
 
 	@Override
 	public Member clone() {
-		SpaceMember member = new SpaceMember(members);
+		SpaceMember member = new SpaceMember();
 		copyTo(member);
 		return member;
 	}
 
 	public void copyTo(SpaceMember target) {
 		super.copyTo(target);
+		target.setMembers(members);
 		target.setDistributionRole(distributionRole);
 	}
 

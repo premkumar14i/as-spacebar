@@ -8,18 +8,9 @@ public class Index extends Fields implements Cloneable {
 	private String name;
 	private IndexType type;
 
-	public Index(Indexes indexes) {
-		this.indexes = indexes;
-	}
-
-	public Index(Indexes indexes, String name) {
-		this(indexes);
-		this.name = name;
-	}
-
 	@Override
 	public Index clone() {
-		Index index = new Index(indexes);
+		Index index = new Index();
 		copyTo(index);
 		return index;
 	}
@@ -31,8 +22,17 @@ public class Index extends Fields implements Cloneable {
 
 	public void copyTo(Index index) {
 		super.copyTo(index);
-		index.name = name;
-		index.type = type;
+		index.setIndexes(indexes);
+		index.setName(name);
+		index.setType(type);
+	}
+
+	public Indexes getIndexes() {
+		return indexes;
+	}
+
+	public void setIndexes(Indexes indexes) {
+		this.indexes = indexes;
 	}
 
 	@Override

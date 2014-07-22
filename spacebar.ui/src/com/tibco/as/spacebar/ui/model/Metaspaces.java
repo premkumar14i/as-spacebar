@@ -26,6 +26,10 @@ public class Metaspaces extends AbstractElement {
 		return metaspaces;
 	}
 
+	public void setMetaspaces(List<Metaspace> metaspaces) {
+		this.metaspaces = metaspaces;
+	}
+
 	@Override
 	public IElement getParent() {
 		return null;

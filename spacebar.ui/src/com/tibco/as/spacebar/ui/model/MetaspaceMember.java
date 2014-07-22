@@ -4,16 +4,29 @@ public class MetaspaceMember extends Member {
 
 	private MetaspaceMembers members;
 
-	public MetaspaceMember(MetaspaceMembers members) {
-		super(members);
+	@Override
+	public Members getParent() {
+		return members;
+	}
+
+	public MetaspaceMembers getMembers() {
+		return members;
+	}
+
+	public void setMembers(MetaspaceMembers members) {
 		this.members = members;
 	}
 
 	@Override
-	public MetaspaceMember clone() {
-		MetaspaceMember member = new MetaspaceMember(members);
+	public Member clone() {
+		MetaspaceMember member = new MetaspaceMember();
 		copyTo(member);
 		return member;
+	}
+
+	public void copyTo(MetaspaceMember target) {
+		super.copyTo(target);
+		target.setMembers(members);
 	}
 
 }

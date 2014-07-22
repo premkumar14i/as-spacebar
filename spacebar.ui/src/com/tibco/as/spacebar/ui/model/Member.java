@@ -6,7 +6,6 @@ import com.tibco.as.space.Member.ManagementRole;
 
 public abstract class Member extends AbstractElement implements Cloneable {
 
-	private Members members;
 	private String name;
 	private String hostAddress;
 	private String id;
@@ -15,21 +14,12 @@ public abstract class Member extends AbstractElement implements Cloneable {
 	private int port;
 	private boolean self;
 
-	public Member(Members members) {
-		this.members = members;
-	}
-
 	public boolean isSelf() {
 		return self;
 	}
 
 	public void setSelf(boolean self) {
 		firePropertyChange("self", this.self, this.self = self);
-	}
-
-	@Override
-	public Members getParent() {
-		return members;
 	}
 
 	@Override

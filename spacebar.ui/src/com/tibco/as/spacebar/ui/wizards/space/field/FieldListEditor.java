@@ -274,7 +274,8 @@ public class FieldListEditor extends Composite {
 	}
 
 	private void add() {
-		Field field = new Field(fields);
+		Field field = new Field();
+		field.setFields(fields);
 		field.setName("");
 		field.setType(FieldType.STRING);
 		field.setNullable(true);

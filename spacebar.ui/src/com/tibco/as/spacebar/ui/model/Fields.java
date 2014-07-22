@@ -8,7 +8,15 @@ public abstract class Fields extends AbstractElement {
 	private List<Field> fields = new ArrayList<Field>();
 
 	public void copyTo(Fields target) {
-		target.fields = new ArrayList<Field>(fields);
+		target.setFields(new ArrayList<Field>(fields));
+	}
+
+	public List<Field> getFields() {
+		return fields;
+	}
+
+	public void setFields(List<Field> fields) {
+		this.fields = fields;
 	}
 
 	@Override

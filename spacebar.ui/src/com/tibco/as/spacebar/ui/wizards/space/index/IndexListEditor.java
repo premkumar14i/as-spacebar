@@ -249,7 +249,8 @@ public class IndexListEditor extends Composite {
 	}
 
 	private void add() {
-		Index index = new Index(indexes, "");
+		Index index = new Index();
+		index.setIndexes(indexes);
 		index.setType(IndexType.HASH);
 		if (editIndex(null, index)) {
 			indexes.addChild(index);

@@ -87,7 +87,8 @@ public class Connection {
 					return;
 				}
 				SpaceMembers members = space.getMembers();
-				SpaceMember child = new SpaceMember(members);
+				SpaceMember child = new SpaceMember();
+				child.setMembers(members);
 				child.setMember(member);
 				child.setSelf(ms.getSelfMember().getName()
 						.equals(member.getName()));
@@ -118,7 +119,8 @@ public class Connection {
 			public void onJoin(com.tibco.as.space.Member member,
 					ManagementRole role) {
 				MetaspaceMembers members = metaspace.getMembers();
-				MetaspaceMember child = new MetaspaceMember(members);
+				MetaspaceMember child = new MetaspaceMember();
+				child.setMembers(members);
 				child.setMember(member);
 				child.setSelf(ms.getSelfMember().getName()
 						.equals(member.getName()));
@@ -134,7 +136,8 @@ public class Connection {
 
 			@Override
 			public void onDefine(SpaceDef spaceDef) {
-				Space space = new Space(metaspace.getSpaces());
+				Space space = new Space();
+				space.setSpaces(metaspace.getSpaces());
 				space.setSpaceDef(spaceDef);
 				metaspace.getSpaces().addChild(space);
 				SpaceMembers members = space.getMembers();
@@ -142,7 +145,8 @@ public class Connection {
 				try {
 					for (com.tibco.as.space.Member member : ms
 							.getSpaceMembers(spaceName)) {
-						SpaceMember child = new SpaceMember(members);
+						SpaceMember child = new SpaceMember();
+						child.setMembers(members);
 						child.setMember(member);
 						child.setSelf(ms.getSelfMember().getName()
 								.equals(member.getName()));

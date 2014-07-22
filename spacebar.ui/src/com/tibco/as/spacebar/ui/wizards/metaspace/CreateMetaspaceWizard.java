@@ -8,7 +8,6 @@ import org.eclipse.ui.IWorkbench;
 
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.model.Metaspace;
-import com.tibco.as.spacebar.ui.model.Metaspaces;
 import com.tibco.as.spacebar.ui.wizards.AbstractWizard;
 
 public class CreateMetaspaceWizard extends AbstractWizard implements INewWizard {
@@ -21,8 +20,8 @@ public class CreateMetaspaceWizard extends AbstractWizard implements INewWizard 
 	}
 
 	public void addPages() {
-		Metaspaces metaspaces = SpaceBarPlugin.getDefault().getMetaspaces();
-		this.metaspace = new Metaspace(metaspaces);
+		metaspace = new Metaspace();
+		metaspace.setMetaspaces(SpaceBarPlugin.getDefault().getMetaspaces());
 		addPage(new CreateMetaspaceWizardPage(metaspace));
 	}
 

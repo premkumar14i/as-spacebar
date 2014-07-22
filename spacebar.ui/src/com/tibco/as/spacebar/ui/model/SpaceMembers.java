@@ -4,7 +4,11 @@ public class SpaceMembers extends Members {
 
 	private Space space;
 
-	public SpaceMembers(Space space) {
+	public Space getSpace() {
+		return space;
+	}
+
+	public void setSpace(Space space) {
 		this.space = space;
 	}
 
@@ -12,5 +16,5 @@ public class SpaceMembers extends Members {
 	public Space getParent() {
 		return space;
 	}
-	
+
 }

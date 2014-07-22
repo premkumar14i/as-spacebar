@@ -13,14 +13,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.model.Metaspace;
 
 public class MetaspaceEditor extends Composite {
 
 	private DataBindingContext m_bindingContext;
-	private Metaspace metaspace = new Metaspace(SpaceBarPlugin.getDefault()
-			.getMetaspaces());
+	private Metaspace metaspace;
 	private Text nameText;
 	private Text metaspaceText;
 	private Text memberText;

@@ -56,10 +56,10 @@ public class Metaspace extends AbstractElement {
 	private boolean autoconnect;
 
 	@XmlTransient
-	private MetaspaceMembers members = new MetaspaceMembers(this);
+	private MetaspaceMembers members;
 
 	@XmlTransient
-	private Spaces spaces = new Spaces(this);
+	private Spaces spaces;
 
 	@XmlTransient
 	private State state = State.DISCONNECTED;
@@ -68,10 +68,10 @@ public class Metaspace extends AbstractElement {
 	private Connection connection;
 
 	public Metaspace() {
-	}
-
-	public Metaspace(Metaspaces metaspaces) {
-		this.metaspaces = metaspaces;
+		members = new MetaspaceMembers();
+		members.setMetaspace(this);
+		spaces = new Spaces();
+		spaces.setMetaspace(this);
 	}
 
 	public MetaspaceMembers getMembers() {
@@ -92,7 +92,7 @@ public class Metaspace extends AbstractElement {
 
 	@Override
 	public Metaspace clone() {
-		Metaspace metaspace = new Metaspace(getParent());
+		Metaspace metaspace = new Metaspace();
 		copyTo(metaspace);
 		return metaspace;
 	}
@@ -111,12 +111,21 @@ public class Metaspace extends AbstractElement {
 	}
 
 	public void copyTo(Metaspace metaspace) {
+		metaspace.setMetaspaces(metaspaces);
+		metaspace.setName(name);
 		metaspace.setAutoconnect(autoconnect);
 		metaspace.setDiscovery(discovery);
 		metaspace.setListen(listen);
 		metaspace.setMemberName(memberName);
+		MetaspaceMembers members = this.members.clone();
+		members.setMetaspace(metaspace);
+		metaspace.setMembers(members);
 		metaspace.setMetaspaceName(metaspaceName);
+		Spaces spaces = this.spaces.clone();
+		spaces.setMetaspace(metaspace);
+		metaspace.setSpaces(spaces);
 		metaspace.setRemote(remote);
+		metaspace.setState(state);
 		metaspace.setTimeout(timeout);
 	}
 
@@ -191,8 +200,10 @@ public class Metaspace extends AbstractElement {
 				setState(State.DISCONNECTED);
 			}
 		}
-		spaces = new Spaces(this);
-		members = new MetaspaceMembers(this);
+		spaces = new Spaces();
+		spaces.setMetaspace(this);
+		members = new MetaspaceMembers();
+		members.setMetaspace(this);
 		fireChildrenChange(oldValue, Collections.emptyList());
 	}
 
@@ -217,9 +228,9 @@ public class Metaspace extends AbstractElement {
 	}
 
 	@Override
-	public List<? extends IElement> getChildren() {
+	public List<IElement> getChildren() {
 		if (isConnected()) {
-			return Arrays.asList(members, spaces);
+			return Arrays.asList((IElement) members, spaces);
 		}
 		return Collections.emptyList();
 	}

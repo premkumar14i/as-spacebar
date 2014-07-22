@@ -9,7 +9,11 @@ public class Indexes extends AbstractElement implements Cloneable {
 
 	private List<Index> indexes = new ArrayList<Index>();
 
-	public Indexes(Space space) {
+	public Space getSpace() {
+		return space;
+	}
+
+	public void setSpace(Space space) {
 		this.space = space;
 	}
 
@@ -40,13 +44,18 @@ public class Indexes extends AbstractElement implements Cloneable {
 
 	@Override
 	public Indexes clone() {
-		Indexes clone = new Indexes(space);
+		Indexes clone = new Indexes();
 		copyTo(clone);
 		return clone;
 	}
 
+	public void setIndexes(List<Index> indexes) {
+		this.indexes = indexes;
+	}
+
 	public void copyTo(Indexes indexes) {
-		indexes.indexes = new ArrayList<Index>(this.indexes);
+		indexes.setSpace(space);
+		indexes.setIndexes(new ArrayList<Index>(this.indexes));
 	}
 
 	@Override

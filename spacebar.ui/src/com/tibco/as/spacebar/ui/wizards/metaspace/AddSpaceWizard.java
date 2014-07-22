@@ -37,7 +37,8 @@ public class AddSpaceWizard extends AbstractWizard implements ModifyListener {
 	protected void finish(IProgressMonitor monitor) throws Exception {
 		Metaspace ms = spaces.getParent().getConnection().getMetaspace();
 		String spaceName = page.getSpaceName();
-		Space space = new Space(spaces);
+		Space space = new Space();
+		space.setSpaces(spaces);
 		space.setSpaceDef(ms.getSpaceDef(spaceName));
 		spaces.addChild(space);
 	}

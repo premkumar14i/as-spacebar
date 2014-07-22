@@ -12,10 +12,6 @@ public class Field extends AbstractElement implements Cloneable {
 	private boolean key;
 	private boolean distribution;
 
-	public Field(Fields fields) {
-		this.fields = fields;
-	}
-
 	public boolean isKey() {
 		return key;
 	}
@@ -64,17 +60,26 @@ public class Field extends AbstractElement implements Cloneable {
 	}
 
 	public void copyTo(Field field) {
-		field.name = name;
-		field.type = type;
-		field.nullable = nullable;
-		field.encrypted = encrypted;
-		field.key = key;
-		field.distribution = distribution;
+		field.setFields(fields);
+		field.setName(name);
+		field.setType(type);
+		field.setNullable(nullable);
+		field.setEncrypted(encrypted);
+		field.setKey(key);
+		field.setDistribution(distribution);
+	}
+
+	public Fields getFields() {
+		return fields;
+	}
+
+	public void setFields(Fields fields) {
+		this.fields = fields;
 	}
 
 	@Override
 	public Field clone() {
-		Field field = new Field(fields);
+		Field field = new Field();
 		copyTo(field);
 		return field;
 	}

@@ -50,7 +50,8 @@ public class CreateSpaceWizard extends AbstractWizard implements INewWizard {
 		Object element = selection.getFirstElement();
 		if (element instanceof Spaces) {
 			Spaces spaces = (Spaces) element;
-			space = new Space(spaces);
+			space = new Space();
+			space.setSpaces(spaces);
 			space.setSpaceDef(SpaceDef.create());
 		}
 	}

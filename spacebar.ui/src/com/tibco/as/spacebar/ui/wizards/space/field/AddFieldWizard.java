@@ -7,9 +7,10 @@ import org.eclipse.ui.IWorkbench;
 
 import com.tibco.as.space.FieldDef;
 import com.tibco.as.space.FieldDef.FieldType;
-import com.tibco.as.space.Space;
+import com.tibco.as.space.Metaspace;
 import com.tibco.as.space.SpaceDef;
 import com.tibco.as.spacebar.ui.model.Field;
+import com.tibco.as.spacebar.ui.model.Space;
 import com.tibco.as.spacebar.ui.model.SpaceFields;
 import com.tibco.as.spacebar.ui.wizards.AbstractWizard;
 import com.tibco.as.util.Utils;
@@ -31,7 +32,8 @@ public class AddFieldWizard extends AbstractWizard implements INewWizard {
 
 	@Override
 	public void addPages() {
-		field = new Field(fields);
+		field = new Field();
+		field.setFields(fields);
 		field.setNullable(true);
 		field.setType(FieldType.STRING);
 		addPage(new EditFieldWizardPage(null, field));
@@ -40,16 +42,17 @@ public class AddFieldWizard extends AbstractWizard implements INewWizard {
 	@Override
 	protected void finish(IProgressMonitor monitor) throws Exception {
 		monitor.beginTask("Adding field", 1);
-		Space space = ((com.tibco.as.spacebar.ui.model.Space) fields
-				.getParent()).getSpace();
-		SpaceDef spaceDef = space.getSpaceDef();
+		Space space = fields.getSpace();
+		Metaspace metaspace = space.getSpaces().getMetaspace().getConnection()
+				.getMetaspace();
+		SpaceDef spaceDef = metaspace.getSpaceDef(space.getName());
 		FieldDef fieldDef = FieldDef.create(field.getName(), field.getType());
 		if (Utils.hasFieldDefMethod("setEncrypted")) {
 			fieldDef.setEncrypted(field.isNullable());
 		}
 		fieldDef.setNullable(field.isNullable());
 		spaceDef.getFieldDefs().add(fieldDef);
-		space.getMetaspace().alterSpace(spaceDef);
+		metaspace.alterSpace(spaceDef);
 		monitor.worked(1);
 	}
 

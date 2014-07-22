@@ -4,15 +4,24 @@ public class SpaceFields extends Fields implements Cloneable {
 
 	private Space space;
 
-	public SpaceFields(Space space) {
-		this.space = space;
-	}
-
 	@Override
 	public SpaceFields clone() {
-		SpaceFields clone = new SpaceFields(space);
+		SpaceFields clone = new SpaceFields();
 		copyTo(clone);
 		return clone;
+	}
+
+	public void copyTo(SpaceFields fields) {
+		super.copyTo(fields);
+		fields.setSpace(space);
+	}
+
+	public Space getSpace() {
+		return space;
+	}
+
+	public void setSpace(Space space) {
+		this.space = space;
 	}
 
 	@Override

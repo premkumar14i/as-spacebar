@@ -11,7 +11,9 @@ import com.tibco.as.space.FieldDef.FieldType;
 import com.tibco.as.space.IndexDef;
 import com.tibco.as.space.IndexDef.IndexType;
 import com.tibco.as.space.KeyDef;
+import com.tibco.as.space.Member;
 import com.tibco.as.space.Member.DistributionRole;
+import com.tibco.as.space.Metaspace;
 import com.tibco.as.space.SpaceDef;
 import com.tibco.as.space.SpaceDef.CachePolicy;
 import com.tibco.as.space.SpaceDef.DistributionPolicy;
@@ -21,16 +23,17 @@ import com.tibco.as.space.SpaceDef.PersistencePolicy;
 import com.tibco.as.space.SpaceDef.PersistenceType;
 import com.tibco.as.space.SpaceDef.ReplicationPolicy;
 import com.tibco.as.space.SpaceDef.UpdateTransport;
+import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.util.Utils;
 
 public class Space extends AbstractElement implements Cloneable {
 
 	private Spaces spaces;
-	private SpaceMembers members = new SpaceMembers(this);
-	private SpaceFields fields = new SpaceFields(this);
-	private Keys keys = new Keys(this);
-	private Distribution distribution = new Distribution(this);
-	private Indexes indexes = new Indexes(this);
+	private SpaceMembers members;
+	private SpaceFields fields;
+	private Keys keys;
+	private Distribution distribution;
+	private Indexes indexes;
 	private CachePolicy cachePolicy;
 	private long capacity;
 	private DistributionPolicy distributionPolicy;
@@ -62,8 +65,17 @@ public class Space extends AbstractElement implements Cloneable {
 	private long writeTimeout;
 	private com.tibco.as.space.Space space;
 
-	public Space(Spaces spaces) {
-		this.spaces = spaces;
+	public Space() {
+		members = new SpaceMembers();
+		members.setSpace(this);
+		fields = new SpaceFields();
+		fields.setSpace(this);
+		keys = new Keys();
+		keys.setSpace(this);
+		distribution = new Distribution();
+		distribution.setSpace(this);
+		indexes = new Indexes();
+		indexes.setSpace(this);
 	}
 
 	@Override
@@ -125,7 +137,8 @@ public class Space extends AbstractElement implements Cloneable {
 		}
 		for (FieldDef fieldDef : spaceDef.getFieldDefs()) {
 			String fieldName = fieldDef.getName();
-			Field field = new Field(fields);
+			Field field = new Field();
+			field.setFields(fields);
 			field.setName(fieldName);
 			field.setType(fieldDef.getType());
 			field.setNullable(fieldDef.isNullable());
@@ -153,7 +166,9 @@ public class Space extends AbstractElement implements Cloneable {
 			Index index = indexes.getIndex(indexName);
 			boolean newIndex = false;
 			if (index == null) {
-				index = new Index(indexes, indexName);
+				index = new Index();
+				index.setIndexes(indexes);
+				index.setName(indexName);
 				newIndex = true;
 			}
 			index.setType(indexDef.getIndexType());
@@ -257,7 +272,7 @@ public class Space extends AbstractElement implements Cloneable {
 
 	@Override
 	public Space clone() {
-		Space space = new Space(getParent());
+		Space space = new Space();
 		copyTo(space);
 		return space;
 	}
@@ -268,37 +283,62 @@ public class Space extends AbstractElement implements Cloneable {
 	}
 
 	public void copyTo(Space space) {
-		space.name = name;
-		space.cachePolicy = cachePolicy;
-		space.capacity = capacity;
-		space.distributionPolicy = distributionPolicy;
-		space.evictionPolicy = evictionPolicy;
-		space.forgetOldValue = forgetOldValue;
-		space.hostAwareReplication = hostAwareReplication;
-		space.routed = routed;
-		space.lockScope = lockScope;
-		space.lockTtl = lockTtl;
-		space.lockWait = lockWait;
-		space.minSeederCount = minSeederCount;
-		space.persistenceDistributionPolicy = persistenceDistributionPolicy;
-		space.persistencePolicy = persistencePolicy;
-		space.persistenceType = persistenceType;
-		space.phaseCount = phaseCount;
-		space.phaseRatio = phaseRatio;
-		space.queryLimit = queryLimit;
-		space.queryTimeout = queryTimeout;
-		space.readTimeout = readTimeout;
-		space.replicationCount = replicationCount;
-		space.replicationPolicy = replicationPolicy;
-		space.spaceWait = spaceWait;
-		space.ttl = ttl;
-		space.updateTransport = updateTransport;
-		space.virtualNodeCount = virtualNodeCount;
-		space.writeTimeout = writeTimeout;
-		space.fields = fields.clone();
-		space.keys = keys.clone();
-		space.distribution = distribution.clone();
-		space.indexes = indexes.clone();
+		space.setSpaces(spaces);
+		space.setName(name);
+		space.setFields(fields.clone());
+		space.setKeys(keys.clone());
+		space.setDistribution(distribution.clone());
+		space.setIndexes(indexes.clone());
+		space.setCachePolicy(cachePolicy);
+		space.setCapacity(capacity);
+		space.setDistributionPolicy(distributionPolicy);
+		space.setEvictionPolicy(evictionPolicy);
+		space.setForgetOldValue(forgetOldValue);
+		space.setHostAwareReplication(hostAwareReplication);
+		space.setRouted(routed);
+		space.setLockScope(lockScope);
+		space.setLockTTL(lockTtl);
+		space.setLockWait(lockWait);
+		space.setMinSeederCount(minSeederCount);
+		space.setPersistenceDistributionPolicy(persistenceDistributionPolicy);
+		space.setPersistencePolicy(persistencePolicy);
+		space.setPersistenceType(persistenceType);
+		space.setPhaseCount(phaseCount);
+		space.setPhaseRatio(phaseRatio);
+		space.setQueryLimit(queryLimit);
+		space.setQueryTimeout(queryTimeout);
+		space.setReadTimeout(readTimeout);
+		space.setReplicationCount(replicationCount);
+		space.setReplicationPolicy(replicationPolicy);
+		space.setSpaceWait(spaceWait);
+		space.setTTL(ttl);
+		space.setUpdateTransport(updateTransport);
+		space.setVirtualNodeCount(virtualNodeCount);
+		space.setWriteTimeout(writeTimeout);
+	}
+
+	public void setIndexes(Indexes indexes) {
+		this.indexes = indexes;
+	}
+
+	public void setDistribution(Distribution distribution) {
+		this.distribution = distribution;
+	}
+
+	public void setKeys(Keys keys) {
+		this.keys = keys;
+	}
+
+	public void setFields(SpaceFields fields) {
+		this.fields = fields;
+	}
+
+	public Spaces getSpaces() {
+		return spaces;
+	}
+
+	public void setSpaces(Spaces spaces) {
+		this.spaces = spaces;
 	}
 
 	public SpaceMembers getMembers() {
@@ -582,7 +622,17 @@ public class Space extends AbstractElement implements Cloneable {
 	}
 
 	public boolean isJoined() {
-		return space != null;
+		Metaspace metaspace = spaces.getParent().getConnection().getMetaspace();
+		Member self = metaspace.getSelfMember();
+		try {
+			for (Member member : metaspace.getSpaceMembers(name)) {
+				if (member.getName().equals(self.getName())) {
+					return true;
+				}
+			}
+		} catch (ASException e) {
+			SpaceBarPlugin.logException("Could not get space members", e);
+		}
+		return false;
 	}
-
 }

@@ -197,7 +197,8 @@ public class SpaceBarPlugin extends AbstractUIPlugin {
 				}
 			} else {
 				metaspaces = new Metaspaces();
-				Metaspace metaspace = new Metaspace(metaspaces);
+				Metaspace metaspace = new Metaspace();
+				metaspace.setMetaspaces(metaspaces);
 				metaspace.setName("Default");
 				metaspace.setTimeout(30000L);
 				try {
