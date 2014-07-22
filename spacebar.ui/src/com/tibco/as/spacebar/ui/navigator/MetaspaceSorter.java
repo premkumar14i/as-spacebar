@@ -31,7 +31,7 @@ public class MetaspaceSorter extends ViewerSorter {
 		if (parent == null) {
 			return -1;
 		}
-		return parent.getChildren().indexOf(this);
+		return parent.getChildren().indexOf(element);
 	}
 
 }
