@@ -318,14 +318,14 @@
             locationURI="popup:com.tibco.as.spacebar.ui.navigator#PopupMenu?after=group.open">
          <command
                commandId="com.tibco.as.spacebar.ui.command.metaspace.connect"
-               icon="icons/connect.png"
+               icon="icons/connect_co.gif"
                label="Connect"
                style="push">
             <visibleWhen checkEnabled="true"></visibleWhen>
          </command>
          <command
                commandId="com.tibco.as.spacebar.ui.command.metaspace.disconnect"
-               icon="icons/disconnect.png"
+               icon="icons/disconnect_co.gif"
                label="Disconnect"
                style="push">
             <visibleWhen checkEnabled="true"></visibleWhen>
