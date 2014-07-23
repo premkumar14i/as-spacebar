@@ -152,13 +152,10 @@ public abstract class AbstractConfiguration extends
 	}
 
 	protected IDisplayConverter getDateTimeDisplayConverter() {
-		String format = Preferences
+		String pattern = Preferences
 				.getString(Preferences.SPACE_EDITOR_DATE_FORMAT);
 		TimeZone timeZone = Preferences.getSpaceEditorTimeZone();
-		if (format == null) {
-			return new DateTimeDisplayConverter(timeZone);
-		}
-		return new DateTimeDisplayConverter(format, timeZone);
+		return new DateTimeDisplayConverter(pattern, timeZone);
 	}
 
 	protected String[] getStringConfigLabels() {

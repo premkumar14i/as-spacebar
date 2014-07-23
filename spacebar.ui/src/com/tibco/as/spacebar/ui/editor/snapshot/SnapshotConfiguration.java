@@ -25,7 +25,7 @@ public class SnapshotConfiguration extends AbstractConfiguration {
 				IEditableRule.ALWAYS_EDITABLE);
 		super.configureRegistry(configRegistry);
 		DateTimeDisplayConverter dateTimeDisplayConverter = new DateTimeDisplayConverter(
-				Preferences.getSpaceEditorTimeZone());
+				null, Preferences.getSpaceEditorTimeZone());
 		configRegistry.registerConfigAttribute(
 				CellConfigAttributes.DISPLAY_CONVERTER,
 				dateTimeDisplayConverter, DisplayMode.EDIT,

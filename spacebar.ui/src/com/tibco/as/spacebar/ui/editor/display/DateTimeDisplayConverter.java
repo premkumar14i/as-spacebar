@@ -1,46 +1,48 @@
 package com.tibco.as.spacebar.ui.editor.display;
 
-import java.util.Calendar;
+import java.text.Format;
 import java.util.Date;
 import java.util.TimeZone;
 
-import org.eclipse.nebula.widgets.nattable.data.convert.DefaultDateDisplayConverter;
+import org.eclipse.nebula.widgets.nattable.data.convert.ConversionFailedException;
+import org.eclipse.nebula.widgets.nattable.data.convert.DisplayConverter;
+import org.eclipse.nebula.widgets.nattable.util.ObjectUtils;
+import org.eclipse.osgi.util.NLS;
 
-public class DateTimeDisplayConverter extends DefaultDateDisplayConverter {
+import com.tibco.as.convert.ConverterFactory;
+import com.tibco.as.space.DateTime;
+import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 
-	DateTimeConverter converter = new DateTimeConverter();
+public class DateTimeDisplayConverter extends DisplayConverter {
 
-	public DateTimeDisplayConverter() {
-		super();
-	}
+	private Format format;
 
-	public DateTimeDisplayConverter(String dateFormat) {
-		super(dateFormat);
-	}
-
-	public DateTimeDisplayConverter(String dateFormat, TimeZone timeZone) {
-		super(dateFormat, timeZone);
-	}
-
-	public DateTimeDisplayConverter(TimeZone timeZone) {
-		super(timeZone);
+	public DateTimeDisplayConverter(String pattern, TimeZone timeZone) {
+		this.format = ConverterFactory.getDateFormat(pattern, timeZone);
 	}
 
 	@Override
 	public Object canonicalToDisplayValue(Object canonicalValue) {
-		Calendar calendar = converter.dateTimeToCalendar(canonicalValue);
-		if (calendar == null) {
-			return null;
+		try {
+			if (ObjectUtils.isNotNull(canonicalValue)) {
+				DateTime dateTime = (DateTime) canonicalValue;
+				return format.format(dateTime.getTime().getTime());
+			}
+		} catch (Exception e) {
+			SpaceBarPlugin.logException(e);
 		}
-		return super.canonicalToDisplayValue(calendar.getTime());
+		return canonicalValue;
 	}
 
 	@Override
 	public Object displayToCanonicalValue(Object displayValue) {
-		Date date = (Date) super.displayToCanonicalValue(displayValue);
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		return converter.calendarToDateTime(calendar);
+		try {
+			Date date = (Date) format.parseObject(displayValue.toString());
+			return DateTime.create(date.getTime());
+		} catch (Exception e) {
+			throw new ConversionFailedException(NLS.bind(
+					"[{0}] is not a valid date", displayValue), e);
+		}
 	}
 
 }

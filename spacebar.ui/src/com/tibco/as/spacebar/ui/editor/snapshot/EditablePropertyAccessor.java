@@ -16,12 +16,17 @@ public class EditablePropertyAccessor extends StringPropertyAccessor<Tuple> {
 	public void setDataValue(Tuple rowObject, int columnIndex, Object newValue) {
 		String fieldName = getColumnProperty(columnIndex);
 		Object oldValue = rowObject.get(fieldName);
-		boolean same = newValue == null ? oldValue == null : newValue
-				.equals(oldValue);
-		if (!same) {
+		if (!isSame(newValue, oldValue)) {
 			rowObject.put(fieldName, newValue);
 			editor.addChanged(rowObject);
 		}
+	}
+
+	private boolean isSame(Object newValue, Object oldValue) {
+		if (newValue == null) {
+			return oldValue == null;
+		}
+		return newValue.equals(oldValue);
 	}
 
 }
