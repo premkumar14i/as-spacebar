@@ -351,20 +351,6 @@
                   style="push">
             </command>
             <command
-                  commandId="com.tibco.as.spacebar.ui.command.space.browse.new"
-                  icon="icons/browse_new.png"
-                  label="New"
-                  mnemonic="n"
-                  style="push">
-            </command>
-            <command
-                  commandId="com.tibco.as.spacebar.ui.command.space.browse.all"
-                  icon="icons/browse_all.png"
-                  label="All"
-                  mnemonic="a"
-                  style="push">
-            </command>
-            <command
                   commandId="com.tibco.as.spacebar.ui.command.space.browse.current"
                   icon="icons/browse_current.png"
                   label="Current"
@@ -373,6 +359,20 @@
                <visibleWhen
                      checkEnabled="true">
                </visibleWhen>
+            </command>            
+            <command
+                  commandId="com.tibco.as.spacebar.ui.command.space.browse.all"
+                  icon="icons/browse_all.png"
+                  label="All"
+                  mnemonic="a"
+                  style="push">
+            </command>
+            <command
+                  commandId="com.tibco.as.spacebar.ui.command.space.browse.new"
+                  icon="icons/browse_new.png"
+                  label="New"
+                  mnemonic="n"
+                  style="push">
             </command>
             <separator
                   name="com.tibco.as.spacebar.ui.command.space.browse.separator"
@@ -380,7 +380,7 @@
             </separator>
             <command
                   commandId="com.tibco.as.spacebar.ui.command.space.browse.browse"
-                  icon="icons/browse.png"
+                  icon="icons/browse_custom.png"
                   label="Browse..."
                   mnemonic="b"
                   style="push">
@@ -1071,15 +1071,29 @@
             class="com.tibco.as.spacebar.ui.editor.continuous.ContinuousBrowser"
             contributorClass="com.tibco.as.spacebar.ui.editor.continuous.ActionBarContributor"
             icon="icons/browse_all.png"
-            id="com.tibco.as.spacebar.ui.editor.continuous"
-            name="Continuous Browser">
+            id="com.tibco.as.spacebar.ui.space.browser.all"
+            name="Browse All">
+      </editor>
+      <editor
+            class="com.tibco.as.spacebar.ui.editor.continuous.ContinuousBrowser"
+            contributorClass="com.tibco.as.spacebar.ui.editor.continuous.ActionBarContributor"
+            icon="icons/browse_new.png"
+            id="com.tibco.as.spacebar.ui.space.browser.new"
+            name="Browse New">
       </editor>
       <editor
             class="com.tibco.as.spacebar.ui.editor.snapshot.SnapshotBrowser"
             contributorClass="com.tibco.as.spacebar.ui.editor.snapshot.ActionBarContributor"
             icon="icons/browse.png"
-            id="com.tibco.as.spacebar.ui.editor.snapshot"
-            name="Space Editor">
+            id="com.tibco.as.spacebar.ui.space.browser.snapshot"
+            name="Browse Snapshot">
+      </editor>
+      <editor
+            class="com.tibco.as.spacebar.ui.editor.snapshot.SnapshotBrowser"
+            contributorClass="com.tibco.as.spacebar.ui.editor.snapshot.ActionBarContributor"
+            icon="icons/browse_current.png"
+            id="com.tibco.as.spacebar.ui.space.browser.current"
+            name="Browse Current">
       </editor>
    </extension>
    <extension

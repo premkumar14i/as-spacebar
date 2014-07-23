@@ -44,8 +44,6 @@ import com.tibco.as.spacebar.ui.model.Space;
 
 public class SnapshotBrowser extends AbstractBrowser<Tuple> {
 
-	public static final String EDITOR_ID = "com.tibco.as.spacebar.ui.editor.snapshot";
-
 	private boolean dirty;
 
 	private Stack<Change> changeList;

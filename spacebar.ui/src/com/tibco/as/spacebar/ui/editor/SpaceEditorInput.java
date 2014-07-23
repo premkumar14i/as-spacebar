@@ -6,12 +6,10 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 
+import com.tibco.as.io.Export;
 import com.tibco.as.spacebar.ui.Image;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
-import com.tibco.as.spacebar.ui.editor.continuous.ContinuousBrowser;
-import com.tibco.as.spacebar.ui.editor.snapshot.SnapshotBrowser;
 import com.tibco.as.spacebar.ui.model.Space;
-import com.tibco.as.io.Export;
 
 public class SpaceEditorInput implements IEditorInput {
 
@@ -67,10 +65,16 @@ public class SpaceEditorInput implements IEditorInput {
 	}
 
 	public String getEditorId() {
-		if (export.isAllOrNew()) {
-			return ContinuousBrowser.EDITOR_ID;
+		switch (export.getTimeScope()) {
+		case ALL:
+			return AbstractBrowser.EDITOR_ID_ALL;
+		case CURRENT:
+			return AbstractBrowser.EDITOR_ID_CURRENT;
+		case NEW:
+			return AbstractBrowser.EDITOR_ID_NEW;
+		default:
+			return AbstractBrowser.EDITOR_ID_SNAPSHOT;
 		}
-		return SnapshotBrowser.EDITOR_ID;
 	}
 
 	@Override

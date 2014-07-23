@@ -83,6 +83,14 @@ import com.tibco.as.util.Utils;
 public abstract class AbstractBrowser<T extends Map<String, Object>> extends
 		EditorPart implements IOutputStream<T> {
 
+	public static final String EDITOR_ID_NEW = "com.tibco.as.spacebar.ui.space.browser.new";
+
+	public static final String EDITOR_ID_ALL = "com.tibco.as.spacebar.ui.space.browser.all";
+
+	public static final String EDITOR_ID_SNAPSHOT = "com.tibco.as.spacebar.ui.space.browser.snapshot";
+
+	public static final String EDITOR_ID_CURRENT = "com.tibco.as.spacebar.ui.space.browser.current";
+
 	private NatTable natTable;
 
 	private EventList<T> eventList = GlazedLists.threadSafeList(GlazedLists
