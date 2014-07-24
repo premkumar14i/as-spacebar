@@ -7,7 +7,9 @@ public abstract class Fields extends AbstractElement {
 
 	private List<Field> fields = new ArrayList<Field>();
 
-	public void copyTo(Fields target) {
+	@Override
+	public void copyTo(IElement element) {
+		Fields target = (Fields) element;
 		target.setFields(new ArrayList<Field>(fields));
 	}
 

@@ -20,15 +20,13 @@ public class Index extends Fields implements Cloneable {
 		return indexes;
 	}
 
-	public void copyTo(Index index) {
+	@Override
+	public void copyTo(IElement element) {
+		Index index = (Index) element;
 		super.copyTo(index);
 		index.setIndexes(indexes);
 		index.setName(name);
 		index.setType(type);
-	}
-
-	public Indexes getIndexes() {
-		return indexes;
 	}
 
 	public void setIndexes(Indexes indexes) {

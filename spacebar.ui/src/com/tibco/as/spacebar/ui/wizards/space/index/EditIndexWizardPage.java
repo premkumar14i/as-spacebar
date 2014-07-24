@@ -7,11 +7,10 @@ import org.eclipse.core.databinding.observable.list.ListChangeEvent;
 import org.eclipse.core.databinding.observable.list.ListDiffEntry;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-import com.tibco.as.spacebar.ui.SWTFactory;
 import com.tibco.as.spacebar.ui.model.Field;
 import com.tibco.as.spacebar.ui.model.Index;
 import com.tibco.as.spacebar.ui.model.SpaceFields;
@@ -30,11 +29,12 @@ public class EditIndexWizardPage extends AbstractEditElementWizardPage<Index>
 
 	@Override
 	protected Control getControl(Composite parent, Index edited) {
-		Composite composite = SWTFactory.createComposite(parent, 1, 1,
-				GridData.FILL_BOTH);
+		Composite composite = new Composite(parent, SWT.NONE);
+		composite.setLayout(new GridLayout());
 		Index index = getEdited();
 		IndexEditor editor = new IndexEditor(composite, SWT.NONE, index);
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(editor);
+		GridDataFactory.defaultsFor(editor).applyTo(editor);
+		// GridDataFactory.fillDefaults().grab(true, false).applyTo(editor);
 		SpaceFields fields = index.getParent().getParent().getFields();
 		dualList = new DualList<Field>(composite, SWT.NONE, Field.class,
 				"name", fields.getChildren());
@@ -42,7 +42,9 @@ public class EditIndexWizardPage extends AbstractEditElementWizardPage<Index>
 		observe.addListChangeListener(dualList);
 		dualList.setSelection(index.getChildren());
 		dualList.getSelection().addListChangeListener(this);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(dualList);
+		GridDataFactory.defaultsFor(dualList).grab(true, true)
+				.applyTo(dualList);
+		// GridDataFactory.fillDefaults().grab(true, true).applyTo(dualList);
 		return composite;
 	}
 

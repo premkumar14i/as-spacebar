@@ -1,6 +1,6 @@
 package com.tibco.as.spacebar.ui.model;
 
-public class Distribution extends Fields implements Cloneable {
+public class Distribution extends Fields {
 
 	private Space space;
 
@@ -11,13 +11,11 @@ public class Distribution extends Fields implements Cloneable {
 		return distribution;
 	}
 
-	public void copyTo(Distribution distribution) {
+	@Override
+	public void copyTo(IElement element) {
+		Distribution distribution = (Distribution) element;
 		super.copyTo(distribution);
 		distribution.setSpace(space);
-	}
-
-	public Space getSpace() {
-		return space;
 	}
 
 	public void setSpace(Space space) {

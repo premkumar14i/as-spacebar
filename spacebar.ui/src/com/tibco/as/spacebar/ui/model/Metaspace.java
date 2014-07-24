@@ -97,10 +97,6 @@ public class Metaspace extends AbstractElement {
 		return metaspace;
 	}
 
-	public Metaspaces getMetaspaces() {
-		return metaspaces;
-	}
-
 	public void setMetaspaces(Metaspaces metaspaces) {
 		this.metaspaces = metaspaces;
 	}
@@ -110,7 +106,9 @@ public class Metaspace extends AbstractElement {
 		return metaspaces;
 	}
 
-	public void copyTo(Metaspace metaspace) {
+	@Override
+	public void copyTo(IElement element) {
+		Metaspace metaspace = (Metaspace) element;
 		metaspace.setMetaspaces(metaspaces);
 		metaspace.setName(name);
 		metaspace.setAutoconnect(autoconnect);

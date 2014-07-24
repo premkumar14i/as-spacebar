@@ -11,13 +11,11 @@ public class SpaceFields extends Fields implements Cloneable {
 		return clone;
 	}
 
-	public void copyTo(SpaceFields fields) {
+	@Override
+	public void copyTo(IElement element) {
+		SpaceFields fields = (SpaceFields) element;
 		super.copyTo(fields);
 		fields.setSpace(space);
-	}
-
-	public Space getSpace() {
-		return space;
 	}
 
 	public void setSpace(Space space) {

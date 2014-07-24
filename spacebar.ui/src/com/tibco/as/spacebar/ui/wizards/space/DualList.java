@@ -7,11 +7,13 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.databinding.beans.BeanProperties;
+import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.IListChangeListener;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.list.ListChangeEvent;
 import org.eclipse.core.databinding.observable.list.ListDiffEntry;
 import org.eclipse.core.databinding.observable.list.WritableList;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.databinding.viewers.ViewerSupport;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -31,7 +33,17 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableColumn;
+
+import com.tibco.as.space.FieldDef.FieldType;
+import com.tibco.as.space.SpaceDef;
+import com.tibco.as.spacebar.ui.model.Field;
+import com.tibco.as.spacebar.ui.model.Metaspace;
+import com.tibco.as.spacebar.ui.model.Metaspaces;
+import com.tibco.as.spacebar.ui.model.Space;
+import com.tibco.as.spacebar.ui.model.Spaces;
 
 public class DualList<T> extends Composite implements IListChangeListener {
 
@@ -39,6 +51,14 @@ public class DualList<T> extends Composite implements IListChangeListener {
 	private TableViewer rightViewer;
 	private IObservableList leftList;
 	private IObservableList rightList;
+	private Button addButton;
+	private Button addAllButton;
+	private Button removeButton;
+	private Button removeAllButton;
+	private Button upButton;
+	private Button downButton;
+	private Button topButton;
+	private Button bottomButton;
 
 	public DualList(Composite parent, int style, Class<T> type,
 			String propertyName, List<T> items) {
@@ -50,29 +70,29 @@ public class DualList<T> extends Composite implements IListChangeListener {
 		GridDataFactory.fillDefaults().grab(false, true)
 				.align(GridData.CENTER, GridData.CENTER)
 				.applyTo(leftButtonPane);
-		final Button addButton = createButton(leftButtonPane, "Add ->",
+		addButton = createButton(leftButtonPane, "Add ->",
 				new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
 						selectItem();
 					}
 				});
-		final Button addAllButton = createButton(leftButtonPane, "Add All ->",
+		addAllButton = createButton(leftButtonPane, "Add All ->",
 				new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
 						selectAll();
 					}
 				});
-		final Button removeButton = createButton(leftButtonPane, "<- Remove",
+		removeButton = createButton(leftButtonPane, "<- Remove",
 				new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
 						deselectItem();
 					}
 				});
-		final Button removeAllButton = createButton(leftButtonPane,
-				"<- Remove All", new SelectionAdapter() {
+		removeAllButton = createButton(leftButtonPane, "<- Remove All",
+				new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
 						deselectAll();
@@ -97,28 +117,27 @@ public class DualList<T> extends Composite implements IListChangeListener {
 		GridDataFactory.fillDefaults().grab(false, true)
 				.align(GridData.CENTER, GridData.CENTER)
 				.applyTo(rightButtonPane);
-		final Button upButton = createButton(rightButtonPane, "Up",
-				new SelectionAdapter() {
-					@Override
-					public void widgetSelected(SelectionEvent e) {
-						moveItem(-1);
-					}
-				});
-		final Button downButton = createButton(rightButtonPane, "Down",
+		upButton = createButton(rightButtonPane, "Up", new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				moveItem(-1);
+			}
+		});
+		downButton = createButton(rightButtonPane, "Down",
 				new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
 						moveItem(1);
 					}
 				});
-		final Button topButton = createButton(rightButtonPane, "Top",
+		topButton = createButton(rightButtonPane, "Top",
 				new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
 						moveSelectionToFirstPosition();
 					}
 				});
-		final Button bottomButton = createButton(rightButtonPane, "Bottom",
+		bottomButton = createButton(rightButtonPane, "Bottom",
 				new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
@@ -665,45 +684,51 @@ public class DualList<T> extends Composite implements IListChangeListener {
 		rightViewer.getTable().forceFocus();
 	}
 
-	// public static void main(String[] args) {
-	// Space space = new Space(new Spaces(new Metaspace(new Metaspaces())));
-	// space.setSpaceDef(SpaceDef.create("space1"));
-	// final List<Field> fields = new ArrayList<Field>();
-	// final List<Field> selected = new ArrayList<Field>();
-	// for (int index = 0; index < 100; index++) {
-	// Field field = new Field(space.getFields());
-	// field.setName("Field" + (index + 1));
-	// field.setType(FieldType.values()[index % FieldType.values().length]);
-	// field.setNullable(true);
-	// fields.add(field);
-	// if (index < 10) {
-	// selected.add(field);
-	// }
-	// }
-	// Display display = new Display();
-	// Realm.runWithDefault(SWTObservables.getRealm(display), new Runnable() {
-	// public void run() {
-	//
-	// // Build a UI
-	// Display display = Display.getDefault();
-	// Shell shell = new Shell(display);
-	// shell.setLayout(new FillLayout());
-	// DualList<Field> dualList = new DualList<Field>(shell, SWT.NONE,
-	// Field.class, "name", fields);
-	// dualList.setSelection(selected);
-	// // dualList.setItems(new WritableList(fields, Field.class));
-	// // Open and return the Shell
-	// // shell.setSize(100, 300);
-	// shell.open();
-	// // The SWT event loop
-	// while (!shell.isDisposed()) {
-	// if (!display.readAndDispatch()) {
-	// display.sleep();
-	// }
-	// }
-	// }
-	// });
-	// }
+	public static void main(String[] args) {
+		Metaspaces metaspaces = new Metaspaces();
+		Metaspace metaspace = new Metaspace();
+		metaspace.setMetaspaces(metaspaces);
+		Spaces spaces = new Spaces();
+		spaces.setMetaspace(metaspace);
+		Space space = new Space();
+		space.setSpaceDef(SpaceDef.create("space1"));
+		final List<Field> fields = new ArrayList<Field>();
+		final List<Field> selected = new ArrayList<Field>();
+		for (int index = 0; index < 2; index++) {
+			Field field = new Field();
+			field.setFields(space.getFields());
+			field.setName("Field" + (index + 1));
+			field.setType(FieldType.values()[index % FieldType.values().length]);
+			field.setNullable(true);
+			fields.add(field);
+			if (index < 10) {
+				selected.add(field);
+			}
+		}
+		Display display = new Display();
+		Realm.runWithDefault(SWTObservables.getRealm(display), new Runnable() {
+			public void run() {
+
+				// Build a UI
+				Display display = Display.getDefault();
+				Shell shell = new Shell(display);
+				shell.setLayout(new GridLayout());
+				DualList<Field> dualList = new DualList<Field>(shell, SWT.NONE,
+						Field.class, "name", fields);
+				dualList.setSelection(selected);
+				// dualList.setItems(new WritableList(fields, Field.class));
+				// Open and return the Shell
+				shell.setSize(700, 80);
+				shell.open();
+				// The SWT event loop
+				while (!shell.isDisposed()) {
+					if (!display.readAndDispatch()) {
+						display.sleep();
+					}
+				}
+			}
+		});
+	}
 
 	public IObservableList getSelection() {
 		return rightList;

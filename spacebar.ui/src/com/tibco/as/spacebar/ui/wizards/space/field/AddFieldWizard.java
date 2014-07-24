@@ -42,8 +42,8 @@ public class AddFieldWizard extends AbstractWizard implements INewWizard {
 	@Override
 	protected void finish(IProgressMonitor monitor) throws Exception {
 		monitor.beginTask("Adding field", 1);
-		Space space = fields.getSpace();
-		Metaspace metaspace = space.getSpaces().getMetaspace().getConnection()
+		Space space = fields.getParent();
+		Metaspace metaspace = space.getParent().getParent().getConnection()
 				.getMetaspace();
 		SpaceDef spaceDef = metaspace.getSpaceDef(space.getName());
 		FieldDef fieldDef = FieldDef.create(field.getName(), field.getType());

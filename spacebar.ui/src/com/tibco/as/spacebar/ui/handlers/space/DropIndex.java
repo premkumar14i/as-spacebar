@@ -1,4 +1,4 @@
-package com.tibco.as.spacebar.ui.handlers;
+package com.tibco.as.spacebar.ui.handlers.space;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -51,8 +51,8 @@ public class DropIndex extends AbstractHandler {
 					try {
 						monitor.beginTask(
 								NLS.bind("Dropping index ''{0}''", index), 1);
-						Space space = index.getIndexes().getSpace();
-						Metaspace metaspace = space.getSpaces().getMetaspace()
+						Space space = index.getParent().getParent();
+						Metaspace metaspace = space.getParent().getParent()
 								.getConnection().getMetaspace();
 						SpaceDef spaceDef = metaspace.getSpaceDef(space
 								.getName());

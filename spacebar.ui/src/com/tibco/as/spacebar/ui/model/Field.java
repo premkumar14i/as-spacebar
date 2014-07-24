@@ -59,7 +59,9 @@ public class Field extends AbstractElement implements Cloneable {
 		firePropertyChange("type", this.type, this.type = type);
 	}
 
-	public void copyTo(Field field) {
+	@Override
+	public void copyTo(IElement element) {
+		Field field = (Field) element;
 		field.setFields(fields);
 		field.setName(name);
 		field.setType(type);
@@ -67,10 +69,6 @@ public class Field extends AbstractElement implements Cloneable {
 		field.setEncrypted(encrypted);
 		field.setKey(key);
 		field.setDistribution(distribution);
-	}
-
-	public Fields getFields() {
-		return fields;
 	}
 
 	public void setFields(Fields fields) {

@@ -8,11 +8,7 @@ public class SpaceMember extends Member {
 	private DistributionRole distributionRole;
 
 	@Override
-	public Members getParent() {
-		return members;
-	}
-
-	public SpaceMembers getMembers() {
+	public SpaceMembers getParent() {
 		return members;
 	}
 
@@ -36,8 +32,10 @@ public class SpaceMember extends Member {
 		return member;
 	}
 
-	public void copyTo(SpaceMember target) {
-		super.copyTo(target);
+	@Override
+	public void copyTo(IElement element) {
+		super.copyTo(element);
+		SpaceMember target = (SpaceMember) element;
 		target.setMembers(members);
 		target.setDistributionRole(distributionRole);
 	}

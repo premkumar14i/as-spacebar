@@ -8,6 +8,12 @@ public abstract class Members extends AbstractElement {
 	private List<Member> members = new ArrayList<Member>();
 
 	@Override
+	public void copyTo(IElement element) {
+		Members target = (Members) element;
+		target.setMembers(new ArrayList<Member>(members));
+	}
+
+	@Override
 	protected boolean add(IElement child) {
 		return members.add((Member) child);
 	}

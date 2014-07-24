@@ -3,7 +3,7 @@ package com.tibco.as.spacebar.ui.model;
 import java.beans.PropertyChangeListener;
 import java.util.List;
 
-public interface IElement {
+public interface IElement extends Cloneable {
 
 	String getName();
 
@@ -25,5 +25,9 @@ public interface IElement {
 			PropertyChangeListener listener);
 
 	void addListener(IModelListener listener);
+
+	IElement clone();
+
+	void copyTo(IElement element);
 
 }

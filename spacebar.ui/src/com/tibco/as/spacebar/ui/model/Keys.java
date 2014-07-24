@@ -11,13 +11,11 @@ public class Keys extends Fields implements Cloneable {
 		return clone;
 	}
 
-	public void copyTo(Keys keys) {
+	@Override
+	public void copyTo(IElement element) {
+		Keys keys = (Keys) element;
 		super.copyTo(keys);
 		keys.setSpace(space);
-	}
-
-	public Space getSpace() {
-		return space;
 	}
 
 	public void setSpace(Space space) {
@@ -30,7 +28,7 @@ public class Keys extends Fields implements Cloneable {
 	}
 
 	@Override
-	public IElement getParent() {
+	public Space getParent() {
 		return space;
 	}
 

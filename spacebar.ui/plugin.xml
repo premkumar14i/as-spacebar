@@ -1020,7 +1020,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="com.tibco.as.spacebar.ui.handlers.DropIndex"
+            class="com.tibco.as.spacebar.ui.handlers.space.DropIndex"
             commandId="com.tibco.as.spacebar.ui.command.index.drop">
          <enabledWhen>
             <with

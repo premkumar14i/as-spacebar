@@ -18,6 +18,19 @@ public class Metaspaces extends AbstractElement {
 	private List<Metaspace> metaspaces = new ArrayList<Metaspace>();
 
 	@Override
+	public Metaspaces clone() {
+		Metaspaces clone = new Metaspaces();
+		copyTo(clone);
+		return clone;
+	}
+
+	@Override
+	public void copyTo(IElement element) {
+		Metaspaces clone = (Metaspaces) element;
+		clone.setMetaspaces(new ArrayList<Metaspace>(metaspaces));
+	}
+
+	@Override
 	public String getName() {
 		return "Metaspaces";
 	}

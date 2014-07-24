@@ -43,8 +43,8 @@ public class AddIndexWizard extends AbstractWizard implements INewWizard {
 	@Override
 	protected void finish(IProgressMonitor monitor) throws Exception {
 		monitor.beginTask("Adding index", 1);
-		Space space = indexes.getSpace();
-		Metaspace metaspace = space.getSpaces().getMetaspace().getConnection()
+		Space space = indexes.getParent();
+		Metaspace metaspace = space.getParent().getParent().getConnection()
 				.getMetaspace();
 		SpaceDef spaceDef = metaspace.getSpaceDef(space.getName());
 		IndexDef indexDef = IndexDef.create(index.getName());

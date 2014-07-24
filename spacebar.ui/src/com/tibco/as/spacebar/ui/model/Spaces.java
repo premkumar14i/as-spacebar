@@ -9,10 +9,6 @@ public class Spaces extends AbstractElement implements Cloneable {
 
 	private List<Space> spaces = new ArrayList<Space>();
 
-	public Metaspace getMetaspace() {
-		return metaspace;
-	}
-
 	public void setMetaspace(Metaspace metaspace) {
 		this.metaspace = metaspace;
 	}
@@ -66,7 +62,9 @@ public class Spaces extends AbstractElement implements Cloneable {
 		this.spaces = spaces;
 	}
 
-	public void copyTo(Spaces target) {
+	@Override
+	public void copyTo(IElement element) {
+		Spaces target = (Spaces) element;
 		target.setMetaspace(metaspace);
 		target.setSpaces(new ArrayList<Space>(spaces));
 	}

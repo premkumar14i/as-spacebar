@@ -9,10 +9,6 @@ public class Indexes extends AbstractElement implements Cloneable {
 
 	private List<Index> indexes = new ArrayList<Index>();
 
-	public Space getSpace() {
-		return space;
-	}
-
 	public void setSpace(Space space) {
 		this.space = space;
 	}
@@ -53,9 +49,11 @@ public class Indexes extends AbstractElement implements Cloneable {
 		this.indexes = indexes;
 	}
 
-	public void copyTo(Indexes indexes) {
-		indexes.setSpace(space);
-		indexes.setIndexes(new ArrayList<Index>(this.indexes));
+	@Override
+	public void copyTo(IElement element) {
+		Indexes target = (Indexes) element;
+		target.setSpace(space);
+		target.setIndexes(new ArrayList<Index>(indexes));
 	}
 
 	@Override

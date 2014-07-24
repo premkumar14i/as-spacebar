@@ -5,11 +5,7 @@ public class MetaspaceMember extends Member {
 	private MetaspaceMembers members;
 
 	@Override
-	public Members getParent() {
-		return members;
-	}
-
-	public MetaspaceMembers getMembers() {
+	public MetaspaceMembers getParent() {
 		return members;
 	}
 
@@ -24,9 +20,10 @@ public class MetaspaceMember extends Member {
 		return member;
 	}
 
-	public void copyTo(MetaspaceMember target) {
-		super.copyTo(target);
-		target.setMembers(members);
+	@Override
+	public void copyTo(IElement element) {
+		super.copyTo(element);
+		((MetaspaceMember) element).setMembers(members);
 	}
 
 }

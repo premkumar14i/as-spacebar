@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.tibco.as.space.Member.ManagementRole;
 
-public abstract class Member extends AbstractElement implements Cloneable {
+public abstract class Member extends AbstractElement {
 
 	private String name;
 	private String hostAddress;
@@ -40,7 +40,9 @@ public abstract class Member extends AbstractElement implements Cloneable {
 				this.hostAddress = hostAddress);
 	}
 
-	public void copyTo(Member target) {
+	@Override
+	public void copyTo(IElement element) {
+		Member target = (Member) element;
 		target.setName(name);
 		target.setHostAddress(hostAddress);
 		target.setId(id);

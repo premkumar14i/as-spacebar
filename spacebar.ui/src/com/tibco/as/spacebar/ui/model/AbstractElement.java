@@ -150,4 +150,7 @@ public abstract class AbstractElement extends PlatformObject implements
 			element.addListener(listener);
 		}
 	}
+
+	public abstract AbstractElement clone();
+
 }

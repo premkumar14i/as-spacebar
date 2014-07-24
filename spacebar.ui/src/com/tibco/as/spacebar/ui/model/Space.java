@@ -282,7 +282,9 @@ public class Space extends AbstractElement implements Cloneable {
 		return spaces;
 	}
 
-	public void copyTo(Space space) {
+	@Override
+	public void copyTo(IElement element) {
+		Space space = (Space) element;
 		space.setSpaces(spaces);
 		space.setName(name);
 		space.setFields(fields.clone());
@@ -331,10 +333,6 @@ public class Space extends AbstractElement implements Cloneable {
 
 	public void setFields(SpaceFields fields) {
 		this.fields = fields;
-	}
-
-	public Spaces getSpaces() {
-		return spaces;
 	}
 
 	public void setSpaces(Spaces spaces) {
