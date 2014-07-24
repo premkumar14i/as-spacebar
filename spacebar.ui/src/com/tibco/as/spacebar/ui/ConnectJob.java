@@ -9,7 +9,6 @@ import org.eclipse.swt.widgets.Display;
 
 import com.tibco.as.spacebar.ui.handlers.metaspace.MetaspaceRule;
 import com.tibco.as.spacebar.ui.model.Metaspace;
-import com.tibco.as.spacebar.ui.model.Metaspace.State;
 import com.tibco.as.util.Utils;
 
 public class ConnectJob extends Job {
@@ -30,12 +29,11 @@ public class ConnectJob extends Job {
 		monitor.beginTask(
 				NLS.bind("Connecting to metaspace ''{0}''", metaspaceName),
 				IProgressMonitor.UNKNOWN);
-		try {
-			if (metaspace.getState() != State.DISCONNECTED) {
-				return Status.OK_STATUS;
-			}
-			metaspace.connect();
+		if (metaspace.isConnected()) {
 			return Status.OK_STATUS;
+		}
+		try {
+			metaspace.connect();
 		} catch (ExceptionInInitializerError e) {
 			String message = SpaceBarPlugin
 					.getEnvironmentVariableErrorMessage(SpaceBarPlugin
@@ -52,6 +50,7 @@ public class ConnectJob extends Job {
 		} finally {
 			monitor.done();
 		}
+		return Status.OK_STATUS;
 	}
 
 	@Override

@@ -6,8 +6,8 @@ import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.Image;
+import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 
 public abstract class AbstractWizardPage extends WizardPage {
 
@@ -21,8 +21,8 @@ public abstract class AbstractWizardPage extends WizardPage {
 	protected AbstractWizardPage(String pageName, String title,
 			String description, Image image) {
 		this(pageName, title, description);
-		setImageDescriptor(SpaceBarPlugin.getDefault().getImageDescriptor(
-				image));
+		setImageDescriptor(SpaceBarPlugin.getDefault()
+				.getImageDescriptor(image));
 	}
 
 	@Override

@@ -180,7 +180,7 @@
                      value="com.tibco.as.spacebar.ui.model.Metaspace">
                </instanceof>
                <test
-                     property="com.tibco.as.spacebar.ui.model.metaspace.state" value="CONNECTED">
+                     property="com.tibco.as.spacebar.ui.model.metaspace.connected">
                </test>
             </and>
          </enablement>
@@ -656,9 +656,11 @@
                      <instanceof
                            value="com.tibco.as.spacebar.ui.model.Metaspace">
                      </instanceof>
-		             <test
-		                   property="com.tibco.as.spacebar.ui.model.metaspace.state" value="DISCONNECTED">
-		             </test>
+                     <not>
+			             <test
+			                   property="com.tibco.as.spacebar.ui.model.metaspace.connected">
+			             </test>
+                     </not>
                   </iterate>
                </and>
             </with>
@@ -680,9 +682,11 @@
 		               <instanceof
         	                   value="com.tibco.as.spacebar.ui.model.Metaspace">
             		   </instanceof>
-		               <test 
-		                       property="com.tibco.as.spacebar.ui.model.metaspace.state" value="DISCONNECTED">
-		               </test>
+            		   <not>
+			               <test 
+			                       property="com.tibco.as.spacebar.ui.model.metaspace.connected">
+			               </test>
+		               </not>
                   </iterate>
                </and>
             </with>
@@ -705,7 +709,7 @@
                            value="com.tibco.as.spacebar.ui.model.Metaspace">
                      </instanceof>
                      <test
-                           property="com.tibco.as.spacebar.ui.model.metaspace.state" value="CONNECTED">
+                           property="com.tibco.as.spacebar.ui.model.metaspace.connected">
                      </test>
                   </iterate>
                </and>
@@ -729,7 +733,7 @@
                            value="com.tibco.as.spacebar.ui.model.Metaspace">
                      </instanceof>
 		             <test
-		                   property="com.tibco.as.spacebar.ui.model.metaspace.state" value="CONNECTED">
+		                   property="com.tibco.as.spacebar.ui.model.metaspace.connected">
 		             </test>
                   </iterate>
                </and>
@@ -753,7 +757,7 @@
                            value="com.tibco.as.spacebar.ui.model.Metaspace">
                      </instanceof>
 		             <test
-		                   property="com.tibco.as.spacebar.ui.model.metaspace.state" value="CONNECTED">
+		                   property="com.tibco.as.spacebar.ui.model.metaspace.connected">
 		             </test>
                   </iterate>
                </and>
@@ -1050,7 +1054,7 @@
             class="com.tibco.as.spacebar.ui.navigator.MetaspacePropertyTester"
             id="com.tibco.as.spacebar.ui.model.metaspace.propertyTester"
             namespace="com.tibco.as.spacebar.ui.model.metaspace"
-            properties="state"
+            properties="connected"
             type="com.tibco.as.spacebar.ui.model.Metaspace">
       </propertyTester>
       <propertyTester

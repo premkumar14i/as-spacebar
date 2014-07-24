@@ -648,7 +648,7 @@ public class Space extends AbstractElement implements Cloneable {
 		Member self = metaspace.getSelfMember();
 		try {
 			for (Member member : metaspace.getSpaceMembers(name)) {
-				if (member.getName().equals(self.getName())) {
+				if (member.getId().equals(self.getId())) {
 					return true;
 				}
 			}

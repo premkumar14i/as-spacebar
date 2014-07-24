@@ -14,10 +14,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "metaspace")
 public class Metaspace extends AbstractElement {
 
-	public enum State {
-		DISCONNECTED, CONNECTED
-	}
-
 	public static final String PROPERTY_NAME = "name";
 	public static final String PROPERTY_METASPACE = "metaspace";
 	public static final String PROPERTY_MEMBER = "member";
@@ -26,7 +22,6 @@ public class Metaspace extends AbstractElement {
 	public static final String PROPERTY_REMOTE = "remote";
 	public static final String PROPERTY_AUTOCONNECT = "autoconnect";
 	public static final String PROPERTY_TIMEOUT = "timeout";
-	public static final String PROPERTY_STATE = "state";
 
 	@XmlTransient
 	private Metaspaces metaspaces;
@@ -62,16 +57,17 @@ public class Metaspace extends AbstractElement {
 	private Spaces spaces;
 
 	@XmlTransient
-	private State state = State.DISCONNECTED;
+	private Connection connection;
 
 	@XmlTransient
-	private Connection connection;
+	private boolean connected;
 
 	public Metaspace() {
 		members = new MetaspaceMembers();
 		members.setMetaspace(this);
 		spaces = new Spaces();
 		spaces.setMetaspace(this);
+		connection = new Connection(this);
 	}
 
 	public MetaspaceMembers getMembers() {
@@ -123,7 +119,6 @@ public class Metaspace extends AbstractElement {
 		spaces.setMetaspace(metaspace);
 		metaspace.setSpaces(spaces);
 		metaspace.setRemote(remote);
-		metaspace.setState(state);
 		metaspace.setTimeout(timeout);
 	}
 
@@ -183,20 +178,13 @@ public class Metaspace extends AbstractElement {
 		firePropertyChange("remote", this.remote, this.remote = remote);
 	}
 
-	public State getState() {
-		return state;
-	}
-
 	public void disconnect() throws Exception {
+		if (!connected) {
+			return;
+		}
 		List<? extends IElement> oldValue = getChildren();
-		if (connection == null) {
-			setState(State.DISCONNECTED);
-		} else {
-			synchronized (state) {
-				connection.disconnect();
-				connection = null;
-				setState(State.DISCONNECTED);
-			}
+		synchronized (connection) {
+			connection.disconnect();
 		}
 		spaces = new Spaces();
 		spaces.setMetaspace(this);
@@ -205,20 +193,17 @@ public class Metaspace extends AbstractElement {
 		fireChildrenChange(oldValue, Collections.emptyList());
 	}
 
-	public void setState(State state) {
-		firePropertyChange(PROPERTY_STATE, this.state, this.state = state);
-	}
-
 	public Connection getConnection() {
 		return connection;
 	}
 
 	public boolean isConnected() {
-		return state == State.CONNECTED;
+		return connected;
 	}
 
-	public boolean isDisconnected() {
-		return state == State.DISCONNECTED;
+	public void setConnected(boolean connected) {
+		firePropertyChange("connected", this.connected,
+				this.connected = connected);
 	}
 
 	public String getMetaspaceName() {
@@ -227,7 +212,7 @@ public class Metaspace extends AbstractElement {
 
 	@Override
 	public List<IElement> getChildren() {
-		if (isConnected()) {
+		if (connected) {
 			return Arrays.asList((IElement) members, spaces);
 		}
 		return Collections.emptyList();
@@ -243,17 +228,12 @@ public class Metaspace extends AbstractElement {
 	}
 
 	public void connect() throws Exception {
-		if (connection == null) {
-			synchronized (state) {
-				Connection connection = new Connection(this);
-				connection.connect();
-				this.connection = connection;
-				setState(State.CONNECTED);
-				fireChildrenChange(Collections.emptyList(), getChildren());
-			}
-		} else {
-			setState(State.CONNECTED);
+		if (connected) {
+			return;
+		}
+		synchronized (connection) {
+			connection.connect();
+			fireChildrenChange(Collections.emptyList(), getChildren());
 		}
 	}
-
 }

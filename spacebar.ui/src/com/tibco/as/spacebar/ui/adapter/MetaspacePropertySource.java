@@ -30,8 +30,6 @@ public class MetaspacePropertySource implements IPropertySource {
 				"Discovery"));
 		descriptors.add(new PropertyDescriptor(Metaspace.PROPERTY_LISTEN,
 				"Listen"));
-		descriptors.add(new PropertyDescriptor(Metaspace.PROPERTY_STATE,
-				"State"));
 		descriptors.add(new PropertyDescriptor(Metaspace.PROPERTY_REMOTE,
 				"Remote"));
 		descriptors.add(new PropertyDescriptor(Metaspace.PROPERTY_TIMEOUT,
@@ -51,9 +49,6 @@ public class MetaspacePropertySource implements IPropertySource {
 		}
 		if (Metaspace.PROPERTY_LISTEN.equals(name)) {
 			return metaspace.getListen();
-		}
-		if (Metaspace.PROPERTY_STATE.equals(name)) {
-			return metaspace.getState();
 		}
 		if (Metaspace.PROPERTY_MEMBER.equals(name)) {
 			return metaspace.getMemberName();

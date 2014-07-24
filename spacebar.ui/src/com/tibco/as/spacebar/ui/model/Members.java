@@ -46,4 +46,13 @@ public abstract class Members extends AbstractElement {
 		this.members = members;
 	}
 
+	public Member getMemberById(String id) {
+		for (Member member : getChildren()) {
+			if (member.getId().equals(id)) {
+				return member;
+			}
+		}
+		return null;
+	}
+
 }

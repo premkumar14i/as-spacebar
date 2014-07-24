@@ -62,7 +62,7 @@ public class MetaspaceNavigator extends CommonNavigator implements
 					return;
 				}
 				viewer.remove(element);
-//				viewer.refresh(element.getParent());
+				// viewer.refresh(element.getParent());
 			}
 		});
 	}
@@ -101,7 +101,7 @@ public class MetaspaceNavigator extends CommonNavigator implements
 				.getFirstElement();
 		if (element instanceof Metaspace) {
 			Metaspace metaspace = (Metaspace) element;
-			if (metaspace.isDisconnected()) {
+			if (!metaspace.isConnected()) {
 				new ConnectJob(metaspace).schedule();
 			}
 		} else {

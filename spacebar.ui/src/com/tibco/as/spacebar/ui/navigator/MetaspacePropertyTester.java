@@ -12,9 +12,8 @@ public class MetaspacePropertyTester extends PropertyTester {
 		if (receiver == null || !(receiver instanceof Metaspace)) {
 			return false;
 		}
-		if (property.equals("state")) {
-			return ((Metaspace) receiver).getState().name()
-					.equals(expectedValue);
+		if (property.equals("connected")) {
+			return ((Metaspace) receiver).isConnected();
 		}
 		return false;
 	}

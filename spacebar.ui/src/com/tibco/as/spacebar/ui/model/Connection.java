@@ -56,13 +56,13 @@ public class Connection {
 					return;
 				}
 				SpaceMembers members = space.getMembers();
-				SpaceMember child = (SpaceMember) members.getChild(member
-						.getName());
-				if (child == null) {
+				SpaceMember spaceMember = (SpaceMember) members
+						.getMemberById(member.getId());
+				if (spaceMember == null) {
 					onJoin(spaceName, member, role);
 				} else {
-					child.setMember(member);
-					child.setDistributionRole(role);
+					spaceMember.setMember(member);
+					spaceMember.setDistributionRole(role);
 				}
 			}
 
@@ -75,7 +75,11 @@ public class Connection {
 					return;
 				}
 				SpaceMembers members = space.getMembers();
-				members.removeChild(member.getName());
+				Member spaceMember = members.getMemberById(member.getId());
+				if (spaceMember == null) {
+					return;
+				}
+				members.removeChild(spaceMember);
 			}
 
 			@Override
@@ -101,18 +105,23 @@ public class Connection {
 			@Override
 			public void onUpdate(com.tibco.as.space.Member member,
 					ManagementRole role) {
-				Member child = (Member) metaspace.getMembers().getChild(
-						member.getName());
-				if (child == null) {
+				MetaspaceMembers members = metaspace.getMembers();
+				Member metaspaceMember = members.getMemberById(member.getId());
+				if (metaspaceMember == null) {
 					onJoin(member, role);
 				} else {
-					child.setMember(member);
+					metaspaceMember.setMember(member);
 				}
 			}
 
 			@Override
 			public void onLeave(com.tibco.as.space.Member member) {
-				metaspace.getMembers().removeChild(member.getName());
+				MetaspaceMembers members = metaspace.getMembers();
+				Member metaspaceMember = members.getMemberById(member.getId());
+				if (metaspaceMember == null) {
+					return;
+				}
+				members.removeChild(metaspaceMember);
 			}
 
 			@Override
@@ -122,8 +131,7 @@ public class Connection {
 				MetaspaceMember child = new MetaspaceMember();
 				child.setMembers(members);
 				child.setMember(member);
-				child.setSelf(ms.getSelfMember().getName()
-						.equals(member.getName()));
+				child.setSelf(ms.getSelfMember().getId().equals(member.getId()));
 				members.addChild(child);
 			}
 		});
@@ -148,8 +156,8 @@ public class Connection {
 						SpaceMember child = new SpaceMember();
 						child.setMembers(members);
 						child.setMember(member);
-						child.setSelf(ms.getSelfMember().getName()
-								.equals(member.getName()));
+						child.setSelf(ms.getSelfMember().getId()
+								.equals(member.getId()));
 						child.setDistributionRole(member
 								.getDistributionRole(spaceName));
 						members.addChild(child);
@@ -175,8 +183,8 @@ public class Connection {
 					onDefine(newSpaceDef);
 				}
 			}
-
 		});
+		metaspace.setConnected(true);
 	}
 
 	public void disconnect() throws Exception {
@@ -184,6 +192,7 @@ public class Connection {
 			ms.closeAll();
 			ms = null;
 		}
+		metaspace.setConnected(false);
 	}
 
 	public String getMetaspaceName() {
@@ -192,6 +201,10 @@ public class Connection {
 
 	public com.tibco.as.space.Metaspace getMetaspace() {
 		return ASCommon.getMetaspace(getMetaspaceName());
+	}
+
+	public boolean isConnected() {
+		return ms != null;
 	}
 
 }
