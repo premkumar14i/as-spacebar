@@ -39,7 +39,7 @@ public class Resume extends AbstractMetaspaceHandler {
 								"Resuming metaspace ''{0}''", metaspaceName), 1);
 						connection.getMetaspace().resume();
 						monitor.worked(1);
-					} catch (Exception e) {
+					} catch (com.tibco.as.space.ASException e) {
 						return new Status(IStatus.ERROR, SpaceBarPlugin.ID_PLUGIN,
 								NLS.bind("Could not resume metaspace ''{0}''",
 										metaspaceName), e);

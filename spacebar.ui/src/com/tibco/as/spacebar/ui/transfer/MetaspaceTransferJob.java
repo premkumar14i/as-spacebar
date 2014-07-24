@@ -5,9 +5,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 
-import com.tibco.as.spacebar.ui.SpaceBarPlugin;
-
 import com.tibco.as.io.IMetaspaceTransfer;
+import com.tibco.as.io.TransferException;
+import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 
 public class MetaspaceTransferJob extends Job {
 
@@ -31,7 +31,7 @@ public class MetaspaceTransferJob extends Job {
 		transfer.addListener(new MetaspaceTransferListener(monitor, taskName));
 		try {
 			transfer.execute();
-		} catch (Exception e) {
+		} catch (TransferException e) {
 			return SpaceBarPlugin.createStatus(e, errorMessage);
 		} finally {
 			monitor.done();

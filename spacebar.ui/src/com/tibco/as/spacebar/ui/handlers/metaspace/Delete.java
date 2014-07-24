@@ -31,23 +31,15 @@ public class Delete extends AbstractMetaspaceHandler {
 
 				@Override
 				public IStatus runInUIThread(IProgressMonitor monitor) {
-					try {
-						monitor.beginTask(
-								NLS.bind("Deleting metaspace ''{0}''", metaspace),
-								2);
-						SpaceBarPlugin activator = SpaceBarPlugin.getDefault();
-						activator.getMetaspaces().removeChild(metaspace);
-						monitor.worked(1);
-						activator.delete(metaspace);
-						monitor.worked(1);
-					} catch (Exception e) {
-						return new Status(IStatus.ERROR,
-								SpaceBarPlugin.ID_PLUGIN, NLS.bind(
-										"Could not delete metaspace ''{0}''",
-										metaspace), e);
-					} finally {
-						monitor.done();
-					}
+					monitor.beginTask(
+							NLS.bind("Deleting metaspace ''{0}''", metaspace),
+							2);
+					SpaceBarPlugin activator = SpaceBarPlugin.getDefault();
+					activator.getMetaspaces().removeChild(metaspace);
+					monitor.worked(1);
+					activator.delete(metaspace);
+					monitor.worked(1);
+					monitor.done();
 					return Status.OK_STATUS;
 				}
 			}.schedule();

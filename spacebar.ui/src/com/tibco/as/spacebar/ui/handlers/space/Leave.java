@@ -26,7 +26,7 @@ public class Leave extends AbstractSpaceHandler {
 							1);
 					space.leave();
 					monitor.worked(1);
-				} catch (Exception e) {
+				} catch (com.tibco.as.space.ASException e) {
 					return new Status(IStatus.ERROR, SpaceBarPlugin.ID_PLUGIN,
 							NLS.bind("Could not leave space ''{0}''", space), e);
 				} finally {

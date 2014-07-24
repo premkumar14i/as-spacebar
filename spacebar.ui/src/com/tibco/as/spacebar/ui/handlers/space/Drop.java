@@ -36,7 +36,7 @@ public class Drop extends AbstractSpaceHandler {
 						space.getParent().getParent().getConnection()
 								.getMetaspace().dropSpace(space.getName());
 						monitor.worked(1);
-					} catch (Exception e) {
+					} catch (com.tibco.as.space.ASException e) {
 						return new Status(IStatus.ERROR,
 								SpaceBarPlugin.ID_PLUGIN, NLS.bind(
 										"Could not drop space ''{0}''", space),

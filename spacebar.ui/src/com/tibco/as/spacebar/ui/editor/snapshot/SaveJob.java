@@ -91,7 +91,7 @@ public class SaveJob extends Job {
 					return Status.CANCEL_STATUS;
 				}
 				return Status.OK_STATUS;
-			} catch (Exception e) {
+			} catch (com.tibco.as.space.ASException e) {
 				return SpaceBarPlugin.createStatus(e, "Could not save");
 			} finally {
 				try {

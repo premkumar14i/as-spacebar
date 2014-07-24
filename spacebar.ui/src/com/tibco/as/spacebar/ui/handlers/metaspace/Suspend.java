@@ -40,7 +40,7 @@ public class Suspend extends AbstractMetaspaceHandler {
 								1);
 						connection.getMetaspace().suspend();
 						monitor.worked(1);
-					} catch (Exception e) {
+					} catch (com.tibco.as.space.ASException e) {
 						return new Status(IStatus.ERROR, SpaceBarPlugin.ID_PLUGIN,
 								NLS.bind("Could not suspend metaspace ''{0}''",
 										metaspaceName), e);

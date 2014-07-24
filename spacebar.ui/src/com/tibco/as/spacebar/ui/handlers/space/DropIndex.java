@@ -59,7 +59,7 @@ public class DropIndex extends AbstractHandler {
 						spaceDef.removeIndexDef(index.getName());
 						metaspace.alterSpace(spaceDef);
 						monitor.worked(1);
-					} catch (Exception e) {
+					} catch (com.tibco.as.space.ASException e) {
 						return SpaceBarPlugin.createStatus(e,
 								"Could not drop index ''{0}''", index);
 					} finally {

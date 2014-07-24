@@ -39,7 +39,7 @@ public class Recover extends AbstractSpaceHandler {
 																				// add
 																				// RecoveryOptions
 						monitor.worked(1);
-					} catch (Exception e) {
+					} catch (com.tibco.as.space.ASException e) {
 						return new Status(IStatus.ERROR,
 								SpaceBarPlugin.ID_PLUGIN, NLS.bind(
 										"Could not recover space ''{0}''",

@@ -27,7 +27,7 @@ public class JoinLeech extends AbstractSpaceHandler {
 							1);
 					space.joinLeech();
 					monitor.worked(1);
-				} catch (Exception e) {
+				} catch (com.tibco.as.space.ASException e) {
 					return new Status(IStatus.ERROR, SpaceBarPlugin.ID_PLUGIN,
 							NLS.bind("Could not join space ''{0}'' as leech",
 									space), e);
