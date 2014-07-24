@@ -1014,6 +1014,9 @@
 		               <instanceof
         	                   value="com.tibco.as.spacebar.ui.model.Space">
             		   </instanceof>
+            		   <test
+		                   property="com.tibco.as.spacebar.ui.model.space.suspended">
+		               </test>
                   </iterate>
                </and>
             </with>

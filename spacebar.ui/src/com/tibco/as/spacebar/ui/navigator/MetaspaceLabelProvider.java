@@ -16,6 +16,7 @@ import com.tibco.as.spacebar.ui.model.Indexes;
 import com.tibco.as.spacebar.ui.model.Member;
 import com.tibco.as.spacebar.ui.model.Members;
 import com.tibco.as.spacebar.ui.model.Metaspace;
+import com.tibco.as.spacebar.ui.model.MetaspaceMember;
 import com.tibco.as.spacebar.ui.model.Metaspaces;
 import com.tibco.as.spacebar.ui.model.Space;
 import com.tibco.as.spacebar.ui.model.SpaceFields;
@@ -56,7 +57,10 @@ public class MetaspaceLabelProvider extends LabelProvider implements
 			}
 			return getImage(com.tibco.as.spacebar.ui.Image.MEMBER);
 		}
-		if (object instanceof Member) {
+		if (object instanceof MetaspaceMember) {
+			if (((MetaspaceMember) object).isManager()) {
+				return getImage(com.tibco.as.spacebar.ui.Image.MEMBER_SEEDER);
+			}
 			return getImage(com.tibco.as.spacebar.ui.Image.MEMBER);
 		}
 		if (object instanceof Spaces) {

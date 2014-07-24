@@ -94,4 +94,8 @@ public abstract class Member extends AbstractElement {
 		setPort(member.getPort());
 	}
 
+	public boolean isManager() {
+		return managementRole == ManagementRole.MANAGER;
+	}
+
 }

@@ -15,6 +15,12 @@ public class SpacePropertyTester extends PropertyTester {
 		if (property.equals("joined")) {
 			return ((Space) receiver).isJoined();
 		}
+		if (property.equals("suspended")) {
+			return ((Space) receiver).isSuspended();
+		}
+		if (property.equals("ready")) {
+			return ((Space) receiver).isReady();
+		}
 		return false;
 	}
 }

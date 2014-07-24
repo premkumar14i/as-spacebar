@@ -22,6 +22,7 @@ import com.tibco.as.space.SpaceDef.LockScope;
 import com.tibco.as.space.SpaceDef.PersistencePolicy;
 import com.tibco.as.space.SpaceDef.PersistenceType;
 import com.tibco.as.space.SpaceDef.ReplicationPolicy;
+import com.tibco.as.space.SpaceDef.SpaceState;
 import com.tibco.as.space.SpaceDef.UpdateTransport;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.util.Utils;
@@ -617,6 +618,29 @@ public class Space extends AbstractElement implements Cloneable {
 		}
 		space.close();
 		space = null;
+	}
+
+	public boolean isReady() {
+		try {
+			return getSpaceState() == SpaceState.READY;
+		} catch (ASException e) {
+			SpaceBarPlugin.logException(e);
+		}
+		return false;
+	}
+
+	public boolean isSuspended() {
+		try {
+			return getSpaceState() == SpaceState.SUSPENDED;
+		} catch (ASException e) {
+			SpaceBarPlugin.logException(e);
+		}
+		return false;
+	}
+
+	private SpaceState getSpaceState() throws ASException {
+		Metaspace metaspace = spaces.getParent().getConnection().getMetaspace();
+		return metaspace.getSpaceState(name);
 	}
 
 	public boolean isJoined() {
