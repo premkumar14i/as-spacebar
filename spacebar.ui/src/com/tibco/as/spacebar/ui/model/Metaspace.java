@@ -59,15 +59,11 @@ public class Metaspace extends AbstractElement {
 	@XmlTransient
 	private Connection connection;
 
-	@XmlTransient
-	private boolean connected;
-
 	public Metaspace() {
 		members = new MetaspaceMembers();
 		members.setMetaspace(this);
 		spaces = new Spaces();
 		spaces.setMetaspace(this);
-		connection = new Connection(this);
 	}
 
 	public MetaspaceMembers getMembers() {
@@ -179,13 +175,12 @@ public class Metaspace extends AbstractElement {
 	}
 
 	public void disconnect() throws Exception {
-		if (!connected) {
+		if (connection == null) {
 			return;
 		}
 		List<? extends IElement> oldValue = getChildren();
-		synchronized (connection) {
-			connection.disconnect();
-		}
+		connection.disconnect();
+		connection = null;
 		spaces = new Spaces();
 		spaces.setMetaspace(this);
 		members = new MetaspaceMembers();
@@ -198,12 +193,7 @@ public class Metaspace extends AbstractElement {
 	}
 
 	public boolean isConnected() {
-		return connected;
-	}
-
-	public void setConnected(boolean connected) {
-		firePropertyChange("connected", this.connected,
-				this.connected = connected);
+		return connection != null;
 	}
 
 	public String getMetaspaceName() {
@@ -212,7 +202,7 @@ public class Metaspace extends AbstractElement {
 
 	@Override
 	public List<IElement> getChildren() {
-		if (connected) {
+		if (isConnected()) {
 			return Arrays.asList((IElement) members, spaces);
 		}
 		return Collections.emptyList();
@@ -228,12 +218,11 @@ public class Metaspace extends AbstractElement {
 	}
 
 	public void connect() throws Exception {
-		if (connected) {
+		if (connection != null) {
 			return;
 		}
-		synchronized (connection) {
-			connection.connect();
-			fireChildrenChange(Collections.emptyList(), getChildren());
-		}
+		connection = new Connection(this);
+		connection.connect();
+		fireChildrenChange(Collections.emptyList(), getChildren());
 	}
 }
