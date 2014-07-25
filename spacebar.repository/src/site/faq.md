@@ -17,7 +17,12 @@
 
 3. **How do I set the AS_HOME and DYLD_LIBRARY_PATH environment variables on Mac OSX?**
 
-    
+    Edit `/etc/launchd.conf` (for example `sudo nano /etc/launchd.conf`) and add the following lines:
+```bash
+setenv AS_HOME /opt/tibco/as/2.1
+setenv DYLD_LIBRARY_PATH /opt/tibco/as/2.1/lib
+```
+    Either restart or run `launchctl < /etc/launchd.conf; sudo launchctl < /etc/launchd.conf`
 
 ## Metaspace Connection
 
