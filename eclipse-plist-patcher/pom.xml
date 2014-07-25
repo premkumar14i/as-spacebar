@@ -5,7 +5,11 @@
 	<artifactId>eclipse-plist-patcher</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
-	<name>eclipse-plist-patcher Maven Plugin</name>
+	<name>Eclipse PList Patcher Maven Plugin</name>
+	<organization>
+		<name>TIBCO Software</name>
+		<url>http://www.tibco.com/</url>
+	</organization>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -56,4 +60,25 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Release Repository</name>
+			<url>http://localhost:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Snapshot Repository</name>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<site>
+			<id>${project.artifactId}</id>
+			<url>${site.deploy.url}</url>
+		</site>
+	</distributionManagement>
+	<scm>
+		<url>https://github.com/TIBCOSoftware/as-spacebar</url>
+		<connection>scm:git:git://github.com/TIBCOSoftware/as-spacebar.git</connection>
+		<developerConnection>scm:git:git@github.com:TIBCOSoftware/as-spacebar.git</developerConnection>
+	</scm>
 </project>
