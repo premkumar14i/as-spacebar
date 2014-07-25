@@ -15,4 +15,6 @@
 
 # Eclipse Update Site
 
-`http://activespaces.tibco.com/tools/spacebar/`
+```
+http://activespaces.tibco.com/tools/spacebar/
+```
