@@ -1,14 +1,5 @@
 package com.tibco.as.spacebar.ui.model;
 
-import com.tibco.as.space.ASCommon;
-import com.tibco.as.space.ASException;
-import com.tibco.as.space.Member.DistributionRole;
-import com.tibco.as.space.Member.ManagementRole;
-import com.tibco.as.space.MemberDef;
-import com.tibco.as.space.SpaceDef;
-import com.tibco.as.space.listener.MetaspaceMemberListener;
-import com.tibco.as.space.listener.SpaceDefListener;
-import com.tibco.as.space.listener.SpaceMemberListener;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.util.Utils;
 
@@ -25,7 +16,8 @@ public class Connection {
 	public void connect() throws Exception {
 		ms = Utils.getMetaspace(metaspace.getMetaspaceName());
 		if (ms == null) {
-			final MemberDef memberDef = MemberDef.create();
+			com.tibco.as.space.MemberDef memberDef = com.tibco.as.space.MemberDef
+					.create();
 			if (metaspace.getMemberName() != null) {
 				memberDef.setMemberName(metaspace.getMemberName());
 			}
@@ -39,17 +31,19 @@ public class Connection {
 			if (metaspace.getListen() != null) {
 				memberDef.setListen(metaspace.getListen());
 			}
-			if (Utils.hasMethod(MemberDef.class, "setConnectTimeout")) {
+			if (Utils.hasMethod(com.tibco.as.space.MemberDef.class,
+					"setConnectTimeout")) {
 				memberDef.setConnectTimeout(metaspace.getTimeout());
 			}
 			ms = com.tibco.as.space.Metaspace.connect(
 					metaspace.getMetaspaceName(), memberDef);
 		}
-		ms.listenSpaceMembers(new SpaceMemberListener() {
+		ms.listenSpaceMembers(new com.tibco.as.space.listener.SpaceMemberListener() {
 
 			@Override
 			public void onUpdate(String spaceName,
-					com.tibco.as.space.Member member, DistributionRole role) {
+					com.tibco.as.space.Member member,
+					com.tibco.as.space.Member.DistributionRole role) {
 				Spaces spaces = metaspace.getSpaces();
 				Space space = (Space) spaces.getChild(spaceName);
 				if (space == null) {
@@ -84,7 +78,8 @@ public class Connection {
 
 			@Override
 			public void onJoin(String spaceName,
-					com.tibco.as.space.Member member, DistributionRole role) {
+					com.tibco.as.space.Member member,
+					com.tibco.as.space.Member.DistributionRole role) {
 				Spaces spaces = metaspace.getSpaces();
 				Space space = (Space) spaces.getChild(spaceName);
 				if (space == null) {
@@ -100,11 +95,11 @@ public class Connection {
 				members.addChild(child);
 			}
 		});
-		ms.listenMetaspaceMembers(new MetaspaceMemberListener() {
+		ms.listenMetaspaceMembers(new com.tibco.as.space.listener.MetaspaceMemberListener() {
 
 			@Override
 			public void onUpdate(com.tibco.as.space.Member member,
-					ManagementRole role) {
+					com.tibco.as.space.Member.ManagementRole role) {
 				MetaspaceMembers members = metaspace.getMembers();
 				Member metaspaceMember = members.getMemberById(member.getId());
 				if (metaspaceMember == null) {
@@ -126,7 +121,7 @@ public class Connection {
 
 			@Override
 			public void onJoin(com.tibco.as.space.Member member,
-					ManagementRole role) {
+					com.tibco.as.space.Member.ManagementRole role) {
 				MetaspaceMembers members = metaspace.getMembers();
 				MetaspaceMember child = new MetaspaceMember();
 				child.setMembers(members);
@@ -135,15 +130,15 @@ public class Connection {
 				members.addChild(child);
 			}
 		});
-		ms.listenSpaceDefs(new SpaceDefListener() {
+		ms.listenSpaceDefs(new com.tibco.as.space.listener.SpaceDefListener() {
 
 			@Override
-			public void onDrop(SpaceDef spaceDef) {
+			public void onDrop(com.tibco.as.space.SpaceDef spaceDef) {
 				metaspace.getSpaces().removeChild(spaceDef.getName());
 			}
 
 			@Override
-			public void onDefine(SpaceDef spaceDef) {
+			public void onDefine(com.tibco.as.space.SpaceDef spaceDef) {
 				Space space = new Space();
 				space.setSpaces(metaspace.getSpaces());
 				space.setSpaceDef(spaceDef);
@@ -162,14 +157,15 @@ public class Connection {
 								.getDistributionRole(spaceName));
 						members.addChild(child);
 					}
-				} catch (ASException e) {
+				} catch (com.tibco.as.space.ASException e) {
 					SpaceBarPlugin.logException("Could not get space members",
 							e);
 				}
 			}
 
 			@Override
-			public void onAlter(SpaceDef oldSpaceDef, SpaceDef newSpaceDef) {
+			public void onAlter(com.tibco.as.space.SpaceDef oldSpaceDef,
+					com.tibco.as.space.SpaceDef newSpaceDef) {
 				String oldSpaceName = oldSpaceDef.getName();
 				Space space = metaspace.getSpaces().getChild(oldSpaceName);
 				if (oldSpaceName.equals(newSpaceDef.getName())) {
@@ -200,7 +196,7 @@ public class Connection {
 	}
 
 	public com.tibco.as.space.Metaspace getMetaspace() {
-		return ASCommon.getMetaspace(getMetaspaceName());
+		return com.tibco.as.space.ASCommon.getMetaspace(getMetaspaceName());
 	}
 
 	public boolean isConnected() {

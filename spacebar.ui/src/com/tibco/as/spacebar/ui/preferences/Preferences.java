@@ -8,7 +8,6 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
-
 import com.tibco.as.convert.Attribute;
 import com.tibco.as.convert.Attributes;
 import com.tibco.as.convert.ConverterFactory.Blob;
@@ -19,7 +18,6 @@ import com.tibco.as.io.file.excel.ExcelExport;
 import com.tibco.as.io.file.excel.ExcelImport;
 import com.tibco.as.io.file.text.delimited.DelimitedExport;
 import com.tibco.as.io.file.text.delimited.DelimitedImport;
-import com.tibco.as.space.Member.DistributionRole;
 
 /**
  * Constant definitions for plug-in preferences
@@ -110,7 +108,7 @@ public class Preferences {
 		config.setBatchSize(getInteger(IMPORT_BATCH_SIZE));
 		config.setWorkerCount(getInteger(IMPORT_WORKER_COUNT));
 		config.setOperation(Operation.valueOf(getString(IMPORT_OPERATION)));
-		config.setDistributionRole(DistributionRole
+		config.setDistributionRole(com.tibco.as.space.Member.DistributionRole
 				.valueOf(getString(IMPORT_DISTRIBUTION_ROLE)));
 		config.setWaitForReadyTimeout(getLong(IMPORT_WAIT_FOR_READY_TIMEOUT));
 	}
