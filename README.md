@@ -56,3 +56,6 @@ SpaceBar provides the following features:
 
    * Data simulations
 
+
+
+[Get Started](spacebar.repository/src/site/getstarted.md)
