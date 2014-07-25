@@ -23,12 +23,14 @@
 				<executions>
 					<execution>
 						<id>materialize-products</id>
+						<phase>package</phase>
 						<goals>
 							<goal>materialize-products</goal>
 						</goals>
 					</execution>
 					<execution>
 						<id>archive-products</id>
+						<phase>verify</phase>
 						<goals>
 							<goal>archive-products</goal>
 						</goals>
@@ -41,6 +43,20 @@
 						</product>
 					</products>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.tibco.as</groupId>
+				<artifactId>eclipse-plist-patcher</artifactId>
+				<version>1.0.0-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<id>materialize-products</id>
+						<phase>package</phase>
+						<goals>
+							<goal>patch-plist-file</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
