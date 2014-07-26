@@ -17,19 +17,19 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import com.tibco.as.space.FieldDef.FieldType;
+import com.tibco.as.spacebar.ui.model.Field;
 import com.tibco.as.util.Utils;
 
 public class FieldEditor extends Composite {
 
 	private DataBindingContext m_bindingContext;
-	private com.tibco.as.spacebar.ui.model.Field field;
+	private Field field;
 	private Text nameText;
 	private Button nullableButton;
 	private Button encryptedButton;
 	private ComboViewer typeCombo;
 
-	public FieldEditor(Composite parent, int style,
-			com.tibco.as.spacebar.ui.model.Field newField) {
+	public FieldEditor(Composite parent, int style, Field newField) {
 		this(parent, style);
 		setField(newField);
 	}
@@ -37,20 +37,15 @@ public class FieldEditor extends Composite {
 	public FieldEditor(Composite parent, int style) {
 		super(parent, style);
 		setLayout(new GridLayout(2, false));
-
 		new Label(this, SWT.NONE).setText("Name:");
-
 		nameText = new Text(this, SWT.BORDER | SWT.SINGLE);
 		nameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-
 		new Label(this, SWT.NONE).setText("Type:");
-
 		typeCombo = new ComboViewer(this, SWT.READ_ONLY);
 		typeCombo.getCombo().setLayoutData(
 				new GridData(SWT.FILL, SWT.CENTER, true, false));
 		typeCombo.setContentProvider(ArrayContentProvider.getInstance());
 		typeCombo.setInput(FieldType.values());
-
 		nullableButton = new Button(this, SWT.CHECK | SWT.LEFT);
 		nullableButton.setText("Nullable");
 		GridDataFactory.defaultsFor(nullableButton).span(2, 1)
@@ -59,7 +54,6 @@ public class FieldEditor extends Composite {
 				false);
 		nullableGridData.horizontalSpan = 2;
 		nullableButton.setLayoutData(nullableGridData);
-
 		encryptedButton = new Button(this, SWT.CHECK | SWT.LEFT);
 		encryptedButton.setText("Encrypted");
 		GridDataFactory.defaultsFor(encryptedButton).span(2, 1)
@@ -68,6 +62,10 @@ public class FieldEditor extends Composite {
 		if (field != null) {
 			m_bindingContext = initDataBindings();
 		}
+	}
+	
+	public Button getNullableButton() {
+		return nullableButton;
 	}
 
 	@Override
@@ -107,16 +105,15 @@ public class FieldEditor extends Composite {
 		return bindingContext;
 	}
 
-	public com.tibco.as.spacebar.ui.model.Field getField() {
+	public Field getField() {
 		return field;
 	}
 
-	public void setField(com.tibco.as.spacebar.ui.model.Field newField) {
+	public void setField(Field newField) {
 		setField(newField, true);
 	}
 
-	public void setField(com.tibco.as.spacebar.ui.model.Field newField,
-			boolean update) {
+	public void setField(Field newField, boolean update) {
 		field = newField;
 		if (update) {
 			if (m_bindingContext != null) {

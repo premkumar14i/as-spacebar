@@ -36,7 +36,7 @@ public class AddFieldWizard extends AbstractWizard implements INewWizard {
 		field.setFields(fields);
 		field.setNullable(true);
 		field.setType(FieldType.STRING);
-		addPage(new EditFieldWizardPage(null, field));
+		addPage(new AddFieldWizardPage(field));
 	}
 
 	@Override
@@ -48,10 +48,10 @@ public class AddFieldWizard extends AbstractWizard implements INewWizard {
 		SpaceDef spaceDef = metaspace.getSpaceDef(space.getName());
 		FieldDef fieldDef = FieldDef.create(field.getName(), field.getType());
 		if (Utils.hasFieldDefMethod("setEncrypted")) {
-			fieldDef.setEncrypted(field.isNullable());
+			fieldDef.setEncrypted(field.isEncrypted());
 		}
 		fieldDef.setNullable(field.isNullable());
-		spaceDef.getFieldDefs().add(fieldDef);
+		spaceDef.putFieldDef(fieldDef);
 		metaspace.alterSpace(spaceDef);
 		monitor.worked(1);
 	}
