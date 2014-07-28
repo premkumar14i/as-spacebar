@@ -2,8 +2,6 @@ package com.tibco.as.spacebar.ui.wizards.space;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.databinding.beans.BeanProperties;
@@ -16,6 +14,7 @@ import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.databinding.viewers.ViewerSupport;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -120,14 +119,14 @@ public class DualList<T> extends Composite implements IListChangeListener {
 		upButton = createButton(rightButtonPane, "Up", new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				moveItem(-1);
+				moveSelectionUp();
 			}
 		});
 		downButton = createButton(rightButtonPane, "Down",
 				new SelectionAdapter() {
 					@Override
 					public void widgetSelected(SelectionEvent e) {
-						moveItem(1);
+						moveSelectionDown();
 					}
 				});
 		topButton = createButton(rightButtonPane, "Top",
@@ -630,31 +629,38 @@ public class DualList<T> extends Composite implements IListChangeListener {
 	/**
 	 * Move the selected item up
 	 */
-	private void moveItem(int shift) {
-		IStructuredSelection selection = (IStructuredSelection) rightViewer
-				.getSelection();
-		List<Object> selected = new ArrayList<Object>();
-		for (Iterator<?> iterator = selection.iterator(); iterator.hasNext();) {
-			Object element = iterator.next();
-			int index = rightList.indexOf(element);
-			int second = index + shift;
-			if (second >= rightList.size() || second < 0) {
-				return;
+	private void moveSelectionUp() {
+		ISelection selection = rightViewer.getSelection();
+		if (selection.isEmpty()) {
+			return;
+		}
+		List<?> selectionList = ((IStructuredSelection) selection).toList();
+		// starting with 2nd element because we can't move up the first element
+		for (int index = 1; index < rightList.size(); index++) {
+			Object element = rightList.get(index);
+			if (selectionList.contains(element)) {
+				rightList.set(index, rightList.get(index - 1));
+				rightList.set(index - 1, element);
 			}
-			selected.add(element);
 		}
-		if (shift > 0) {
-			Collections.reverse(selected);
+		rightViewer.setSelection(new StructuredSelection(selectionList));
+	}
+
+	private void moveSelectionDown() {
+		ISelection selection = rightViewer.getSelection();
+		if (selection.isEmpty()) {
+			return;
 		}
-		for (Object element1 : selected) {
-			int index1 = rightList.indexOf(element1);
-			int index2 = index1 + shift;
-			Object element2 = rightList.get(index2);
-			rightList.set(index1, element2);
-			rightList.set(index2, element1);
+		List<?> selectionList = ((IStructuredSelection) selection).toList();
+		// starting with penultimate because we can't move down the last element
+		for (int index = rightList.size() - 2; index >= 0; index--) {
+			Object element = rightList.get(index);
+			if (selectionList.contains(element)) {
+				rightList.set(index, rightList.get(index + 1));
+				rightList.set(index + 1, element);
+			}
 		}
-		StructuredSelection newSelection = new StructuredSelection(selected);
-		rightViewer.setSelection(newSelection);
+		rightViewer.setSelection(new StructuredSelection(selectionList));
 	}
 
 	/**
@@ -718,7 +724,7 @@ public class DualList<T> extends Composite implements IListChangeListener {
 				dualList.setSelection(selected);
 				// dualList.setItems(new WritableList(fields, Field.class));
 				// Open and return the Shell
-				shell.setSize(700, 80);
+				shell.setSize(640, 480);
 				shell.open();
 				// The SWT event loop
 				while (!shell.isDisposed()) {
