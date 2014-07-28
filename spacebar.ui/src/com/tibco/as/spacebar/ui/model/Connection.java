@@ -23,7 +23,7 @@ public class Connection {
 		this.metaspace = metaspace;
 	}
 
-	public void connect() throws Exception {
+	public void open() throws Exception {
 		ms = Utils.getMetaspace(metaspace.getMetaspaceName());
 		if (ms == null) {
 			MemberDef memberDef = MemberDef.create();
@@ -186,9 +186,9 @@ public class Connection {
 		});
 	}
 
-	public void disconnect() throws Exception {
+	public void close() throws Exception {
 		if (ms != null) {
-			ms.closeAll();
+			ms.close();
 			ms = null;
 		}
 	}

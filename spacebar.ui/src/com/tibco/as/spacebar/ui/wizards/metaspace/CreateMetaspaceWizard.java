@@ -27,11 +27,8 @@ public class CreateMetaspaceWizard extends AbstractWizard implements INewWizard 
 
 	@Override
 	protected void finish(IProgressMonitor monitor) throws Exception {
-		monitor.beginTask(NLS.bind("Creating metaspace ''{0}''", metaspace), 2);
-		SpaceBarPlugin activator = SpaceBarPlugin.getDefault();
-		activator.getMetaspaces().addChild(metaspace);
-		monitor.worked(1);
-		activator.saveMetaspaces();
+		monitor.beginTask(NLS.bind("Creating metaspace ''{0}''", metaspace), 1);
+		SpaceBarPlugin.getDefault().add(metaspace);
 		monitor.worked(1);
 	}
 

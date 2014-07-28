@@ -24,12 +24,15 @@ public class DisconnectJob extends UIJob {
 	public IStatus runInUIThread(IProgressMonitor monitor) {
 		monitor.beginTask(getName(), IProgressMonitor.UNKNOWN);
 		try {
-			metaspace.disconnect();
+			if (metaspace.isConnected()) {
+				metaspace.getConnection().close();
+				metaspace.setConnection(null);
+			}
 			if (monitor.isCanceled()) {
 				return Status.CANCEL_STATUS;
 			}
 			return Status.OK_STATUS;
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			String message = NLS.bind("Could not disconnect metaspace ''{0}''",
 					metaspace.getConnection().getMetaspaceName());
 			return SpaceBarPlugin.logException(message, e);

@@ -174,20 +174,6 @@ public class Metaspace extends AbstractElement {
 		firePropertyChange("remote", this.remote, this.remote = remote);
 	}
 
-	public void disconnect() throws Exception {
-		if (connection == null) {
-			return;
-		}
-		List<? extends IElement> oldValue = getChildren();
-		connection.disconnect();
-		connection = null;
-		spaces = new Spaces();
-		spaces.setMetaspace(this);
-		members = new MetaspaceMembers();
-		members.setMetaspace(this);
-		fireChildrenChange(oldValue, Collections.emptyList());
-	}
-
 	public Connection getConnection() {
 		return connection;
 	}
@@ -217,12 +203,14 @@ public class Metaspace extends AbstractElement {
 		fireNameChange(this.name, this.name = name);
 	}
 
-	public void connect() throws Exception {
-		if (connection != null) {
-			return;
+	public void setConnection(Connection connection) {
+		List<IElement> oldValue = getChildren();
+		this.connection = connection;
+		if (connection == null) {
+			members.getChildren().clear();
+			spaces.getChildren().clear();
 		}
-		connection = new Connection(this);
-		connection.connect();
-		fireChildrenChange(Collections.emptyList(), getChildren());
+		fireChildrenChange(oldValue, getChildren());
 	}
+
 }

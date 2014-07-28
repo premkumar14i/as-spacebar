@@ -33,11 +33,8 @@ public class Delete extends AbstractMetaspaceHandler {
 				public IStatus runInUIThread(IProgressMonitor monitor) {
 					monitor.beginTask(
 							NLS.bind("Deleting metaspace ''{0}''", metaspace),
-							2);
-					SpaceBarPlugin activator = SpaceBarPlugin.getDefault();
-					activator.getMetaspaces().removeChild(metaspace);
-					monitor.worked(1);
-					activator.delete(metaspace);
+							1);
+					SpaceBarPlugin.getDefault().delete(metaspace);
 					monitor.worked(1);
 					monitor.done();
 					return Status.OK_STATUS;

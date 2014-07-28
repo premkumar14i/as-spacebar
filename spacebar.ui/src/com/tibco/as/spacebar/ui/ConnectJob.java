@@ -5,9 +5,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.swt.widgets.Display;
 
 import com.tibco.as.spacebar.ui.handlers.metaspace.MetaspaceRule;
+import com.tibco.as.spacebar.ui.model.Connection;
 import com.tibco.as.spacebar.ui.model.Metaspace;
 import com.tibco.as.util.Utils;
 
@@ -33,7 +33,9 @@ public class ConnectJob extends Job {
 			return Status.OK_STATUS;
 		}
 		try {
-			metaspace.connect();
+			Connection connection = new Connection(metaspace);
+			connection.open();
+			metaspace.setConnection(connection);
 		} catch (ExceptionInInitializerError e) {
 			String message = SpaceBarPlugin
 					.getEnvironmentVariableErrorMessage(SpaceBarPlugin
@@ -53,14 +55,4 @@ public class ConnectJob extends Job {
 		return Status.OK_STATUS;
 	}
 
-	@Override
-	protected void canceling() {
-		try {
-			metaspace.disconnect();
-		} catch (Exception e) {
-			SpaceBarPlugin.errorDialog(Display.getDefault().getActiveShell(),
-					"Could not disconnect", e);
-		}
-		super.canceling();
-	}
 }

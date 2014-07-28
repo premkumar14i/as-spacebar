@@ -254,7 +254,7 @@ public class SnapshotBrowser extends AbstractBrowser<Tuple> {
 
 	public void setSizeItem(StatusLineContributionItem sizeItem) {
 		this.sizeItem = sizeItem;
-		updateSizeItem();
+//		updateSizeItem();
 	}
 
 	private void updateSizeItem() {

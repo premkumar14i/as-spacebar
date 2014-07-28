@@ -361,4 +361,10 @@ public class SpaceBarPlugin extends AbstractUIPlugin {
 		}
 	}
 
+	public void add(Metaspace metaspace) {
+		if (getMetaspaces().addChild(metaspace)) {
+			saveMetaspaces();
+		}
+	}
+
 }
