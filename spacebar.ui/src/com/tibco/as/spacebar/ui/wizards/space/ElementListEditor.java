@@ -29,18 +29,12 @@ public abstract class ElementListEditor extends Composite {
 	private Button addButton;
 	private Button editButton;
 	private Button removeButton;
-	// private Button revertButton;
-	// private Map<IElement, IElement> backup = new HashMap<IElement,
-	// IElement>();
 	private IElement parentElement;
 
 	public ElementListEditor(Composite parent, int style,
 			IElement parentElement, ColumnConfig... configs) {
 		super(parent, style);
 		this.parentElement = parentElement;
-		// for (IElement element : parentElement.getChildren()) {
-		// backup.put(element, element.clone());
-		// }
 		setLayout(new GridLayout(2, false));
 		Composite tableComposite = new Composite(this, SWT.NONE);
 		tableComposite.setFont(getFont());
@@ -110,34 +104,10 @@ public abstract class ElementListEditor extends Composite {
 			}
 		});
 		createSeparator(buttons);
-		// revertButton = new Button(buttons, SWT.PUSH);
-		// revertButton.setText("Re&vert");
-		// GridDataFactory.defaultsFor(revertButton).grab(true, false)
-		// .applyTo(revertButton);
-		// revertButton.addListener(SWT.Selection, new Listener() {
-		// public void handleEvent(Event e) {
-		// revert();
-		// }
-		// });
 		createSeparator(buttons);
 		tableViewer.setInput(parentElement.getChildren());
 		updateButtons();
 	}
-
-	// private void revert() {
-	// IStructuredSelection selection = (IStructuredSelection) tableViewer
-	// .getSelection();
-	// Iterator<?> elements = selection.iterator();
-	// while (elements.hasNext()) {
-	// IElement element = (IElement) elements.next();
-	// IElement original = backup.get(element);
-	// if (original != null) {
-	// original.copyTo(element);
-	// }
-	// }
-	// updateButtons();
-	// tableViewer.refresh();
-	// }
 
 	private void remove() {
 		for (Object element : ((IStructuredSelection) tableViewer
@@ -156,18 +126,7 @@ public abstract class ElementListEditor extends Composite {
 		editButton.setEnabled(selection.size() == 1);
 		removeButton.setEnabled(selection.size() > 0
 				&& selection.size() <= tableViewer.getTable().getItemCount());
-		// revertButton.setEnabled(canRevert(selection));
 	}
-
-	// private boolean canRevert(IStructuredSelection selection) {
-	// Iterator<?> iterator = selection.iterator();
-	// while (iterator.hasNext()) {
-	// if (backup.containsKey(iterator.next())) {
-	// return true;
-	// }
-	// }
-	// return false;
-	// }
 
 	/**
 	 * Creates a separator between buttons.
