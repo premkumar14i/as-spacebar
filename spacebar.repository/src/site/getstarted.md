@@ -24,23 +24,17 @@ Unzip the distribution.
 
 Launch the `spacebar` executable.
 
-
-
 ## <a name="eclipse" />Eclipse
-
 
 #### Update site
 
 Open the *Help* menu and select *Install New Software*.
 
-Enter this update site URL in the top input field:
-
-[http://activespaces.tibco.com/tools/spacebar](http://activespaces.tibco.com/tools/spacebar)
+Enter this update site URL in the top input field: [http://activespaces.tibco.com/tools/spacebar](http://activespaces.tibco.com/tools/spacebar)
 
 and select *Add*.
 
 Choose any name for the site and press *OK*.
-
 
 #### Install
 
@@ -51,7 +45,6 @@ Press the *Next* button twice.
 Read through the license agreement if you want, and accept it below.
 
 Press the *Next* button followed by the *Finish* button.
-
 
 #### Restart
 
