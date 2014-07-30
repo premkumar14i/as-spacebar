@@ -30,7 +30,7 @@ Launch the `spacebar` executable.
 
 Open the *Help* menu and select *Install New Software*.
 
-Enter this update site URL in the top input field: [http://activespaces.tibco.com/tools/spacebar](http://activespaces.tibco.com/tools/spacebar)
+Enter this update site URL in the top input field: `[http://activespaces.tibco.com/tools/spacebar](http://activespaces.tibco.com/tools/spacebar)`
 
 and select *Add*.
 
