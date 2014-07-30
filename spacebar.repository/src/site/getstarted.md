@@ -18,36 +18,36 @@ SpaceBar can be run as a [standalone](#standalone) application or [in Eclipse](#
 
 #### Install
 
-Unzip the distribution.
+ Unzip the distribution.
 
 #### Run
 
-Launch the `spacebar` executable.
+ Launch the `spacebar` executable.
 
 ## <a name="eclipse" />Eclipse
 
 #### Update site
 
-Open the *Help* menu and select *Install New Software*.
+ Open the *Help* menu and select *Install New Software*.
 
-In the top input field enter this URL: [http://activespaces.tibco.com/tools/spacebar](http://activespaces.tibco.com/tools/spacebar)
+ In the top input field enter this URL: [http://activespaces.tibco.com/tools/spacebar](http://activespaces.tibco.com/tools/spacebar)
 
-and select *Add*.
+ and select *Add*.
 
-Choose any name for the site and press *OK*.
+ Choose any name for the site and press *OK*.
 
 #### Install
 
-Expand the elements under the *TIBCO ActiveSpaces* category and put a mark into the *SpaceBar Plugin* checkbox.
+ Expand the elements under the *TIBCO ActiveSpaces* category and put a mark into the *SpaceBar Plugin* checkbox.
 
-Press the *Next* button twice.
+ Press the *Next* button twice.
 
-Read through the license agreement if you want, and accept it below.
+ Read through the license agreement if you want, and accept it below.
 
-Press the *Next* button followed by the *Finish* button.
+ Press the *Next* button followed by the *Finish* button.
 
 #### Restart
 
-Eclipse is now downloading SpaceBar and will ask for a restart when done.
+ Eclipse is now downloading SpaceBar and will ask for a restart when done.
 
-Restart Eclipse and look for a new perspective called ActiveSpaces.
+ Restart Eclipse and look for a new perspective called ActiveSpaces.
