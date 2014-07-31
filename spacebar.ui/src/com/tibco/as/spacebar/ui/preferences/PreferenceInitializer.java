@@ -31,7 +31,8 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(Preferences.EXPORT_PREFETCH, 1000L);
 		store.setDefault(Preferences.EXPORT_QUERY_LIMIT, 100000L);
 		store.setDefault(Preferences.EXPORT_TIMEOUT, -1L);
-		store.setDefault(Preferences.EXPORT_CLIPBOARD_SEPARATOR, "\\t");
+		store.setDefault(Preferences.SPACE_EDITOR_CLIPBOARD_SEPARATOR, "\\t");
+		store.setDefault(Preferences.SPACE_EDITOR_CLIPBOARD_HEADER, false);
 		store.setDefault(Preferences.EXPORT_CSV_HEADER, true);
 		store.setDefault(Preferences.EXPORT_CSV_SEPARATOR,
 				String.valueOf(CSVWriter.DEFAULT_SEPARATOR));

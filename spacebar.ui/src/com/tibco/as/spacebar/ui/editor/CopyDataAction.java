@@ -16,7 +16,7 @@ public class CopyDataAction implements IKeyAction {
 	public void run(NatTable natTable, KeyEvent event) {
 		IPreferenceStore store = SpaceBarPlugin.getDefault().getPreferenceStore();
 		String delimiter = StringUtils.unescape(store
-				.getString(Preferences.EXPORT_CLIPBOARD_SEPARATOR));
+				.getString(Preferences.SPACE_EDITOR_CLIPBOARD_SEPARATOR));
 		natTable.doCommand(new CopyDataToClipboardCommand(delimiter, System
 				.getProperty("line.separator"), natTable.getConfigRegistry()));
 	}

@@ -38,13 +38,14 @@ public class Preferences {
 	public static final String SPACE_EDITOR_COLOR_BLINK = "spaceEditorColorBlink";
 	public static final String SPACE_EDITOR_COLOR_BLINK_UP = "spaceEditorColorBlinkUp";
 	public static final String SPACE_EDITOR_COLOR_BLINK_DOWN = "spaceEditorColorBlinkDown";
+	public static final String SPACE_EDITOR_CLIPBOARD_SEPARATOR = "spaceEditorClipboardSeparator";
+	public static final String SPACE_EDITOR_CLIPBOARD_HEADER = "spaceEditorClipboardHeader";
 	public static final String EXPORT_TIME_SCOPE = "exportTimeScope";
 	public static final String EXPORT_BATCH_SIZE = "exportBatchSize";
 	public static final String EXPORT_WORKER_COUNT = "exportWorkerCount";
 	public static final String EXPORT_TIMEOUT = "exportTimeout";
 	public static final String EXPORT_PREFETCH = "exportPrefetch";
 	public static final String EXPORT_QUERY_LIMIT = "exportQueryLimit";
-	public static final String EXPORT_CLIPBOARD_SEPARATOR = "exportClipboardSeparator";
 	public static final String EXPORT_CSV_AUTOFLUSH = "exportCSVAutoflush";
 	public static final String EXPORT_CSV_HEADER = "exportCSVNoHeader";
 	public static final String EXPORT_CSV_SEPARATOR = "exportCSVSeparator";

@@ -1,5 +1,6 @@
 package com.tibco.as.spacebar.ui.editor.snapshot;
 
+import java.text.ChoiceFormat;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,6 +44,10 @@ import com.tibco.as.spacebar.ui.editor.snapshot.Change.Type;
 import com.tibco.as.spacebar.ui.model.Space;
 
 public class SnapshotBrowser extends AbstractBrowser<Tuple> {
+
+	private ChoiceFormat sizeFormat = new ChoiceFormat(
+			new double[] { 0, 1, 2 }, new String[] { "no tuples", "1 tuple",
+					"{0} tuples" });
 
 	private boolean dirty;
 
@@ -254,11 +259,11 @@ public class SnapshotBrowser extends AbstractBrowser<Tuple> {
 
 	public void setSizeItem(StatusLineContributionItem sizeItem) {
 		this.sizeItem = sizeItem;
-//		updateSizeItem();
+		// updateSizeItem();
 	}
 
 	private void updateSizeItem() {
-		sizeItem.setText(MessageFormat.format("{0} tuples", size));
+		sizeItem.setText(MessageFormat.format(sizeFormat.format(size), size));
 	}
 
 	public void setBrowseTimeItem(StatusLineContributionItem browseTimeItem) {

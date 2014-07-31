@@ -1123,16 +1123,16 @@
             name="Display">
       </page>
       <page
+            category="com.tibco.as.spacebar.ui.preferences.ActiveSpaces.SpaceEditor"
+            class="com.tibco.as.spacebar.ui.preferences.SpaceEditorClipboardPreferencePage"
+            id="com.tibco.as.spacebar.ui.preferences.ActiveSpaces.SpaceEditor.Clipboard"
+            name="Clipboard">
+      </page>
+      <page
             category="com.tibco.as.spacebar.ui.preferences.ActiveSpaces"
             class="com.tibco.as.spacebar.ui.preferences.TransferPreferencePage"
             id="com.tibco.as.spacebar.ui.preferences.ActiveSpaces.ImportExport"
             name="Import/Export">
-      </page>
-      <page
-            category="com.tibco.as.spacebar.ui.preferences.ActiveSpaces.ImportExport"
-            class="com.tibco.as.spacebar.ui.preferences.ClipboardPreferencePage"
-            id="com.tibco.as.spacebar.ui.preferences.ActiveSpaces.ImportExport.Clipboard"
-            name="Clipboard">
       </page>
       <page
             category="com.tibco.as.spacebar.ui.preferences.ActiveSpaces.ImportExport"

@@ -51,7 +51,7 @@ public class TransferListener implements ITransferListener {
 				IInputStream<?> in = transfer.getInputStream();
 				long size = in.getPosition();
 				double browseTime = (double) in.getOpenTime() / 1000000d;
-				editor.setSize(size);
+				editor.setSize(size > 0 ? size - 1 : 0);
 				editor.setBrowseTime(browseTime);
 			}
 		});

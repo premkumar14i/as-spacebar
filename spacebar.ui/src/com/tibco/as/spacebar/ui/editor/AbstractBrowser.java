@@ -295,9 +295,7 @@ public abstract class AbstractBrowser<T extends Map<String, Object>> extends
 				columnHeaderLayer.getColumnHeaderDataLayer(),
 				columnHeaderLayer.getColumnGroupHeaderLayer(), columnGroupModel);
 		bodyLayer.registerCommandHandler(columnChooserCommandHandler);
-		CopyDataCommandHandler copyDataCommandHandler = new CopyDataCommandHandler(
-				bodyLayer.getSelectionLayer(),
-				columnHeaderLayer.getColumnHeaderDataLayer(), null);
+		CopyDataCommandHandler copyDataCommandHandler = getCopyDataCommandHandler();
 		copyDataCommandHandler.setCopyFormattedText(true);
 		bodyLayer.registerCommandHandler(copyDataCommandHandler);
 		DefaultRowHeaderDataProvider rowHeaderDataProvider = new DefaultRowHeaderDataProvider(
@@ -318,6 +316,15 @@ public abstract class AbstractBrowser<T extends Map<String, Object>> extends
 		natTable.configure();
 		natTable.setTheme(getTheme());
 		copyDataAction = new CopyDataAction();
+	}
+
+	private CopyDataCommandHandler getCopyDataCommandHandler() {
+		if (Boolean.TRUE.equals(Preferences
+				.getBoolean(Preferences.SPACE_EDITOR_CLIPBOARD_HEADER))) {
+			return new CopyDataCommandHandler(bodyLayer.getSelectionLayer(),
+					columnHeaderLayer.getColumnHeaderDataLayer(), null);
+		}
+		return new CopyDataCommandHandler(bodyLayer.getSelectionLayer());
 	}
 
 	private ThemeConfiguration getTheme() {
