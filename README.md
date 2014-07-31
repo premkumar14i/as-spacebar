@@ -8,6 +8,4 @@ SpaceBar is a Graphical User Interface (GUI) tool for TIBCO ActiveSpaces that he
 
 ### [Get Started](spacebar.repository/src/site/getstarted.md)
 
-### [Download](spacebar.repository/src/site/download.md)
-
 ### [FAQ](spacebar.repository/src/site/faq.md)
