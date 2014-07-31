@@ -15,7 +15,7 @@
 
     Also check that you have the appropriate architecture installed (e.g. 32 vs 64-bit).
 
-3. **How do I set the AS_HOME and DYLD_LIBRARY_PATH environment variables on Mac OSX?**
+3. **How do I set the AS_HOME and DYLD_LIBRARY_PATH environment variables for GUI applications on Mac OSX?**
 
     Edit `/etc/launchd.conf` (for example `sudo nano /etc/launchd.conf`) and add the following lines:
     ```bash
