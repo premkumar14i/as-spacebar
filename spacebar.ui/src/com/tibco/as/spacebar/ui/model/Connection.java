@@ -188,7 +188,7 @@ public class Connection {
 
 	public void close() throws Exception {
 		if (ms != null) {
-			ms.close();
+			ms.closeAll();
 			ms = null;
 		}
 	}
