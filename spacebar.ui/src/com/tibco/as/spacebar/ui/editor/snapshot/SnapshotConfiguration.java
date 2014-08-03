@@ -24,11 +24,10 @@ public class SnapshotConfiguration extends AbstractConfiguration {
 				EditConfigAttributes.CELL_EDITABLE_RULE,
 				IEditableRule.ALWAYS_EDITABLE);
 		super.configureRegistry(configRegistry);
-		DateTimeDisplayConverter dateTimeDisplayConverter = new DateTimeDisplayConverter(
-				null, Preferences.getSpaceEditorTimeZone());
 		configRegistry.registerConfigAttribute(
 				CellConfigAttributes.DISPLAY_CONVERTER,
-				dateTimeDisplayConverter, DisplayMode.EDIT,
+				new DateTimeDisplayConverter(null, Preferences
+						.getSpaceEditorTimeZone()), DisplayMode.EDIT,
 				DATETIME_CONFIG_LABEL);
 		configRegistry.registerConfigAttribute(
 				CellConfigAttributes.DISPLAY_CONVERTER,
@@ -53,7 +52,6 @@ public class SnapshotConfiguration extends AbstractConfiguration {
 		configRegistry.registerConfigAttribute(
 				EditConfigAttributes.CELL_EDITOR, new CheckBoxCellEditor(),
 				DisplayMode.EDIT, CHECKBOX_EDITOR_CONFIG_LABEL);
-
 	}
 
 }
