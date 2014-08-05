@@ -1,12 +1,12 @@
 # Get Started
 
-SpaceBar can be run as a [standalone](#standalone) application or [in Eclipse](#eclipse). 
+SpaceBar can be run as a [standalone](#application) application or [in Eclipse](#plugin). 
 
-## <a name="standalone" />Standalone
+## <a name="application" />Standalone Application
 
 #### Download
 
-
+[Download SpaceBar](download.html#application) for your platform.
 
 #### Install
 
@@ -16,7 +16,7 @@ Unzip the distribution.
 
 Launch the `spacebar` executable.
 
-## <a name="eclipse" />Eclipse
+## <a name="plugin" />Eclipse Plugin
 
 #### Update site
 
