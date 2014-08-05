@@ -6,7 +6,7 @@ SpaceBar can be run as a [standalone](#standalone) application or [in Eclipse](#
 
 #### Download
 
-|Platform                              |Architecture|Distribution                                                                                                                                   |
+|Platform                              |Architecture|                                                                                                                                   |
 |:-------------------------------------|:----------:|-----------------------------------------------------------------------------------------------------------------------------------|
 |![Linux](images/linux.png) Linux     |64-bit      |<a target="_blank" href="http://activespaces.tibco.com/tools/spacebar/spacebar-2.1-linux.gtk.x86_64.zip" class="btn btn-primary btn-small">spacebar-2.1-linux.gtk.x86_64.zip</a>      |
 |                                      |32-bit      |<a target="_blank" href="http://activespaces.tibco.com/tools/spacebar/spacebar-2.1-linux.gtk.x86.zip"    class="btn btn-primary btn-small">spacebar-2.1-linux.gtk.x86.zip</a>         |
