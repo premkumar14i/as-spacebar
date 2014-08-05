@@ -2,7 +2,7 @@
 
 SpaceBar is built on Eclipse and is available as a standalone RCP application or as a plugin.
 
-## <a name="application" />Standalone Application
+## Standalone Application
 
 |Platform                              |Architecture|                                                                                                                                   |
 |:-------------------------------------|:----------:|-----------------------------------------------------------------------------------------------------------------------------------|
@@ -14,6 +14,6 @@ SpaceBar is built on Eclipse and is available as a standalone RCP application or
 
 <a href="https://raw.githubusercontent.com/TIBCOSoftware/as-spacebar/master/LICENSE" target="_blank">Licenses</a>
 
-## <a name="plugin" />Eclipse Plugin
+## Eclipse Plugin
 
 Update site: [http://activespaces.tibco.com/tools/spacebar](http://activespaces.tibco.com/tools/spacebar)
