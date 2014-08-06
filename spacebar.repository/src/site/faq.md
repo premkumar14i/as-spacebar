@@ -24,6 +24,7 @@
     setenv AS_HOME /opt/tibco/as/2.1
     setenv DYLD_LIBRARY_PATH /opt/tibco/as/2.1/lib
     ~~~
+    
     Either restart or run `launchctl < /etc/launchd.conf; sudo launchctl < /etc/launchd.conf`
 
 ## Metaspace Connection
