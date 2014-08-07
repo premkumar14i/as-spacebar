@@ -25,6 +25,7 @@ public class Browse extends AbstractBrowseHandler {
 
 	@Override
 	protected String getTimeScope() {
-		return Preferences.getSpaceEditorBrowseTimeScope();
+		return Preferences
+				.getString(Preferences.SPACE_EDITOR_BROWSE_TIME_SCOPE);
 	}
 }

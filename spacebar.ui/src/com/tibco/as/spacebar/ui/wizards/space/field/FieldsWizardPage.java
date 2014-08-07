@@ -17,9 +17,6 @@ public class FieldsWizardPage extends AbstractWizardPage implements
 	private SpaceFields fields;
 	private IObservableList observe;
 
-	/**
-	 * Create the wizard.
-	 */
 	public FieldsWizardPage(SpaceFields fields) {
 		super("spaceFieldsWizardPage", "Space Fields", "Enter space fields");
 		this.fields = fields;

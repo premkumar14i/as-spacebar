@@ -17,19 +17,19 @@ public class Formats {
 	}
 
 	public Blob getBlobFormat() {
-		return conversion.get(Attribute.FORMAT_BLOB);
+		return conversion.get(Attribute.BLOB);
 	}
 
 	public void setBlobFormat(Blob blobFormat) {
-		conversion.put(Attribute.FORMAT_BLOB, blobFormat);
+		conversion.put(Attribute.BLOB, blobFormat);
 	}
 
 	public String getDateFormat() {
-		return conversion.get(Attribute.FORMAT_DATE);
+		return conversion.get(Attribute.DATE);
 	}
 
 	public void setDateFormat(String dateFormat) {
-		conversion.put(Attribute.FORMAT_DATE, dateFormat);
+		conversion.put(Attribute.DATE, dateFormat);
 	}
 
 }

@@ -21,9 +21,13 @@ import org.eclipse.nebula.widgets.nattable.filterrow.config.FilterRowConfigAttri
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.util.GUIHelper;
 
+import com.tibco.as.convert.Attribute;
+import com.tibco.as.convert.Attributes;
+import com.tibco.as.convert.UnsupportedConversionException;
+import com.tibco.as.space.DateTime;
 import com.tibco.as.space.FieldDef;
 import com.tibco.as.space.FieldDef.FieldType;
-import com.tibco.as.spacebar.ui.editor.display.DateTimeFilterDisplayConverter;
+import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.preferences.Preferences;
 
 public class FilterRowConfiguration extends AbstractRegistryConfiguration {
@@ -34,6 +38,7 @@ public class FilterRowConfiguration extends AbstractRegistryConfiguration {
 		this.fieldDefs = fieldDefs;
 	}
 
+	@Override
 	public void configureRegistry(IConfigRegistry configRegistry) {
 		configRegistry.registerConfigAttribute(
 				CELL_PAINTER,
@@ -67,8 +72,15 @@ public class FilterRowConfiguration extends AbstractRegistryConfiguration {
 	private IDisplayConverter getConverter(FieldDef fieldDef) {
 		switch (fieldDef.getType()) {
 		case DATETIME:
-			return new DateTimeFilterDisplayConverter(
+			Attributes attributes = new Attributes();
+			attributes.put(Attribute.TIMEZONE,
 					Preferences.getSpaceEditorTimeZone());
+			try {
+				return FieldDisplayConverter.create(DateTime.class, "date",
+						attributes);
+			} catch (UnsupportedConversionException e) {
+				SpaceBarPlugin.logException(e);
+			}
 		case DOUBLE:
 			return new DefaultDoubleDisplayConverter();
 		case FLOAT:

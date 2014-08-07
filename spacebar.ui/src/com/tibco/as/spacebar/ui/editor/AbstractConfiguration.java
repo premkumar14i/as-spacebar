@@ -1,32 +1,23 @@
 package com.tibco.as.spacebar.ui.editor;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimeZone;
 
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.DefaultNatTableStyleConfiguration;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.data.convert.DefaultBooleanDisplayConverter;
-import org.eclipse.nebula.widgets.nattable.data.convert.DefaultCharacterDisplayConverter;
-import org.eclipse.nebula.widgets.nattable.data.convert.DefaultDoubleDisplayConverter;
-import org.eclipse.nebula.widgets.nattable.data.convert.DefaultFloatDisplayConverter;
-import org.eclipse.nebula.widgets.nattable.data.convert.DefaultIntegerDisplayConverter;
-import org.eclipse.nebula.widgets.nattable.data.convert.DefaultLongDisplayConverter;
-import org.eclipse.nebula.widgets.nattable.data.convert.DefaultShortDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.CheckBoxPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 
-import com.tibco.as.spacebar.ui.editor.display.BlobDisplayConverter;
-import com.tibco.as.spacebar.ui.editor.display.DateTimeDisplayConverter;
-import com.tibco.as.spacebar.ui.editor.display.FormatDisplayConverter;
+import com.tibco.as.convert.Attribute;
+import com.tibco.as.convert.Attributes;
+import com.tibco.as.convert.UnsupportedConversionException;
+import com.tibco.as.space.DateTime;
+import com.tibco.as.space.FieldDef;
+import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.editor.display.StringDisplayConverter;
 import com.tibco.as.spacebar.ui.preferences.Preferences;
-
-import com.tibco.as.convert.format.BooleanFormat;
-import com.tibco.as.space.FieldDef;
 
 public abstract class AbstractConfiguration extends
 		DefaultNatTableStyleConfiguration {
@@ -47,115 +38,76 @@ public abstract class AbstractConfiguration extends
 	@Override
 	public void configureRegistry(IConfigRegistry configRegistry) {
 		super.configureRegistry(configRegistry);
+		try {
+			configRegistry.registerConfigAttribute(
+					CellConfigAttributes.DISPLAY_CONVERTER,
+					getConverter(byte[].class, "BLOB"), DisplayMode.NORMAL,
+					BLOB_CONFIG_LABEL);
+			configRegistry.registerConfigAttribute(
+					CellConfigAttributes.DISPLAY_CONVERTER,
+					getConverter(Boolean.class), DisplayMode.NORMAL,
+					BOOLEAN_CONFIG_LABEL);
+			configRegistry.registerConfigAttribute(
+					CellConfigAttributes.DISPLAY_CONVERTER,
+					getConverter(Character.class), DisplayMode.NORMAL,
+					CHAR_CONFIG_LABEL);
+			configRegistry.registerConfigAttribute(
+					CellConfigAttributes.DISPLAY_CONVERTER,
+					getConverter(DateTime.class, "date"), DisplayMode.NORMAL,
+					DATETIME_CONFIG_LABEL);
+			configRegistry.registerConfigAttribute(
+					CellConfigAttributes.DISPLAY_CONVERTER,
+					getConverter(Double.class), DisplayMode.NORMAL,
+					DOUBLE_CONFIG_LABEL);
+			configRegistry.registerConfigAttribute(
+					CellConfigAttributes.DISPLAY_CONVERTER,
+					getConverter(Float.class), DisplayMode.NORMAL,
+					FLOAT_CONFIG_LABEL);
+			configRegistry.registerConfigAttribute(
+					CellConfigAttributes.DISPLAY_CONVERTER,
+					getConverter(Integer.class), DisplayMode.NORMAL,
+					INTEGER_CONFIG_LABEL);
+			configRegistry.registerConfigAttribute(
+					CellConfigAttributes.DISPLAY_CONVERTER,
+					getConverter(Long.class), DisplayMode.NORMAL,
+					LONG_CONFIG_LABEL);
+			configRegistry.registerConfigAttribute(
+					CellConfigAttributes.DISPLAY_CONVERTER,
+					getConverter(Short.class), DisplayMode.NORMAL,
+					SHORT_CONFIG_LABEL);
+		} catch (UnsupportedConversionException e) {
+			SpaceBarPlugin.logException(e);
+		}
 		configRegistry.registerConfigAttribute(
 				CellConfigAttributes.DISPLAY_CONVERTER,
-				getBlobDisplayConverter(), DisplayMode.NORMAL,
-				BLOB_CONFIG_LABEL);
-		configRegistry.registerConfigAttribute(
-				CellConfigAttributes.DISPLAY_CONVERTER,
-				getBooleanDisplayConverter(), DisplayMode.NORMAL,
-				BOOLEAN_CONFIG_LABEL);
-		configRegistry.registerConfigAttribute(
-				CellConfigAttributes.DISPLAY_CONVERTER,
-				getCharacterDisplayConverter(), DisplayMode.NORMAL,
-				CHAR_CONFIG_LABEL);
-		configRegistry.registerConfigAttribute(
-				CellConfigAttributes.DISPLAY_CONVERTER,
-				getDateTimeDisplayConverter(), DisplayMode.NORMAL,
-				DATETIME_CONFIG_LABEL);
-		configRegistry.registerConfigAttribute(
-				CellConfigAttributes.DISPLAY_CONVERTER,
-				getDoubleDisplayConverter(), DisplayMode.NORMAL,
-				DOUBLE_CONFIG_LABEL);
-		configRegistry.registerConfigAttribute(
-				CellConfigAttributes.DISPLAY_CONVERTER,
-				getFloatDisplayConverter(), DisplayMode.NORMAL,
-				FLOAT_CONFIG_LABEL);
-		configRegistry.registerConfigAttribute(
-				CellConfigAttributes.DISPLAY_CONVERTER,
-				getIntegerDisplayConverter(), DisplayMode.NORMAL,
-				INTEGER_CONFIG_LABEL);
-		configRegistry.registerConfigAttribute(
-				CellConfigAttributes.DISPLAY_CONVERTER,
-				getLongDisplayConverter(), DisplayMode.NORMAL,
-				LONG_CONFIG_LABEL);
-		configRegistry.registerConfigAttribute(
-				CellConfigAttributes.DISPLAY_CONVERTER,
-				getShortDisplayConverter(), DisplayMode.NORMAL,
-				SHORT_CONFIG_LABEL);
-		configRegistry.registerConfigAttribute(
-				CellConfigAttributes.DISPLAY_CONVERTER,
-				getStringDisplayConverter(), DisplayMode.NORMAL,
+				new StringDisplayConverter(), DisplayMode.NORMAL,
 				STRING_CONFIG_LABEL);
 		configRegistry.registerConfigAttribute(
 				CellConfigAttributes.CELL_PAINTER, new CheckBoxPainter(),
 				DisplayMode.NORMAL, CHECKBOX_PAINTER_CONFIG_LABEL);
 	}
 
-	protected IDisplayConverter getStringDisplayConverter() {
-		return new StringDisplayConverter();
+	protected <T> FieldDisplayConverter<T> getConverter(Class<T> clazz,
+			String name) throws UnsupportedConversionException {
+		return FieldDisplayConverter.create(clazz, name, getAttributes());
 	}
 
-	protected IDisplayConverter getCharacterDisplayConverter() {
-		return new DefaultCharacterDisplayConverter();
+	protected <T> IDisplayConverter getConverter(Class<T> clazz)
+			throws UnsupportedConversionException {
+		return getConverter(clazz, clazz.getSimpleName().toLowerCase());
 	}
 
-	protected IDisplayConverter getBooleanDisplayConverter() {
-		String format = Preferences
-				.getString(Preferences.SPACE_EDITOR_BOOLEAN_FORMAT);
-		if (format == null) {
-			return new DefaultBooleanDisplayConverter();
-		}
-		return new FormatDisplayConverter(new BooleanFormat(format));
-	}
-
-	protected IDisplayConverter getBlobDisplayConverter() {
-		return new BlobDisplayConverter();
-	}
-
-	private IDisplayConverter getNumericDisplayConverter(String pattern,
-			IDisplayConverter defaultConverter) {
-		if (pattern == null) {
-			return defaultConverter;
-		}
-		return new FormatDisplayConverter(new DecimalFormat(pattern));
-	}
-
-	protected IDisplayConverter getDoubleDisplayConverter() {
-		return getNumericDisplayConverter(
-				Preferences.getSpaceEditorDecimalFormat(),
-				new DefaultDoubleDisplayConverter());
-	}
-
-	protected IDisplayConverter getFloatDisplayConverter() {
-		return getNumericDisplayConverter(
-				Preferences.getSpaceEditorDecimalFormat(),
-				new DefaultFloatDisplayConverter());
-	}
-
-	protected IDisplayConverter getIntegerDisplayConverter() {
-		return getNumericDisplayConverter(
-				Preferences.getSpaceEditorIntegerFormat(),
-				new DefaultIntegerDisplayConverter());
-	}
-
-	protected IDisplayConverter getLongDisplayConverter() {
-		return getNumericDisplayConverter(
-				Preferences.getSpaceEditorIntegerFormat(),
-				new DefaultLongDisplayConverter());
-	}
-
-	protected IDisplayConverter getShortDisplayConverter() {
-		return getNumericDisplayConverter(
-				Preferences.getSpaceEditorIntegerFormat(),
-				new DefaultShortDisplayConverter());
-	}
-
-	protected IDisplayConverter getDateTimeDisplayConverter() {
-		String pattern = Preferences
-				.getString(Preferences.SPACE_EDITOR_DATE_FORMAT);
-		TimeZone timeZone = Preferences.getSpaceEditorTimeZone();
-		return new DateTimeDisplayConverter(pattern, timeZone);
+	protected Attributes getAttributes() {
+		Attributes attributes = new Attributes();
+		attributes.put(Attribute.BOOLEAN,
+				Preferences.getString(Preferences.SPACE_EDITOR_BOOLEAN_FORMAT));
+		attributes.put(Attribute.DATE,
+				Preferences.getString(Preferences.SPACE_EDITOR_DATE_FORMAT));
+		attributes
+				.put(Attribute.TIMEZONE, Preferences.getSpaceEditorTimeZone());
+		attributes.put(Attribute.INTEGER, Preferences.getString(Preferences.SPACE_EDITOR_INTEGER_FORMAT));
+		attributes.put(Attribute.DECIMAL, Preferences.getString(Preferences.SPACE_EDITOR_DECIMAL_FORMAT));
+		return attributes;
 	}
 
 	protected String[] getStringConfigLabels() {

@@ -8,7 +8,7 @@ public class ColumnConfig {
 
 	private int weight;
 
-	private int minimumWidth;
+	private Integer minimumWidth;
 
 	private boolean resizable;
 
@@ -16,8 +16,9 @@ public class ColumnConfig {
 
 	private int style;
 
-	public ColumnConfig(String name, int style, int weight, int minimumWidth,
-			boolean resizable, CellLabelProvider labelProvider) {
+	public ColumnConfig(String name, int style, int weight,
+			Integer minimumWidth, boolean resizable,
+			CellLabelProvider labelProvider) {
 		this.name = name;
 		this.style = style;
 		this.weight = weight;
@@ -29,7 +30,7 @@ public class ColumnConfig {
 	public String getName() {
 		return name;
 	}
-	
+
 	public int getStyle() {
 		return style;
 	}
@@ -38,7 +39,7 @@ public class ColumnConfig {
 		return weight;
 	}
 
-	public int getMinimumWidth() {
+	public Integer getMinimumWidth() {
 		return minimumWidth;
 	}
 

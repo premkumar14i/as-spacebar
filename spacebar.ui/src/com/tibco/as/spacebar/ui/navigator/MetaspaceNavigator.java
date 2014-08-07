@@ -108,7 +108,7 @@ public class MetaspaceNavigator extends CommonNavigator implements
 			if (element instanceof Space) {
 				Space space = (Space) element;
 				Export export = Preferences.getSpaceEditorExport(Preferences
-						.getSpaceEditorBrowseTimeScope());
+						.getString(Preferences.SPACE_EDITOR_BROWSE_TIME_SCOPE));
 				SpaceEditorInput input = new SpaceEditorInput(space, export);
 				IWorkbenchPartSite site = getSite();
 				final IWorkbenchPage page = site.getWorkbenchWindow()

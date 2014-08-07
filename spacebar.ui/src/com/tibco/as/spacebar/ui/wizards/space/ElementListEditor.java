@@ -20,7 +20,6 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 
-import com.tibco.as.spacebar.ui.SWTFactory;
 import com.tibco.as.spacebar.ui.model.IElement;
 
 public abstract class ElementListEditor extends Composite {
@@ -68,16 +67,25 @@ public abstract class ElementListEditor extends Composite {
 			TableViewerColumn nameColumn = new TableViewerColumn(tableViewer,
 					config.getStyle());
 			nameColumn.getColumn().setText(config.getName());
-			columnLayout.setColumnData(
-					nameColumn.getColumn(),
-					new ColumnWeightData(config.getWeight(), config
-							.getMinimumWidth(), config.isResizable()));
+			columnLayout
+					.setColumnData(
+							nameColumn.getColumn(),
+							new ColumnWeightData(
+									config.getWeight(),
+									config.getMinimumWidth() == null ? ColumnWeightData.MINIMUM_WIDTH
+											: config.getMinimumWidth(), config
+											.isResizable()));
 			nameColumn.setLabelProvider(config.getLabelProvider());
 		}
 
-		Composite buttons = SWTFactory.createComposite(this, 1, 1,
-				GridData.FILL_BOTH);
-		addButton = new Button(buttons, SWT.PUSH);
+		Composite buttonsComposite = new Composite(this, SWT.NONE);
+		buttonsComposite.setFont(getFont());
+		buttonsComposite.setLayout(new GridLayout());
+		GridData buttonsData = new GridData(GridData.FILL_BOTH);
+		buttonsData.grabExcessHorizontalSpace = false;
+		buttonsData.horizontalSpan = 1;
+		buttonsComposite.setLayoutData(buttonsData);
+		addButton = new Button(buttonsComposite, SWT.PUSH);
 		addButton.setText("&New...");
 		GridDataFactory.defaultsFor(addButton).applyTo(addButton);
 		addButton.addListener(SWT.Selection, new Listener() {
@@ -85,7 +93,7 @@ public abstract class ElementListEditor extends Composite {
 				add();
 			}
 		});
-		editButton = new Button(buttons, SWT.PUSH);
+		editButton = new Button(buttonsComposite, SWT.PUSH);
 		editButton.setText("&Edit...");
 		GridDataFactory.defaultsFor(editButton).grab(true, false)
 				.applyTo(editButton);
@@ -94,7 +102,7 @@ public abstract class ElementListEditor extends Composite {
 				edit();
 			}
 		});
-		removeButton = new Button(buttons, SWT.PUSH);
+		removeButton = new Button(buttonsComposite, SWT.PUSH);
 		removeButton.setText("&Remove");
 		GridDataFactory.defaultsFor(removeButton).grab(true, false)
 				.applyTo(removeButton);
@@ -103,8 +111,8 @@ public abstract class ElementListEditor extends Composite {
 				remove();
 			}
 		});
-		createSeparator(buttons);
-		createSeparator(buttons);
+		createSeparator(buttonsComposite);
+		createSeparator(buttonsComposite);
 		tableViewer.setInput(parentElement.getChildren());
 		updateButtons();
 	}

@@ -7,7 +7,7 @@ import com.tibco.as.convert.ConverterFactory.Blob;
 public class Formats {
 
 	private Attributes conversion;
-	
+
 	public Formats() {
 		this(new Attributes());
 	}
@@ -17,35 +17,44 @@ public class Formats {
 	}
 
 	public Blob getBlobFormat() {
-		return conversion.get(Attribute.FORMAT_BLOB);
+		return conversion.get(Attribute.BLOB);
 	}
 
 	public void setBlobFormat(Blob blobFormat) {
-		conversion.put(Attribute.FORMAT_BLOB, blobFormat);
+		conversion.put(Attribute.BLOB, blobFormat);
 	}
 
 	public String getBooleanFormat() {
-		return conversion.get(Attribute.FORMAT_BOOLEAN);
+		return conversion.get(Attribute.BOOLEAN);
 	}
 
 	public void setBooleanFormat(String booleanFormat) {
-		conversion.put(Attribute.FORMAT_BOOLEAN, booleanFormat);
+		conversion.put(Attribute.BOOLEAN, booleanFormat);
 	}
 
 	public String getDateFormat() {
-		return conversion.get(Attribute.FORMAT_DATE);
+		return conversion.get(Attribute.DATE);
 	}
 
 	public void setDateFormat(String dateFormat) {
-		conversion.put(Attribute.FORMAT_DATE, dateFormat);
+		conversion.put(Attribute.DATE, dateFormat);
 	}
 
-	public String getNumberFormat() {
-		return conversion.get(Attribute.FORMAT_NUMBER);
+	public String getIntegerFormat() {
+		return conversion.get(Attribute.INTEGER);
 	}
 
-	public void setNumberFormat(String numberFormat) {
-		conversion.put(Attribute.FORMAT_NUMBER, numberFormat);
+	public void setIntegerFormat(String format) {
+		conversion.put(Attribute.INTEGER, format);
 	}
+	
+	public String getDecimalFormat() {
+		return conversion.get(Attribute.DECIMAL);
+	}
+
+	public void setDecimalFormat(String format) {
+		conversion.put(Attribute.DECIMAL, format);
+	}
+
 
 }

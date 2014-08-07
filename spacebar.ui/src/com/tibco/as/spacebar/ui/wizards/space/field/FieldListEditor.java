@@ -23,12 +23,12 @@ public class FieldListEditor extends ElementListEditor {
 
 	public FieldListEditor(Composite parent, int style, SpaceFields fields) {
 		super(parent, style, fields, new ColumnConfig(COLUMN_NAME, SWT.LEFT,
-				40, 100, true, new ColumnLabelProvider() {
+				40, null, true, new ColumnLabelProvider() {
 					@Override
 					public String getText(Object element) {
 						return ((Field) element).getName();
 					}
-				}), new ColumnConfig(COLUMN_TYPE, SWT.LEFT, 20, 50, true,
+				}), new ColumnConfig(COLUMN_TYPE, SWT.LEFT, 20, null, true,
 				new ColumnLabelProvider() {
 					@Override
 					public String getText(Object element) {
@@ -38,20 +38,19 @@ public class FieldListEditor extends ElementListEditor {
 						}
 						return type.name();
 					}
-				}), new ColumnConfig(COLUMN_NULLABLE, SWT.CENTER, 20, 30, true,
-				new CheckBoxLabelProvider() {
+				}), new ColumnConfig(COLUMN_NULLABLE, SWT.CENTER, 20, null,
+				true, new CheckBoxLabelProvider() {
 
 					protected boolean isChecked(Object element) {
 						return ((Field) element).isNullable();
 					}
 
-				}), new ColumnConfig(COLUMN_ENCRYPTED, SWT.CENTER, 20, 30,
-				true, new CheckBoxLabelProvider() {
+				}), new ColumnConfig(COLUMN_ENCRYPTED, SWT.CENTER, 20, null,
+				false, new CheckBoxLabelProvider() {
 
 					protected boolean isChecked(Object element) {
 						return ((Field) element).isEncrypted();
 					}
-
 				}));
 	}
 

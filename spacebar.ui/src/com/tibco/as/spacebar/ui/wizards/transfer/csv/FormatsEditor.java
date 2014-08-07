@@ -25,7 +25,8 @@ public class FormatsEditor extends Composite {
 	private ComboViewer blobFormat;
 	private Text booleanFormat;
 	private Text dateFormat;
-	private Text numberFormat;
+	private Text integerFormat;
+	private Text decimalFormat;
 
 	public FormatsEditor(Composite parent, int style,
 			com.tibco.as.spacebar.ui.wizards.transfer.csv.Formats conversion) {
@@ -42,8 +43,7 @@ public class FormatsEditor extends Composite {
 		blobLabel.setToolTipText(Messages.Formats_Blob_Tooltip);
 
 		blobFormat = new ComboViewer(this, SWT.READ_ONLY);
-		blobFormat.getCombo().setToolTipText(
-				Messages.Formats_Blob_Tooltip);
+		blobFormat.getCombo().setToolTipText(Messages.Formats_Blob_Tooltip);
 		blobFormat.getCombo().setLayoutData(
 				new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		blobFormat.setContentProvider(ArrayContentProvider.getInstance());
@@ -56,8 +56,7 @@ public class FormatsEditor extends Composite {
 		booleanFormat = new Text(this, SWT.BORDER | SWT.SINGLE);
 		booleanFormat.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
 				false));
-		booleanFormat
-				.setToolTipText(Messages.Formats_Boolean_Tooltip);
+		booleanFormat.setToolTipText(Messages.Formats_Boolean_Tooltip);
 
 		Label dateLabel = new Label(this, SWT.NONE);
 		dateLabel.setText(Messages.Formats_DateTime);
@@ -68,14 +67,23 @@ public class FormatsEditor extends Composite {
 				.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		dateFormat.setToolTipText(Messages.Formats_DateTime_Tooltip);
 
-		Label numberLabel = new Label(this, SWT.NONE);
-		numberLabel.setText(Messages.Formats_Number);
-		numberLabel.setToolTipText(Messages.Formats_Number_Tooltip);
+		Label integerLabel = new Label(this, SWT.NONE);
+		integerLabel.setText(Messages.Formats_Integer);
+		integerLabel.setToolTipText(Messages.Formats_Integer_Tooltip);
 
-		numberFormat = new Text(this, SWT.BORDER | SWT.SINGLE);
-		numberFormat.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+		integerFormat = new Text(this, SWT.BORDER | SWT.SINGLE);
+		integerFormat.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
 				false));
-		numberFormat.setToolTipText(Messages.Formats_Number_Tooltip);
+		integerFormat.setToolTipText(Messages.Formats_Integer_Tooltip);
+
+		Label decimalLabel = new Label(this, SWT.NONE);
+		decimalLabel.setText(Messages.Formats_Decimal);
+		decimalLabel.setToolTipText(Messages.Formats_Decimal_Tooltip);
+
+		decimalFormat = new Text(this, SWT.BORDER | SWT.SINGLE);
+		decimalFormat.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+				false));
+		decimalFormat.setToolTipText(Messages.Formats_Decimal_Tooltip);
 
 		if (conversion != null) {
 			m_bindingContext = initDataBindings();
@@ -100,10 +108,14 @@ public class FormatsEditor extends Composite {
 				dateFormat, SWT.Modify);
 		IObservableValue dateFormatObserveValue = PojoObservables.observeValue(
 				conversion, "dateFormat");
-		IObservableValue numberFormatObserveWidget = SWTObservables
-				.observeText(numberFormat, SWT.Modify);
-		IObservableValue numberFormatObserveValue = PojoObservables
-				.observeValue(conversion, "numberFormat");
+		IObservableValue integerFormatObserveWidget = SWTObservables
+				.observeText(integerFormat, SWT.Modify);
+		IObservableValue integerFormatObserveValue = PojoObservables
+				.observeValue(conversion, "integerFormat");
+		IObservableValue decimalFormatObserveWidget = SWTObservables
+				.observeText(decimalFormat, SWT.Modify);
+		IObservableValue decimalFormatObserveValue = PojoObservables
+				.observeValue(conversion, "decimalFormat");
 
 		//
 		DataBindingContext bindingContext = new DataBindingContext();
@@ -114,8 +126,10 @@ public class FormatsEditor extends Composite {
 				booleanFormatObserveValue, null, null);
 		bindingContext.bindValue(dateFormatObserveWidget,
 				dateFormatObserveValue, null, null);
-		bindingContext.bindValue(numberFormatObserveWidget,
-				numberFormatObserveValue, null, null);
+		bindingContext.bindValue(integerFormatObserveWidget,
+				integerFormatObserveValue, null, null);
+		bindingContext.bindValue(decimalFormatObserveWidget,
+				decimalFormatObserveValue, null, null);
 		//
 		return bindingContext;
 	}

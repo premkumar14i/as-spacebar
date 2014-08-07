@@ -41,7 +41,8 @@ public class CSVPreferencePage extends TabbedPreferencePage {
 		addFormatFields(composite, Preferences.IMPORT_CSV_FORMAT_BLOB,
 				Preferences.IMPORT_CSV_FORMAT_BOOLEAN,
 				Preferences.IMPORT_CSV_FORMAT_DATE,
-				Preferences.IMPORT_CSV_FORMAT_NUMBER);
+				Preferences.IMPORT_CSV_FORMAT_INTEGER,
+				Preferences.IMPORT_CSV_FORMAT_DECIMAL);
 		return composite;
 	}
 
@@ -65,12 +66,14 @@ public class CSVPreferencePage extends TabbedPreferencePage {
 		addFormatFields(composite, Preferences.EXPORT_CSV_FORMAT_BLOB,
 				Preferences.EXPORT_CSV_FORMAT_BOOLEAN,
 				Preferences.EXPORT_CSV_FORMAT_DATE,
-				Preferences.EXPORT_CSV_FORMAT_NUMBER);
+				Preferences.EXPORT_CSV_FORMAT_INTEGER,
+				Preferences.EXPORT_CSV_FORMAT_DECIMAL);
 		return composite;
 	}
 
 	private void addFormatFields(Composite parent, String blobName,
-			String booleanName, String dateName, String numberName) {
+			String booleanName, String dateName, String integerName,
+			String decimalName) {
 		Group group = new Group(parent, SWT.NONE);
 		group.setFont(parent.getFont());
 		group.setText(Messages.Formats);
@@ -84,8 +87,10 @@ public class CSVPreferencePage extends TabbedPreferencePage {
 				Messages.Formats_Boolean_Tooltip);
 		addStringField(dateName, Messages.Formats_DateTime, group,
 				Messages.Formats_DateTime_Tooltip);
-		addStringField(numberName, Messages.Formats_Number, group,
-				Messages.Formats_Number_Tooltip);
+		addStringField(integerName, Messages.Formats_Integer, group,
+				Messages.Formats_Integer_Tooltip);
+		addStringField(decimalName, Messages.Formats_Decimal, group,
+				Messages.Formats_Decimal_Tooltip);
 	}
 
 }

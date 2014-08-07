@@ -12,9 +12,10 @@ import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.edit.editor.CheckBoxCellEditor;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 
+import com.tibco.as.convert.UnsupportedConversionException;
+import com.tibco.as.space.DateTime;
+import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.editor.AbstractConfiguration;
-import com.tibco.as.spacebar.ui.editor.display.DateTimeDisplayConverter;
-import com.tibco.as.spacebar.ui.preferences.Preferences;
 
 public class SnapshotConfiguration extends AbstractConfiguration {
 
@@ -24,11 +25,14 @@ public class SnapshotConfiguration extends AbstractConfiguration {
 				EditConfigAttributes.CELL_EDITABLE_RULE,
 				IEditableRule.ALWAYS_EDITABLE);
 		super.configureRegistry(configRegistry);
-		configRegistry.registerConfigAttribute(
-				CellConfigAttributes.DISPLAY_CONVERTER,
-				new DateTimeDisplayConverter(null, Preferences
-						.getSpaceEditorTimeZone()), DisplayMode.EDIT,
-				DATETIME_CONFIG_LABEL);
+		try {
+			configRegistry.registerConfigAttribute(
+					CellConfigAttributes.DISPLAY_CONVERTER,
+					getConverter(DateTime.class, "date"), DisplayMode.EDIT,
+					DATETIME_CONFIG_LABEL);
+		} catch (UnsupportedConversionException e) {
+			SpaceBarPlugin.logException(e);
+		}
 		configRegistry.registerConfigAttribute(
 				CellConfigAttributes.DISPLAY_CONVERTER,
 				new DefaultDoubleDisplayConverter(), DisplayMode.EDIT,

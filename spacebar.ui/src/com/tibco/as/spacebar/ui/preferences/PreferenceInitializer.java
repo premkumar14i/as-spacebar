@@ -45,8 +45,6 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(Preferences.EXPORT_CSV_FORMAT_BLOB, Blob.HEX.name());
 		store.setDefault(Preferences.EXPORT_CSV_FORMAT_BOOLEAN,
 				ConverterFactory.DEFAULT_PATTERN_BOOLEAN);
-		store.setDefault(Preferences.EXPORT_CSV_FORMAT_NUMBER,
-				IPreferenceStore.STRING_DEFAULT_DEFAULT);
 		// store.setDefault(Preferences.EXPORT_CSV_FORMAT_DATE,
 		// ConverterFactory.DEFAULT_PATTERN_DATE);
 		store.setDefault(Preferences.EXPORT_EXCEL_HEADER, true);
@@ -74,8 +72,6 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(Preferences.IMPORT_CSV_FORMAT_BLOB, Blob.HEX.name());
 		store.setDefault(Preferences.IMPORT_CSV_FORMAT_BOOLEAN,
 				ConverterFactory.DEFAULT_PATTERN_BOOLEAN);
-		store.setDefault(Preferences.IMPORT_CSV_FORMAT_NUMBER,
-				IPreferenceStore.STRING_DEFAULT_DEFAULT);
 		// store.setDefault(Preferences.IMPORT_CSV_FORMAT_DATE,
 		// ConverterFactory.DEFAULT_PATTERN_DATE);
 		store.setDefault(Preferences.IMPORT_EXCEL_HEADER, true);

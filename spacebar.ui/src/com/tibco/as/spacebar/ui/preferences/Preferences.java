@@ -7,7 +7,6 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 
-import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.convert.Attribute;
 import com.tibco.as.convert.Attributes;
 import com.tibco.as.convert.ConverterFactory.Blob;
@@ -18,6 +17,7 @@ import com.tibco.as.io.file.excel.ExcelExport;
 import com.tibco.as.io.file.excel.ExcelImport;
 import com.tibco.as.io.file.text.delimited.DelimitedExport;
 import com.tibco.as.io.file.text.delimited.DelimitedImport;
+import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 
 /**
  * Constant definitions for plug-in preferences
@@ -54,7 +54,8 @@ public class Preferences {
 	public static final String EXPORT_CSV_FORMAT_BLOB = "exportCSVFormatBlob";
 	public static final String EXPORT_CSV_FORMAT_BOOLEAN = "exportCSVFormatBoolean";
 	public static final String EXPORT_CSV_FORMAT_DATE = "exportCSVFormatDate";
-	public static final String EXPORT_CSV_FORMAT_NUMBER = "exportCSVFormatNumber";
+	public static final String EXPORT_CSV_FORMAT_INTEGER = "exportCSVFormatInteger";
+	public static final String EXPORT_CSV_FORMAT_DECIMAL = "exportCSVFormatDecimal";
 	public static final String EXPORT_EXCEL_HEADER = "exportExcelHeader";
 	public static final String EXPORT_EXCEL_VERSION = "exportExcelVersion";
 	public static final String EXPORT_EXCEL_FORMAT_BLOB = "exportExcelFormatBlob";
@@ -73,7 +74,8 @@ public class Preferences {
 	public static final String IMPORT_CSV_FORMAT_BLOB = "importCSVFormatBlob";
 	public static final String IMPORT_CSV_FORMAT_BOOLEAN = "importCSVFormatBoolean";
 	public static final String IMPORT_CSV_FORMAT_DATE = "importCSVFormatDate";
-	public static final String IMPORT_CSV_FORMAT_NUMBER = "importCSVFormatNumber";
+	public static final String IMPORT_CSV_FORMAT_INTEGER = "importCSVFormatInteger";
+	public static final String IMPORT_CSV_FORMAT_DECIMAL = "importCSVFormatDecimal";
 	public static final String IMPORT_EXCEL_HEADER = "importExcelHeader";
 	public static final String IMPORT_EXCEL_FORMAT_BLOB = "importExcelFormatBlob";
 	public static final String TIMESCOPE_ALL = "ALL";
@@ -132,10 +134,6 @@ public class Preferences {
 				timeScope));
 	}
 
-	public static String getSpaceEditorBrowseTimeScope() {
-		return String.valueOf(getString(SPACE_EDITOR_BROWSE_TIME_SCOPE));
-	}
-
 	public static Integer getInteger(String name) {
 		int result = getPreferenceStore().getInt(name);
 		if (result == IPreferenceStore.INT_DEFAULT_DEFAULT) {
@@ -180,14 +178,6 @@ public class Preferences {
 		return value;
 	}
 
-	public static String getSpaceEditorIntegerFormat() {
-		return getString(SPACE_EDITOR_INTEGER_FORMAT);
-	}
-
-	public static String getSpaceEditorDecimalFormat() {
-		return getString(SPACE_EDITOR_DECIMAL_FORMAT);
-	}
-
 	/**
 	 * 
 	 * @param name
@@ -200,8 +190,8 @@ public class Preferences {
 
 	public static TimeZone getSpaceEditorTimeZone() {
 		String id = getString(Preferences.SPACE_EDITOR_TIME_ZONE);
-		if (id == null || id.equals(IPreferenceStore.STRING_DEFAULT_DEFAULT)) {
-			return TimeZone.getDefault();
+		if (id == null) {
+			return null;
 		}
 		return TimeZone.getTimeZone(id);
 	}
@@ -216,9 +206,8 @@ public class Preferences {
 		configureExport(config);
 		config.setHeader(getBoolean(EXPORT_EXCEL_HEADER));
 		Attributes conversion = new Attributes();
-		conversion.put(Attribute.FORMAT_DATE,
-				getString(EXPORT_EXCEL_FORMAT_DATE));
-		conversion.put(Attribute.FORMAT_BLOB,
+		conversion.put(Attribute.DATE, getString(EXPORT_EXCEL_FORMAT_DATE));
+		conversion.put(Attribute.BLOB,
 				Blob.valueOf(getString(EXPORT_EXCEL_FORMAT_BLOB)));
 		config.getAttributes().putAll(conversion);
 	}
@@ -228,7 +217,7 @@ public class Preferences {
 		config.setHeader(Preferences
 				.getBoolean(Preferences.IMPORT_EXCEL_HEADER));
 		Attributes conversion = new Attributes();
-		conversion.put(Attribute.FORMAT_BLOB,
+		conversion.put(Attribute.BLOB,
 				Blob.valueOf(getString(IMPORT_EXCEL_FORMAT_BLOB)));
 		config.getAttributes().putAll(conversion);
 	}
@@ -251,14 +240,12 @@ public class Preferences {
 		config.setQuoteChar(getChar(IMPORT_CSV_QUOTE_CHARACTER));
 		config.setSeparator(getChar(IMPORT_CSV_SEPARATOR));
 		Attributes conversion = new Attributes();
-		conversion.put(Attribute.FORMAT_BLOB,
+		conversion.put(Attribute.BLOB,
 				Blob.valueOf(getString(IMPORT_CSV_FORMAT_BLOB)));
-		conversion.put(Attribute.FORMAT_BOOLEAN,
-				getString(IMPORT_CSV_FORMAT_BOOLEAN));
-		conversion
-				.put(Attribute.FORMAT_DATE, getString(IMPORT_CSV_FORMAT_DATE));
-		conversion.put(Attribute.FORMAT_NUMBER,
-				getString(IMPORT_CSV_FORMAT_NUMBER));
+		conversion.put(Attribute.BOOLEAN, getString(IMPORT_CSV_FORMAT_BOOLEAN));
+		conversion.put(Attribute.DATE, getString(IMPORT_CSV_FORMAT_DATE));
+		conversion.put(Attribute.INTEGER, getString(IMPORT_CSV_FORMAT_INTEGER));
+		conversion.put(Attribute.DECIMAL, getString(IMPORT_CSV_FORMAT_DECIMAL));
 		config.getAttributes().putAll(conversion);
 	}
 
@@ -269,14 +256,12 @@ public class Preferences {
 		config.setQuoteChar(getChar(EXPORT_CSV_QUOTE_CHARACTER));
 		config.setSeparator(getChar(EXPORT_CSV_SEPARATOR));
 		Attributes conversion = new Attributes();
-		conversion.put(Attribute.FORMAT_BLOB,
+		conversion.put(Attribute.BLOB,
 				Blob.valueOf(getString(EXPORT_CSV_FORMAT_BLOB)));
-		conversion.put(Attribute.FORMAT_BOOLEAN,
-				getString(EXPORT_CSV_FORMAT_BOOLEAN));
-		conversion
-				.put(Attribute.FORMAT_DATE, getString(EXPORT_CSV_FORMAT_DATE));
-		conversion.put(Attribute.FORMAT_NUMBER,
-				getString(EXPORT_CSV_FORMAT_NUMBER));
+		conversion.put(Attribute.BOOLEAN, getString(EXPORT_CSV_FORMAT_BOOLEAN));
+		conversion.put(Attribute.DATE, getString(EXPORT_CSV_FORMAT_DATE));
+		conversion.put(Attribute.INTEGER, getString(EXPORT_CSV_FORMAT_INTEGER));
+		conversion.put(Attribute.DECIMAL, getString(EXPORT_CSV_FORMAT_DECIMAL));
 		config.getAttributes().putAll(conversion);
 
 	}

@@ -57,8 +57,10 @@ public class Messages extends NLS {
 	public static String Formats_Boolean_Tooltip;
 	public static String Formats_DateTime;
 	public static String Formats_DateTime_Tooltip;
-	public static String Formats_Number;
-	public static String Formats_Number_Tooltip;
+	public static String Formats_Integer;
+	public static String Formats_Integer_Tooltip;
+	public static String Formats_Decimal;
+	public static String Formats_Decimal_Tooltip;
 	public static String Delimited_Import_Escape;
 	public static String Delimited_Import_Escape_Tooltip;
 	public static String Delimited_Import_Header;
