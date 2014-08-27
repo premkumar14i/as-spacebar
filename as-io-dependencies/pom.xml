@@ -1,9 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.tibco.as</groupId>
   <artifactId>as-io-dependencies</artifactId>
-  <version>2.0.0-SNAPSHOT</version>
+  <version>2.0.0</version>
   <packaging>bundle</packaging>
   <name>I/O Dependencies</name>
   <description>Combined dependencies of as-files, as-spreadsheets and as-simulator</description>
@@ -73,51 +72,6 @@
             <_failok>true</_failok>
             <_nouses>true</_nouses>
           </instructions>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.eclipse.m2e</groupId>
-        <artifactId>lifecycle-mapping</artifactId>
-        <version>1.0.0</version>
-        <configuration>
-          <lifecycleMappingMetadata>
-            <lifecycleMappings>
-              <lifecycleMapping>
-                <packagingType>bundle</packagingType>
-                <lifecycleMappingId>org.sonatype.tycho.m2e.wrapperBundle</lifecycleMappingId>
-              </lifecycleMapping>
-            </lifecycleMappings>
-            <pluginExecutions>
-              <pluginExecution>
-                <pluginExecutionFilter>
-                  <groupId>org.apache.felix</groupId>
-                  <artifactId>maven-bundle-plugin</artifactId>
-                  <versionRange>2.5.0</versionRange>
-                  <goals>
-                    <goal>bundle</goal>
-                  </goals>
-                </pluginExecutionFilter>
-                <action>
-                  <configurator>
-                    <id>org.sonatype.tycho.m2e.wrapperBundle</id>
-                  </configurator>
-                </action>
-              </pluginExecution>
-              <pluginExecution>
-                <pluginExecutionFilter>
-                  <groupId>org.apache.felix</groupId>
-                  <artifactId>maven-bundle-plugin</artifactId>
-                  <versionRange>2.5.0</versionRange>
-                  <goals>
-                    <goal>manifest</goal>
-                  </goals>
-                </pluginExecutionFilter>
-                <action>
-                  <ignore />
-                </action>
-              </pluginExecution>
-            </pluginExecutions>
-          </lifecycleMappingMetadata>
         </configuration>
       </plugin>
       <plugin>
