@@ -8,6 +8,22 @@
   <name>I/O Dependencies</name>
   <description>Combined dependencies of as-files, as-spreadsheets and as-simulator</description>
 
+  <organization>
+    <name>TIBCO Software</name>
+    <url>http://www.tibco.com/</url>
+  </organization>
+
+  <contributors>
+    <contributor>
+      <name>Julien Ruaux</name>
+      <email>jruaux(at)tibco(dot)com</email>
+    </contributor>
+  </contributors>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>net.sf.opencsv</groupId>
@@ -106,4 +122,24 @@
       </plugin>
     </plugins>
   </build>
+
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <name>Release Repository</name>
+      <url>http://activespaces.tibco.com/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>Snapshot Repository</name>
+      <url>http://activespaces.tibco.com/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <scm>
+    <url>https://github.com/TIBCOSoftware/as-spacebar</url>
+    <connection>scm:git:git://github.com/TIBCOSoftware/as-spacebar.git</connection>
+    <developerConnection>scm:git:git@github.com:TIBCOSoftware/as-spacebar.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
 </project>
