@@ -13,8 +13,8 @@ import com.tibco.as.spacebar.ui.wizards.transfer.AbstractExportWizardPage;
 
 import com.tibco.as.io.Exporter;
 import com.tibco.as.io.Transfer;
-import com.tibco.as.io.file.excel.ExcelExport;
-import com.tibco.as.io.file.excel.ExcelExporter;
+import com.tibco.as.excel.ExcelExport;
+import com.tibco.as.excel.ExcelExporter;
 import com.tibco.as.space.Metaspace;
 
 public class ExcelExportWizard extends AbstractExportWizard<Object[]> {

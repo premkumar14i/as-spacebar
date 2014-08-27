@@ -18,7 +18,7 @@ import com.tibco.as.spacebar.ui.Messages;
 public class DelimitedExportEditor extends Composite {
 
 	private DataBindingContext m_bindingContext;
-	private com.tibco.as.io.file.text.delimited.DelimitedExport delimitedExport = new com.tibco.as.io.file.text.delimited.DelimitedExport();
+	private com.tibco.as.file.text.delimited.DelimitedExport delimitedExport = new com.tibco.as.file.text.delimited.DelimitedExport();
 	private Text escapeCharText;
 	private Button headerButton;
 	private Text quoteCharText;
@@ -27,7 +27,7 @@ public class DelimitedExportEditor extends Composite {
 	public DelimitedExportEditor(
 			Composite parent,
 			int style,
-			com.tibco.as.io.file.text.delimited.DelimitedExport newDelimitedExport) {
+			com.tibco.as.file.text.delimited.DelimitedExport newDelimitedExport) {
 		this(parent, style);
 		setDelimitedExport(newDelimitedExport);
 	}
@@ -113,17 +113,17 @@ public class DelimitedExportEditor extends Composite {
 		return bindingContext;
 	}
 
-	public com.tibco.as.io.file.text.delimited.DelimitedExport getDelimitedExport() {
+	public com.tibco.as.file.text.delimited.DelimitedExport getDelimitedExport() {
 		return delimitedExport;
 	}
 
 	public void setDelimitedExport(
-			com.tibco.as.io.file.text.delimited.DelimitedExport newDelimitedExport) {
+			com.tibco.as.file.text.delimited.DelimitedExport newDelimitedExport) {
 		setDelimitedExport(newDelimitedExport, true);
 	}
 
 	public void setDelimitedExport(
-			com.tibco.as.io.file.text.delimited.DelimitedExport newDelimitedExport,
+			com.tibco.as.file.text.delimited.DelimitedExport newDelimitedExport,
 			boolean update) {
 		delimitedExport = newDelimitedExport;
 		if (update) {

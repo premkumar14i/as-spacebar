@@ -8,7 +8,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
-import com.tibco.as.io.file.text.delimited.DelimitedExport;
+import com.tibco.as.file.text.delimited.DelimitedExport;
 
 public class DelimitedExportConfigurationPage extends WizardPage {
 

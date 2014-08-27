@@ -1,0 +1,109 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.tibco.as</groupId>
+  <artifactId>as-io-dependencies</artifactId>
+  <version>2.0.0-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+  <name>I/O Dependencies</name>
+  <description>Combined dependencies of as-files, as-spreadsheets and as-simulator</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.sf.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.9</version>
+    </dependency>
+    <dependency>
+      <groupId>org.fluttercode.datafactory</groupId>
+      <artifactId>datafactory</artifactId>
+      <version>0.8</version>
+    </dependency>
+    <dependency>
+      <groupId>nl.flotsam</groupId>
+      <artifactId>xeger</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.beust</groupId>
+      <artifactId>jcommander</artifactId>
+      <version>1.35</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.5.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <manifestLocation>META-INF</manifestLocation>
+          <instructions>
+            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+            <Bundle-Version>${project.version}</Bundle-Version>
+            <Embed-Dependency>opencsv,poi,poi-ooxml,commons-codec,poi-ooxml-schemas,xmlbeans,dom4j,datafactory,xeger,automaton</Embed-Dependency>
+            <_exportcontents>au.com.bytecode.opencsv;version="2.3",org.apache.poi.*;version="3.9",org.fluttercode.datafactory.*,nl.flotsam.xeger,com.beust.jcommander</_exportcontents>
+            <Bundle-ClassPath />
+            <Import-Package />
+            <Embed-Transitive>true</Embed-Transitive>
+            <Embed-Directory>jars</Embed-Directory>
+            <_failok>true</_failok>
+            <_nouses>true</_nouses>
+          </instructions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.m2e</groupId>
+        <artifactId>lifecycle-mapping</artifactId>
+        <version>1.0.0</version>
+        <configuration>
+          <lifecycleMappingMetadata>
+            <lifecycleMappings>
+              <lifecycleMapping>
+                <packagingType>bundle</packagingType>
+                <lifecycleMappingId>org.sonatype.tycho.m2e.wrapperBundle</lifecycleMappingId>
+              </lifecycleMapping>
+            </lifecycleMappings>
+            <pluginExecutions>
+              <pluginExecution>
+                <pluginExecutionFilter>
+                  <groupId>org.apache.felix</groupId>
+                  <artifactId>maven-bundle-plugin</artifactId>
+                  <versionRange>2.5.0</versionRange>
+                  <goals>
+                    <goal>bundle</goal>
+                  </goals>
+                </pluginExecutionFilter>
+                <action>
+                  <configurator>
+                    <id>org.sonatype.tycho.m2e.wrapperBundle</id>
+                  </configurator>
+                </action>
+              </pluginExecution>
+              <pluginExecution>
+                <pluginExecutionFilter>
+                  <groupId>org.apache.felix</groupId>
+                  <artifactId>maven-bundle-plugin</artifactId>
+                  <versionRange>2.5.0</versionRange>
+                  <goals>
+                    <goal>manifest</goal>
+                  </goals>
+                </pluginExecutionFilter>
+                <action>
+                  <ignore />
+                </action>
+              </pluginExecution>
+            </pluginExecutions>
+          </lifecycleMappingMetadata>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

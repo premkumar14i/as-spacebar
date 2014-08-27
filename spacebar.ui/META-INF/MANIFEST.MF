@@ -18,14 +18,13 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.nebula.widgets.nattable.extension.glazedlists,
  ca.odell.glazedlists,
  org.eclipse.ui.views,
- com.tibco.as.common,
- com.tibco.as.util,
- com.tibco.as.io-dependencies,
- com.tibco.as.convert,
- com.tibco.as.io,
- com.tibco.as.io.file,
- com.tibco.as.io.excel,
- com.tibco.as.io.simulation
+ as-osgi,
+ as-util,
+ as-io-dependencies,
+ as-io,
+ as-files,
+ as-spreadsheets,
+ as-simulator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.tibco.as.spacebar.ui

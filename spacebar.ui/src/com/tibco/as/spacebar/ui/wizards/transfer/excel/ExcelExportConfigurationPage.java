@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Label;
 import com.tibco.as.spacebar.ui.Messages;
 import com.tibco.as.spacebar.ui.SWTFactory;
 
-import com.tibco.as.io.file.excel.ExcelExport;
+import com.tibco.as.excel.ExcelExport;
 
 public class ExcelExportConfigurationPage extends WizardPage {
 

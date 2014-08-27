@@ -21,10 +21,10 @@ import com.tibco.as.spacebar.ui.wizards.transfer.AbstractImportWizard;
 import com.tibco.as.io.IMetaspaceTransfer;
 import com.tibco.as.io.Import;
 import com.tibco.as.io.Transfer;
-import com.tibco.as.io.simulation.ObjectFactory;
-import com.tibco.as.io.simulation.Simulation;
-import com.tibco.as.io.simulation.SimulationImport;
-import com.tibco.as.io.simulation.SimulationImporter;
+import com.tibco.as.simulator.ObjectFactory;
+import com.tibco.as.simulator.Simulation;
+import com.tibco.as.simulator.SimulationImport;
+import com.tibco.as.simulator.SimulationImporter;
 import com.tibco.as.space.Metaspace;
 
 public class SimulationImportWizard extends AbstractImportWizard<Object[]> {

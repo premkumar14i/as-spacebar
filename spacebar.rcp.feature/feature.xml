@@ -30,7 +30,7 @@
          unpack="false"/>
 
    <plugin
-         id="com.tibco.as.common"
+         id="as-util"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -44,44 +44,43 @@
          unpack="false"/>
 
    <plugin
-         id="com.tibco.as.io"
+         id="as-io"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.tibco.as.convert"
+         id="as-files"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.tibco.as.io.file"
+         id="as-spreadsheets"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.tibco.as.io.simulation"
+         id="as-simulator"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="com.tibco.as.io-dependencies"
+         id="as-io-dependencies"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
 
    <plugin
-         id="com.tibco.as.util"
+         id="as-osgi"
          download-size="0"
          install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
 </feature>

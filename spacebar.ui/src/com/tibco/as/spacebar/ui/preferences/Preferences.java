@@ -13,10 +13,10 @@ import com.tibco.as.convert.ConverterFactory.Blob;
 import com.tibco.as.io.Export;
 import com.tibco.as.io.Import;
 import com.tibco.as.io.Operation;
-import com.tibco.as.io.file.excel.ExcelExport;
-import com.tibco.as.io.file.excel.ExcelImport;
-import com.tibco.as.io.file.text.delimited.DelimitedExport;
-import com.tibco.as.io.file.text.delimited.DelimitedImport;
+import com.tibco.as.excel.ExcelExport;
+import com.tibco.as.excel.ExcelImport;
+import com.tibco.as.file.text.delimited.DelimitedExport;
+import com.tibco.as.file.text.delimited.DelimitedImport;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 
 /**

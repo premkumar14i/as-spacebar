@@ -18,8 +18,8 @@ import com.tibco.as.spacebar.ui.wizards.transfer.AbstractImportWizard;
 import com.tibco.as.io.IMetaspaceTransfer;
 import com.tibco.as.io.Import;
 import com.tibco.as.io.Transfer;
-import com.tibco.as.io.file.text.delimited.DelimitedImport;
-import com.tibco.as.io.file.text.delimited.DelimitedImporter;
+import com.tibco.as.file.text.delimited.DelimitedImport;
+import com.tibco.as.file.text.delimited.DelimitedImporter;
 import com.tibco.as.space.Metaspace;
 
 public class DelimitedImportWizard extends AbstractImportWizard<String[]> {

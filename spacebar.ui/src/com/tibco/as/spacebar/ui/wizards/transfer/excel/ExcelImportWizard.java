@@ -18,8 +18,8 @@ import com.tibco.as.io.IMetaspaceTransfer;
 import com.tibco.as.io.IOUtils;
 import com.tibco.as.io.Import;
 import com.tibco.as.io.Transfer;
-import com.tibco.as.io.file.excel.ExcelImport;
-import com.tibco.as.io.file.excel.ExcelImporter;
+import com.tibco.as.excel.ExcelImport;
+import com.tibco.as.excel.ExcelImporter;
 import com.tibco.as.space.Metaspace;
 
 public class ExcelImportWizard extends AbstractImportWizard<Object[]> {

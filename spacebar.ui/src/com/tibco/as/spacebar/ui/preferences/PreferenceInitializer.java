@@ -13,7 +13,7 @@ import au.com.bytecode.opencsv.CSVWriter;
 
 import com.tibco.as.convert.ConverterFactory;
 import com.tibco.as.convert.ConverterFactory.Blob;
-import com.tibco.as.io.file.excel.ExcelExporter;
+import com.tibco.as.excel.ExcelExporter;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 
 /**

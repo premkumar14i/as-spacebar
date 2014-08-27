@@ -15,11 +15,11 @@ import com.tibco.as.spacebar.ui.Messages;
 public class ExcelImportEditor extends Composite {
 
 	private DataBindingContext m_bindingContext;
-	private com.tibco.as.io.file.excel.ExcelImport excelImport = new com.tibco.as.io.file.excel.ExcelImport();
+	private com.tibco.as.excel.ExcelImport excelImport = new com.tibco.as.excel.ExcelImport();
 	private Button headerButton;
 
 	public ExcelImportEditor(Composite parent, int style,
-			com.tibco.as.io.file.excel.ExcelImport newExcelImport) {
+			com.tibco.as.excel.ExcelImport newExcelImport) {
 		this(parent, style);
 		setExcelImport(newExcelImport);
 	}
@@ -58,17 +58,17 @@ public class ExcelImportEditor extends Composite {
 		return bindingContext;
 	}
 
-	public com.tibco.as.io.file.excel.ExcelImport getExcelImport() {
+	public com.tibco.as.excel.ExcelImport getExcelImport() {
 		return excelImport;
 	}
 
 	public void setExcelImport(
-			com.tibco.as.io.file.excel.ExcelImport newExcelImport) {
+			com.tibco.as.excel.ExcelImport newExcelImport) {
 		setExcelImport(newExcelImport, true);
 	}
 
 	public void setExcelImport(
-			com.tibco.as.io.file.excel.ExcelImport newExcelImport,
+			com.tibco.as.excel.ExcelImport newExcelImport,
 			boolean update) {
 		excelImport = newExcelImport;
 		if (update) {

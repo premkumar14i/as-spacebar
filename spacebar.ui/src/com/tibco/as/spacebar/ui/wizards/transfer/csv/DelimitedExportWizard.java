@@ -12,8 +12,8 @@ import com.tibco.as.spacebar.ui.wizards.transfer.AbstractExportWizardPage;
 
 import com.tibco.as.io.Exporter;
 import com.tibco.as.io.Transfer;
-import com.tibco.as.io.file.text.delimited.DelimitedExport;
-import com.tibco.as.io.file.text.delimited.DelimitedExporter;
+import com.tibco.as.file.text.delimited.DelimitedExport;
+import com.tibco.as.file.text.delimited.DelimitedExporter;
 import com.tibco.as.space.Metaspace;
 
 public class DelimitedExportWizard extends AbstractExportWizard<String[]> {

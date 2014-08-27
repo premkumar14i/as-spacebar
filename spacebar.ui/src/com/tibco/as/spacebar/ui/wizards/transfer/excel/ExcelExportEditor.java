@@ -15,11 +15,11 @@ import com.tibco.as.spacebar.ui.Messages;
 public class ExcelExportEditor extends Composite {
 
 	private DataBindingContext m_bindingContext;
-	private com.tibco.as.io.file.excel.ExcelExport excelExport = new com.tibco.as.io.file.excel.ExcelExport();
+	private com.tibco.as.excel.ExcelExport excelExport = new com.tibco.as.excel.ExcelExport();
 	private Button headerButton;
 
 	public ExcelExportEditor(Composite parent, int style,
-			com.tibco.as.io.file.excel.ExcelExport newExcelExport) {
+			com.tibco.as.excel.ExcelExport newExcelExport) {
 		this(parent, style);
 		setExcelExport(newExcelExport);
 	}
@@ -58,17 +58,17 @@ public class ExcelExportEditor extends Composite {
 		return bindingContext;
 	}
 
-	public com.tibco.as.io.file.excel.ExcelExport getExcelExport() {
+	public com.tibco.as.excel.ExcelExport getExcelExport() {
 		return excelExport;
 	}
 
 	public void setExcelExport(
-			com.tibco.as.io.file.excel.ExcelExport newExcelExport) {
+			com.tibco.as.excel.ExcelExport newExcelExport) {
 		setExcelExport(newExcelExport, true);
 	}
 
 	public void setExcelExport(
-			com.tibco.as.io.file.excel.ExcelExport newExcelExport,
+			com.tibco.as.excel.ExcelExport newExcelExport,
 			boolean update) {
 		excelExport = newExcelExport;
 		if (update) {

@@ -2,7 +2,7 @@ package com.tibco.as.spacebar.ui.wizards.transfer.excel;
 
 import org.eclipse.swt.widgets.Listener;
 
-import com.tibco.as.io.file.excel.ExcelExporter;
+import com.tibco.as.excel.ExcelExporter;
 
 import com.tibco.as.spacebar.ui.wizards.transfer.AbstractImportWizardPage;
 

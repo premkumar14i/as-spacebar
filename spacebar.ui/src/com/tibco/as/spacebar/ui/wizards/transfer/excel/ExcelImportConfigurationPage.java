@@ -8,7 +8,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import com.tibco.as.spacebar.ui.SWTFactory;
 
-import com.tibco.as.io.file.excel.ExcelImport;
+import com.tibco.as.excel.ExcelImport;
 
 public class ExcelImportConfigurationPage extends WizardPage {
 

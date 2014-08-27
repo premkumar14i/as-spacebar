@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.Group;
 
 import com.tibco.as.spacebar.ui.SWTFactory;
 
-import com.tibco.as.io.file.text.delimited.DelimitedImport;
+import com.tibco.as.file.text.delimited.DelimitedImport;
 
 public class DelimitedImportConfigurationPage extends WizardPage {
 
