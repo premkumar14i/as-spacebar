@@ -78,6 +78,9 @@
         <groupId>external.atlassian.jgitflow</groupId>
         <artifactId>jgitflow-maven-plugin</artifactId>
         <version>1.0-m4</version>
+        <configuration>
+          <noDeploy>true</noDeploy>
+        </configuration>        
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
