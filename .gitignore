@@ -5,3 +5,5 @@ pom.xml.next
 release.properties
 workspace
 .DS_Store
+/.settings/
+/.project
