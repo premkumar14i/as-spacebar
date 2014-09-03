@@ -6,10 +6,13 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
@@ -26,7 +29,9 @@ public class MetaspaceEditor extends Composite {
 	private Button remoteButton;
 	private Text listenText;
 	private Text timeoutText;
+	private Text securityTokenFileText;
 	private Button autoconnectButton;
+	private Button browseFileButton;
 
 	public MetaspaceEditor(Composite parent, int style, Metaspace metaspace) {
 		this(parent, style);
@@ -35,57 +40,84 @@ public class MetaspaceEditor extends Composite {
 
 	private MetaspaceEditor(Composite parent, int style) {
 		super(parent, style);
-		setLayout(new GridLayout(2, false));
+		setLayout(new GridLayout(3, false));
 
 		new Label(this, SWT.NONE).setText("Name:");
 
 		nameText = new Text(this, SWT.BORDER | SWT.SINGLE);
-		nameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		nameText.setLayoutData(newGridData(2));
 
 		new Label(this, SWT.NONE).setText("Metaspace:");
 
 		metaspaceText = new Text(this, SWT.BORDER | SWT.SINGLE);
-		metaspaceText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false));
+		metaspaceText.setLayoutData(newGridData(2));
 
 		new Label(this, SWT.NONE).setText("Member:");
 
 		memberText = new Text(this, SWT.BORDER | SWT.SINGLE);
-		memberText
-				.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		memberText.setLayoutData(newGridData(2));
 
 		new Label(this, SWT.NONE).setText("Discovery:");
 
 		discoveryText = new Text(this, SWT.BORDER | SWT.SINGLE);
-		discoveryText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false));
+		discoveryText.setLayoutData(newGridData(2));
 
 		remoteButton = new Button(this, SWT.CHECK | SWT.LEFT);
-		GridDataFactory.defaultsFor(remoteButton).span(2, 1)
+		GridDataFactory.defaultsFor(remoteButton).span(3, 1)
 				.applyTo(remoteButton);
 		remoteButton.setText("Remote");
 
 		new Label(this, SWT.NONE).setText("Listen:");
 
 		listenText = new Text(this, SWT.BORDER | SWT.SINGLE);
-		listenText
-				.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		listenText.setLayoutData(newGridData(2));
 
 		Label timeoutLabel = new Label(this, SWT.NONE);
 		timeoutLabel.setText("Timeout:");
 
 		timeoutText = new Text(this, SWT.BORDER | SWT.SINGLE);
-		timeoutText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-				false));
+		timeoutText.setLayoutData(newGridData(2));
+
+		Label securityTokenFileLabel = new Label(this, SWT.NONE);
+		securityTokenFileLabel.setText("Security Token File:");
+
+		securityTokenFileText = new Text(this, SWT.BORDER | SWT.SINGLE);
+		securityTokenFileText.setLayoutData(newGridData(1));
+
+		browseFileButton = new Button(this, SWT.PUSH);
+		browseFileButton.setText("Browse...");
+		browseFileButton.addSelectionListener(new SelectionListener() {
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				FileDialog dialog = new FileDialog(browseFileButton.getShell(),
+						SWT.OPEN);
+				dialog.setText("Open");
+				String path = dialog.open();
+				if (path == null)
+					return;
+				securityTokenFileText.setText(path);
+			}
+		});
+		browseFileButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
+				false, false));
 
 		autoconnectButton = new Button(this, SWT.CHECK | SWT.LEFT);
 		autoconnectButton.setText("Autoconnect");
-		GridDataFactory.defaultsFor(remoteButton).span(2, 1)
+		GridDataFactory.defaultsFor(remoteButton).span(3, 1)
 				.applyTo(autoconnectButton);
 
 		if (metaspace != null) {
 			m_bindingContext = initDataBindings();
 		}
+	}
+
+	private GridData newGridData(int horizontalSpan) {
+		GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		gridData.horizontalSpan = horizontalSpan;
+		return gridData;
 	}
 
 	@Override
@@ -122,6 +154,10 @@ public class MetaspaceEditor extends Composite {
 				timeoutText, SWT.Modify);
 		IObservableValue timeoutObserveValue = PojoObservables.observeValue(
 				metaspace, "timeout");
+		IObservableValue securityTokenFileObserveWidget = SWTObservables
+				.observeText(securityTokenFileText, SWT.Modify);
+		IObservableValue securityTokenFileObserveValue = PojoObservables
+				.observeValue(metaspace, "securityTokenFile");
 		IObservableValue autoconnectObserveWidget = SWTObservables
 				.observeSelection(autoconnectButton);
 		IObservableValue autoconnectObserveValue = PojoObservables
@@ -143,6 +179,8 @@ public class MetaspaceEditor extends Composite {
 				null);
 		bindingContext.bindValue(timeoutObserveWidget, timeoutObserveValue,
 				null, null);
+		bindingContext.bindValue(securityTokenFileObserveWidget,
+				securityTokenFileObserveValue, null, null);
 		bindingContext.bindValue(autoconnectObserveWidget,
 				autoconnectObserveValue, null, null);
 		//

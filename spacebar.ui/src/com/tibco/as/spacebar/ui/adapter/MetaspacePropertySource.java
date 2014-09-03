@@ -34,6 +34,8 @@ public class MetaspacePropertySource implements IPropertySource {
 				"Remote"));
 		descriptors.add(new PropertyDescriptor(Metaspace.PROPERTY_TIMEOUT,
 				"Timeout"));
+		descriptors.add(new PropertyDescriptor(
+				Metaspace.PROPERTY_SECURITY_TOKEN_FILE, "Security token file"));
 		descriptors.add(new PropertyDescriptor(Metaspace.PROPERTY_AUTOCONNECT,
 				"Auto-connect"));
 		return descriptors.toArray(new IPropertyDescriptor[descriptors.size()]);
@@ -58,6 +60,9 @@ public class MetaspacePropertySource implements IPropertySource {
 		}
 		if (Metaspace.PROPERTY_TIMEOUT.equals(name)) {
 			return metaspace.getTimeout();
+		}
+		if (Metaspace.PROPERTY_SECURITY_TOKEN_FILE.equals(name)) {
+			return metaspace.getSecurityTokenFile();
 		}
 		if (Metaspace.PROPERTY_REMOTE.equals(name)) {
 			return metaspace.isRemote();

@@ -22,6 +22,7 @@ public class Metaspace extends AbstractElement {
 	public static final String PROPERTY_REMOTE = "remote";
 	public static final String PROPERTY_AUTOCONNECT = "autoconnect";
 	public static final String PROPERTY_TIMEOUT = "timeout";
+	public static final String PROPERTY_SECURITY_TOKEN_FILE = "securityTokenFile";
 
 	@XmlTransient
 	private Metaspaces metaspaces;
@@ -43,6 +44,9 @@ public class Metaspace extends AbstractElement {
 
 	@XmlAttribute(name = "connectTimeout")
 	private long timeout = 30000;
+
+	@XmlAttribute(name = "securityTokenFile")
+	private String securityTokenFile;
 
 	@XmlAttribute(name = "remote")
 	private boolean remote;
@@ -116,6 +120,16 @@ public class Metaspace extends AbstractElement {
 		metaspace.setSpaces(spaces);
 		metaspace.setRemote(remote);
 		metaspace.setTimeout(timeout);
+		metaspace.setSecurityTokenFile(securityTokenFile);
+	}
+
+	public String getSecurityTokenFile() {
+		return securityTokenFile;
+	}
+
+	public void setSecurityTokenFile(String securityTokenFile) {
+		firePropertyChange("securityTokenFile", this.securityTokenFile,
+				this.securityTokenFile = securityTokenFile);
 	}
 
 	public long getTimeout() {
