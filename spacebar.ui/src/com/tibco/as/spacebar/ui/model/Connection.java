@@ -10,6 +10,7 @@ import com.tibco.as.space.SpaceDef;
 import com.tibco.as.space.listener.MetaspaceMemberListener;
 import com.tibco.as.space.listener.SpaceDefListener;
 import com.tibco.as.space.listener.SpaceMemberListener;
+import com.tibco.as.spacebar.ui.DialogAuthenticationCallback;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.util.Utils;
 
@@ -42,6 +43,15 @@ public class Connection {
 			}
 			if (Utils.hasMethod(MemberDef.class, "setConnectTimeout")) {
 				memberDef.setConnectTimeout(metaspace.getTimeout());
+			}
+			if (Utils.hasMethod(MemberDef.class, "setSecurityTokenFile")) {
+				memberDef
+						.setSecurityTokenFile(metaspace.getSecurityTokenFile());
+			}
+			if (Utils.hasMethod(MemberDef.class, "setAuthenticationCallback")) {
+				memberDef
+						.setAuthenticationCallback(new DialogAuthenticationCallback(
+								SpaceBarPlugin.getShell()));
 			}
 			ms = Metaspace.connect(metaspace.getMetaspaceName(), memberDef);
 		}

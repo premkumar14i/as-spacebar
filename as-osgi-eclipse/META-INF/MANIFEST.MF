@@ -1,8 +1,10 @@
 Bundle-ManifestVersion: 2
 Bundle-Name: AS OSGi
 Bundle-SymbolicName: as-osgi
-Bundle-Version: 2.1.3
-Bundle-Classpath: as-common.jar
+Bundle-Version: 2.1.5
+Bundle-Classpath: as-common.jar,
+ as-agent.jar,
+ as-admin.jar
 Export-Package: com.tibco.as.space,
  com.tibco.as.space.browser,
  com.tibco.as.space.event,
@@ -14,6 +16,10 @@ Export-Package: com.tibco.as.space,
  com.tibco.as.space.persistence,
  com.tibco.as.space.remote,
  com.tibco.as.space.router,
- com.tibco.as.space.security
+ com.tibco.as.space.security,
+ com.tibco.as.admin,
+ com.tibco.as.grammar,
+ com.tibco.as.grammar.jline,
+ com.tibco.as.space.agent
 Bundle-Vendor: TIBCO Software
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
