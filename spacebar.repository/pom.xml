@@ -81,11 +81,11 @@
 		</plugins>
 	</build>
 
-<!-- 	<distributionManagement> -->
-<!-- 		<site> -->
-<!-- 			<id>${project.artifactId}</id> -->
-<!-- 			<url>${site.deploy.url}</url> -->
-<!-- 		</site> -->
-<!-- 	</distributionManagement> -->
+	<distributionManagement>
+		<site>
+			<id>${project.artifactId}</id>
+			<url>${site.deploy.url}</url>
+		</site>
+	</distributionManagement>
 
 </project>
