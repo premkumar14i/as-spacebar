@@ -16,20 +16,20 @@ import org.eclipse.swt.widgets.Text;
 
 import com.tibco.as.spacebar.ui.Messages;
 
-import com.tibco.as.io.Import;
+import com.tibco.as.io.AbstractImport;
 import com.tibco.as.io.Operation;
 import com.tibco.as.space.Member.DistributionRole;
 
 public class ImportEditor extends Composite {
 
 	private DataBindingContext m_bindingContext;
-	private Import config;
+	private AbstractImport config;
 	protected ComboViewer distributionRoleCombo;
 	protected ComboViewer operationCombo;
 	protected Text batchSizeText;
 	protected Text workerCountText;
 
-	public ImportEditor(Composite parent, int style, Import config) {
+	public ImportEditor(Composite parent, int style, AbstractImport config) {
 		super(parent, style);
 		this.config = config;
 		setLayout(new GridLayout(2, false));
@@ -115,15 +115,15 @@ public class ImportEditor extends Composite {
 		return bindingContext;
 	}
 
-	public Import getImport() {
+	public AbstractImport getImport() {
 		return config;
 	}
 
-	public void setImportBean(Import newImportBean) {
+	public void setImportBean(AbstractImport newImportBean) {
 		setImportBean(newImportBean, true);
 	}
 
-	public void setImportBean(Import newImportBean, boolean update) {
+	public void setImportBean(AbstractImport newImportBean, boolean update) {
 		config = newImportBean;
 		if (update) {
 			if (m_bindingContext != null) {

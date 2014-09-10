@@ -11,9 +11,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
 
-import com.tibco.as.io.Export;
 import com.tibco.as.spacebar.ui.ConnectJob;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
+import com.tibco.as.spacebar.ui.editor.Export;
 import com.tibco.as.spacebar.ui.editor.SpaceEditorInput;
 import com.tibco.as.spacebar.ui.model.IElement;
 import com.tibco.as.spacebar.ui.model.IModelListener;

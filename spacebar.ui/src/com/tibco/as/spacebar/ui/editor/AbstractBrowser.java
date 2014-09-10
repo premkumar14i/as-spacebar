@@ -69,7 +69,7 @@ import ca.odell.glazedlists.GlazedLists;
 import ca.odell.glazedlists.SortedList;
 import ca.odell.glazedlists.util.concurrent.Lock;
 
-import com.tibco.as.io.Exporter;
+import com.tibco.as.io.AbstractExporter;
 import com.tibco.as.io.IOutputStream;
 import com.tibco.as.space.FieldDef;
 import com.tibco.as.space.Metaspace;
@@ -225,7 +225,7 @@ public abstract class AbstractBrowser<T extends Map<String, Object>> extends
 		Space space = input.getSpace();
 		Metaspace metaspace = space.getParent().getParent().getConnection()
 				.getMetaspace();
-		Exporter<T> exporter = getExporter(metaspace);
+		AbstractExporter<T> exporter = getExporter(metaspace);
 		exporter.addTransfer(input.getExport());
 		exporter.setOutputStream(this);
 		String jobName = NLS.bind("Browsing space ''{0}''", space);
@@ -235,7 +235,7 @@ public abstract class AbstractBrowser<T extends Map<String, Object>> extends
 		browseJob.schedule();
 	}
 
-	protected abstract Exporter<T> getExporter(Metaspace metaspace);
+	protected abstract AbstractExporter<T> getExporter(Metaspace metaspace);
 
 	protected String[] getFieldNames() {
 		return fieldNames;

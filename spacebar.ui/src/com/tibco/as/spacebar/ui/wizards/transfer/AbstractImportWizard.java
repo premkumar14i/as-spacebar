@@ -17,8 +17,8 @@ import com.tibco.as.spacebar.ui.model.Metaspace;
 import com.tibco.as.spacebar.ui.wizards.transfer.AbstractImportWizardPage.ImportFileSystemElement;
 
 import com.tibco.as.io.IMetaspaceTransfer;
-import com.tibco.as.io.Import;
-import com.tibco.as.io.Transfer;
+import com.tibco.as.io.AbstractImport;
+import com.tibco.as.io.AbstractTransfer;
 import com.tibco.as.space.Tuple;
 
 public abstract class AbstractImportWizard<T> extends
@@ -38,23 +38,23 @@ public abstract class AbstractImportWizard<T> extends
 	}
 
 	@Override
-	protected Collection<IMetaspaceTransfer> getTransfers(Transfer transfer) {
+	protected Collection<IMetaspaceTransfer> getTransfers(AbstractTransfer transfer) {
 		List<File> files = new ArrayList<File>();
 		AbstractImportWizardPage mainPage = (AbstractImportWizardPage) getMainPage();
 		for (Object resource : mainPage.getSelectedResources()) {
 			files.add((File) ((ImportFileSystemElement) resource)
 					.getFileSystemObject());
 		}
-		return getImporters(files, (Import) transfer);
+		return getImporters(files, (AbstractImport) transfer);
 	}
 
 	@Override
-	protected void addTransferOptionsPage(Transfer transfer) {
-		addPage(new ImportOptionsPage((Import) transfer));
+	protected void addTransferOptionsPage(AbstractTransfer transfer) {
+		addPage(new ImportOptionsPage((AbstractImport) transfer));
 	}
 
 	protected abstract Collection<IMetaspaceTransfer> getImporters(
-			List<File> files, Import defaultImport);
+			List<File> files, AbstractImport defaultImport);
 
 	@Override
 	protected String getJobName() {

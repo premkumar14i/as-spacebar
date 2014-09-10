@@ -3,10 +3,10 @@ package com.tibco.as.spacebar.ui.wizards.space.browse;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.osgi.util.NLS;
 
+import com.tibco.as.space.ASException;
+import com.tibco.as.spacebar.ui.editor.Export;
 import com.tibco.as.spacebar.ui.model.Space;
 import com.tibco.as.spacebar.ui.wizards.AbstractWizard;
-
-import com.tibco.as.io.Export;
 
 /**
  * This wizard's role is to open a space editor.

@@ -18,20 +18,20 @@ import org.eclipse.swt.widgets.Text;
 
 import com.tibco.as.spacebar.ui.preferences.Preferences;
 
-import com.tibco.as.io.Export;
+import com.tibco.as.io.AbstractExport;
 import com.tibco.as.space.browser.BrowserDef.TimeScope;
 
 public class ExportEditor extends Composite {
 
 	private DataBindingContext m_bindingContext;
-	private Export export;
+	private AbstractExport export;
 	protected ComboViewer timeScopeCombo;
 	protected Text timeoutText;
 	protected Text prefetchText;
 	protected Text queryLimitText;
 	protected Text filterText;
 
-	public ExportEditor(Composite parent, int style, Export export) {
+	public ExportEditor(Composite parent, int style, AbstractExport export) {
 		super(parent, style);
 		this.export = export;
 		setLayout(new GridLayout(2, false));
@@ -157,15 +157,15 @@ public class ExportEditor extends Composite {
 		}
 	}
 
-	public Export getExport() {
+	public AbstractExport getExport() {
 		return export;
 	}
 
-	public void setExportBean(Export newExportBean) {
+	public void setExportBean(AbstractExport newExportBean) {
 		setExportBean(newExportBean, true);
 	}
 
-	public void setExportBean(Export newExportBean, boolean update) {
+	public void setExportBean(AbstractExport newExportBean, boolean update) {
 		export = newExportBean;
 		if (update) {
 			if (m_bindingContext != null) {

@@ -13,11 +13,11 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.ui.IExportWizard;
 
-import com.tibco.as.io.Export;
-import com.tibco.as.io.Exporter;
+import com.tibco.as.io.AbstractExport;
+import com.tibco.as.io.AbstractExporter;
 import com.tibco.as.io.IMetaspaceTransfer;
 import com.tibco.as.io.ListInputStream;
-import com.tibco.as.io.Transfer;
+import com.tibco.as.io.AbstractTransfer;
 import com.tibco.as.space.Tuple;
 import com.tibco.as.spacebar.ui.Image;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
@@ -39,11 +39,11 @@ public abstract class AbstractExportWizard<T> extends
 	}
 
 	@Override
-	protected void addTransferOptionsPage(Transfer transfer) {
+	protected void addTransferOptionsPage(AbstractTransfer transfer) {
 		if (isTupleSelection()) {
 			return;
 		}
-		addPage(new ExportOptionsPage((Export) transfer));
+		addPage(new ExportOptionsPage((AbstractExport) transfer));
 	}
 
 	protected boolean isTupleSelection() {
@@ -53,7 +53,7 @@ public abstract class AbstractExportWizard<T> extends
 
 	@Override
 	protected Collection<IMetaspaceTransfer> getTransfers(
-			Transfer defaultTransfer) {
+			AbstractTransfer defaultTransfer) {
 		// Save dirty editors if possible but do not stop if not all are saved
 		if (!SpaceBarPlugin.getDefault().getWorkbench().saveAllEditors(true)) {
 			return null;
@@ -82,7 +82,7 @@ public abstract class AbstractExportWizard<T> extends
 			Space space = tupleSelection.getSpace();
 			com.tibco.as.space.Metaspace ms = space.getParent().getParent()
 					.getConnection().getMetaspace();
-			Exporter<T> exporter = getExporter(ms, directory);
+			AbstractExporter<T> exporter = getExporter(ms, directory);
 			if (exporter == null) {
 				return null;
 			}
@@ -109,7 +109,7 @@ public abstract class AbstractExportWizard<T> extends
 			for (Metaspace metaspace : metaspaces.keySet()) {
 				com.tibco.as.space.Metaspace ms = metaspace.getConnection()
 						.getMetaspace();
-				Exporter<T> exporter = getExporter(ms, directory);
+				AbstractExporter<T> exporter = getExporter(ms, directory);
 				if (exporter == null) {
 					continue;
 				}
@@ -123,7 +123,7 @@ public abstract class AbstractExportWizard<T> extends
 		return transfers;
 	}
 
-	protected abstract Exporter<T> getExporter(com.tibco.as.space.Metaspace ms,
+	protected abstract AbstractExporter<T> getExporter(com.tibco.as.space.Metaspace ms,
 			File directory);
 
 	private void putMetaspace(Map<Metaspace, Collection<Space>> metaspaces,

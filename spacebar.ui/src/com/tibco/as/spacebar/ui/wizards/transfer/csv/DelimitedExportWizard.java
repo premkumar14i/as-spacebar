@@ -10,8 +10,8 @@ import com.tibco.as.spacebar.ui.preferences.Preferences;
 import com.tibco.as.spacebar.ui.wizards.transfer.AbstractExportWizard;
 import com.tibco.as.spacebar.ui.wizards.transfer.AbstractExportWizardPage;
 
-import com.tibco.as.io.Exporter;
-import com.tibco.as.io.Transfer;
+import com.tibco.as.io.AbstractExporter;
+import com.tibco.as.io.AbstractTransfer;
 import com.tibco.as.file.text.delimited.DelimitedExport;
 import com.tibco.as.file.text.delimited.DelimitedExporter;
 import com.tibco.as.space.Metaspace;
@@ -36,12 +36,12 @@ public class DelimitedExportWizard extends AbstractExportWizard<String[]> {
 	}
 
 	@Override
-	protected IWizardPage getConfigurationPage(Transfer transfer) {
+	protected IWizardPage getConfigurationPage(AbstractTransfer transfer) {
 		return new DelimitedExportConfigurationPage((DelimitedExport) transfer);
 	}
 
 	@Override
-	protected Exporter<String[]> getExporter(Metaspace ms, File dir) {
+	protected AbstractExporter<String[]> getExporter(Metaspace ms, File dir) {
 		File directory = getDirectory(dir, ms);
 		if (directory.exists()) {
 			if (directory.isFile()) {

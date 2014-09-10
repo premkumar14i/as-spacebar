@@ -7,13 +7,13 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-import com.tibco.as.io.Export;
+import com.tibco.as.io.AbstractExport;
 
 public class ExportOptionsPage extends WizardPage {
 
-	private Export config;
+	private AbstractExport config;
 
-	public ExportOptionsPage(Export config) {
+	public ExportOptionsPage(AbstractExport config) {
 		super("ExportOptionsPage");
 		setTitle("Browse Options");
 		setDescription("Define the browse options for the export.");

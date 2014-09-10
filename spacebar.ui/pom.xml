@@ -27,7 +27,7 @@
           <dependency>
             <groupId>com.tibco.as</groupId>
             <artifactId>as-util</artifactId>
-            <version>2.0.0</version>
+            <version>${as-util.version}</version>
           </dependency>
         </dependencies>
         <configuration>
@@ -40,7 +40,7 @@
             <extraClasspathElement>
               <groupId>com.tibco.as</groupId>
               <artifactId>as-util</artifactId>
-              <version>2.0.0</version>
+              <version>${as-util.version}</version>
             </extraClasspathElement>
           </extraClasspathElements>
         </configuration>

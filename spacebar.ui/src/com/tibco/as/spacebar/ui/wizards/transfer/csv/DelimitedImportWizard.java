@@ -16,8 +16,8 @@ import com.tibco.as.spacebar.ui.preferences.Preferences;
 import com.tibco.as.spacebar.ui.wizards.transfer.AbstractImportWizard;
 
 import com.tibco.as.io.IMetaspaceTransfer;
-import com.tibco.as.io.Import;
-import com.tibco.as.io.Transfer;
+import com.tibco.as.io.AbstractImport;
+import com.tibco.as.io.AbstractTransfer;
 import com.tibco.as.file.text.delimited.DelimitedImport;
 import com.tibco.as.file.text.delimited.DelimitedImporter;
 import com.tibco.as.space.Metaspace;
@@ -36,7 +36,7 @@ public class DelimitedImportWizard extends AbstractImportWizard<String[]> {
 	}
 
 	@Override
-	protected IWizardPage getConfigurationPage(Transfer transfer) {
+	protected IWizardPage getConfigurationPage(AbstractTransfer transfer) {
 		return new DelimitedImportConfigurationPage((DelimitedImport) transfer);
 	}
 
@@ -47,7 +47,7 @@ public class DelimitedImportWizard extends AbstractImportWizard<String[]> {
 
 	@Override
 	protected Collection<IMetaspaceTransfer> getImporters(List<File> files,
-			Import defaultImport) {
+			AbstractImport defaultImport) {
 		Map<File, Collection<File>> dirs = new HashMap<File, Collection<File>>();
 		for (File file : files) {
 			File dir = file.getParentFile();

@@ -16,8 +16,8 @@ import com.tibco.as.spacebar.ui.wizards.transfer.AbstractImportWizard;
 
 import com.tibco.as.io.IMetaspaceTransfer;
 import com.tibco.as.io.IOUtils;
-import com.tibco.as.io.Import;
-import com.tibco.as.io.Transfer;
+import com.tibco.as.io.AbstractImport;
+import com.tibco.as.io.AbstractTransfer;
 import com.tibco.as.excel.ExcelImport;
 import com.tibco.as.excel.ExcelImporter;
 import com.tibco.as.space.Metaspace;
@@ -29,7 +29,7 @@ public class ExcelImportWizard extends AbstractImportWizard<Object[]> {
 	}
 
 	@Override
-	protected Transfer createTransfer() {
+	protected AbstractTransfer createTransfer() {
 		return new ExcelImport();
 	}
 
@@ -39,7 +39,7 @@ public class ExcelImportWizard extends AbstractImportWizard<Object[]> {
 	}
 
 	@Override
-	protected IWizardPage getConfigurationPage(Transfer transfer) {
+	protected IWizardPage getConfigurationPage(AbstractTransfer transfer) {
 		ExcelImport excelImport = (ExcelImport) transfer;
 		Preferences.configureExcelImport(excelImport);
 		return new ExcelImportConfigurationPage(excelImport);
@@ -47,7 +47,7 @@ public class ExcelImportWizard extends AbstractImportWizard<Object[]> {
 
 	@Override
 	protected Collection<IMetaspaceTransfer> getImporters(List<File> files,
-			Import defaultImport) {
+			AbstractImport defaultImport) {
 		Collection<IMetaspaceTransfer> importers = new ArrayList<IMetaspaceTransfer>();
 		Map<String, Metaspace> metaspaces = getConnectedMetaspaces();
 		if (metaspaces.isEmpty()) {

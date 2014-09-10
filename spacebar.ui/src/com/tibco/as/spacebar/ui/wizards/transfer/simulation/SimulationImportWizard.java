@@ -19,8 +19,8 @@ import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.preferences.Preferences;
 import com.tibco.as.spacebar.ui.wizards.transfer.AbstractImportWizard;
 import com.tibco.as.io.IMetaspaceTransfer;
-import com.tibco.as.io.Import;
-import com.tibco.as.io.Transfer;
+import com.tibco.as.io.AbstractImport;
+import com.tibco.as.io.AbstractTransfer;
 import com.tibco.as.simulator.ObjectFactory;
 import com.tibco.as.simulator.Simulation;
 import com.tibco.as.simulator.SimulationImport;
@@ -34,7 +34,7 @@ public class SimulationImportWizard extends AbstractImportWizard<Object[]> {
 	}
 
 	@Override
-	protected Transfer createTransfer() {
+	protected AbstractTransfer createTransfer() {
 		SimulationImport config = new SimulationImport();
 		Preferences.configureImport(config);
 		return config;
@@ -42,7 +42,7 @@ public class SimulationImportWizard extends AbstractImportWizard<Object[]> {
 
 	@Override
 	protected Collection<IMetaspaceTransfer> getImporters(List<File> files,
-			Import defaultImport) {
+			AbstractImport defaultImport) {
 		Map<String, Metaspace> metaspaces = getConnectedMetaspaces();
 		Collection<IMetaspaceTransfer> importers = new ArrayList<IMetaspaceTransfer>();
 		for (File file : files) {

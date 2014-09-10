@@ -6,7 +6,6 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 
-import com.tibco.as.io.Export;
 import com.tibco.as.spacebar.ui.Image;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.model.Space;

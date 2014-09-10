@@ -11,8 +11,8 @@ import com.tibco.as.spacebar.ui.preferences.Preferences;
 import com.tibco.as.spacebar.ui.wizards.transfer.AbstractExportWizard;
 import com.tibco.as.spacebar.ui.wizards.transfer.AbstractExportWizardPage;
 
-import com.tibco.as.io.Exporter;
-import com.tibco.as.io.Transfer;
+import com.tibco.as.io.AbstractExporter;
+import com.tibco.as.io.AbstractTransfer;
 import com.tibco.as.excel.ExcelExport;
 import com.tibco.as.excel.ExcelExporter;
 import com.tibco.as.space.Metaspace;
@@ -26,7 +26,7 @@ public class ExcelExportWizard extends AbstractExportWizard<Object[]> {
 	}
 
 	@Override
-	protected Transfer createTransfer() {
+	protected AbstractTransfer createTransfer() {
 		ExcelExport config = new ExcelExport();
 		Preferences.configureExcelExport(config);
 		return config;
@@ -39,7 +39,7 @@ public class ExcelExportWizard extends AbstractExportWizard<Object[]> {
 	}
 
 	@Override
-	protected IWizardPage getConfigurationPage(Transfer transfer) {
+	protected IWizardPage getConfigurationPage(AbstractTransfer transfer) {
 		ExcelExport config = (ExcelExport) transfer;
 		String versionString = Preferences
 				.getString(Preferences.EXPORT_EXCEL_VERSION);
@@ -49,7 +49,7 @@ public class ExcelExportWizard extends AbstractExportWizard<Object[]> {
 	}
 
 	@Override
-	protected Exporter<Object[]> getExporter(Metaspace ms, File directory) {
+	protected AbstractExporter<Object[]> getExporter(Metaspace ms, File directory) {
 		ExcelExporter exporter = new ExcelExporter(ms, directory,
 				configPage.getSpreadsheetVersion());
 		File file = exporter.getFile();

@@ -1,8 +1,6 @@
 package com.tibco.as.spacebar.ui.editor.continuous;
 
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -16,19 +14,10 @@ import org.eclipse.swt.widgets.Display;
 
 import ca.odell.glazedlists.EventList;
 
-import com.tibco.as.convert.UnsupportedConversionException;
-import com.tibco.as.io.Exporter;
-import com.tibco.as.io.Transfer;
-import com.tibco.as.space.FieldDef;
 import com.tibco.as.space.Metaspace;
-import com.tibco.as.space.SpaceDef;
 import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
 import com.tibco.as.spacebar.ui.editor.AbstractConfiguration;
 import com.tibco.as.spacebar.ui.editor.StringPropertyAccessor;
-import com.tibco.as.spacebar.ui.editor.continuous.coder.BlobHashCoder;
-import com.tibco.as.spacebar.ui.editor.continuous.coder.FieldHashCoder;
-import com.tibco.as.spacebar.ui.editor.continuous.coder.IFieldHashCoder;
-import com.tibco.as.spacebar.ui.editor.continuous.coder.TupleHashCoder;
 
 public class ContinuousBrowser extends AbstractBrowser<ObservableTuple> {
 
@@ -127,37 +116,8 @@ public class ContinuousBrowser extends AbstractBrowser<ObservableTuple> {
 	}
 
 	@Override
-	protected Exporter<ObservableTuple> getExporter(Metaspace metaspace) {
-		return new Exporter<ObservableTuple>(metaspace) {
-
-			@Override
-			protected TupleObservableConverter getConverter(Transfer transfer,
-					SpaceDef spaceDef) throws UnsupportedConversionException {
-				Collection<String> keys = spaceDef.getKeyDef().getFieldNames();
-				TupleHashCoder coder = getHashCoder(spaceDef, keys);
-				PropertyChangeListener listener = getPropertyChangeListener();
-				return new TupleObservableConverter(coder, listener);
-			}
-		};
-	}
-
-	private TupleHashCoder getHashCoder(SpaceDef spaceDef,
-			Collection<String> keys) {
-		Collection<IFieldHashCoder> coders = new ArrayList<IFieldHashCoder>();
-		for (String key : keys) {
-			coders.add(getFieldHashCoder(spaceDef.getFieldDef(key)));
-		}
-		return new TupleHashCoder(coders);
-	}
-
-	private IFieldHashCoder getFieldHashCoder(FieldDef fieldDef) {
-		String fieldName = fieldDef.getName();
-		switch (fieldDef.getType()) {
-		case BLOB:
-			return new BlobHashCoder(fieldName);
-		default:
-			return new FieldHashCoder(fieldName);
-		}
+	protected Exporter getExporter(Metaspace metaspace) {
+		return new Exporter(metaspace, getPropertyChangeListener());
 	}
 
 }

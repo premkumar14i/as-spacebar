@@ -8,10 +8,10 @@ import org.eclipse.swt.widgets.Shell;
 import com.tibco.as.spacebar.ui.Image;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
+import com.tibco.as.spacebar.ui.editor.Export;
 import com.tibco.as.spacebar.ui.editor.SpaceEditorInput;
 import com.tibco.as.spacebar.ui.wizards.space.browse.BrowseSpaceWizard;
-
-import com.tibco.as.io.Export;
+import com.tibco.as.io.AbstractExport;
 
 public class BrowseAction extends SpaceEditorAction {
 

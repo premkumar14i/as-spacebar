@@ -9,13 +9,12 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
+import com.tibco.as.spacebar.ui.editor.Export;
 import com.tibco.as.spacebar.ui.editor.SpaceEditorInput;
 import com.tibco.as.spacebar.ui.handlers.space.AbstractSpaceHandler;
 import com.tibco.as.spacebar.ui.model.Space;
 import com.tibco.as.spacebar.ui.navigator.MetaspaceNavigator;
 import com.tibco.as.spacebar.ui.preferences.Preferences;
-
-import com.tibco.as.io.Export;
 
 public abstract class AbstractBrowseHandler extends AbstractSpaceHandler {
 

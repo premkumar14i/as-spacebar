@@ -7,13 +7,13 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
-import com.tibco.as.io.Import;
+import com.tibco.as.io.AbstractImport;
 
 public class ImportOptionsPage extends WizardPage {
 
-	private Import config;
+	private AbstractImport config;
 
-	public ImportOptionsPage(Import config) {
+	public ImportOptionsPage(AbstractImport config) {
 		super("ImportOptionsPage");
 		setTitle("Import Options");
 		setDescription("Define the import options.");

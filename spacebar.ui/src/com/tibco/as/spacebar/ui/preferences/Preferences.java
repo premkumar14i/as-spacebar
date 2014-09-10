@@ -10,14 +10,15 @@ import org.eclipse.swt.widgets.Display;
 import com.tibco.as.convert.Attribute;
 import com.tibco.as.convert.Attributes;
 import com.tibco.as.convert.ConverterFactory.Blob;
-import com.tibco.as.io.Export;
-import com.tibco.as.io.Import;
+import com.tibco.as.io.AbstractExport;
+import com.tibco.as.io.AbstractImport;
 import com.tibco.as.io.Operation;
 import com.tibco.as.excel.ExcelExport;
 import com.tibco.as.excel.ExcelImport;
 import com.tibco.as.file.text.delimited.DelimitedExport;
 import com.tibco.as.file.text.delimited.DelimitedImport;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
+import com.tibco.as.spacebar.ui.editor.Export;
 
 /**
  * Constant definitions for plug-in preferences
@@ -97,7 +98,7 @@ public class Preferences {
 		return name;
 	}
 
-	public static void configureExport(Export export) {
+	public static void configureExport(AbstractExport export) {
 		export.setBatchSize(getInteger(EXPORT_BATCH_SIZE));
 		export.setPrefetch(getLong(EXPORT_PREFETCH));
 		export.setQueryLimit(getLong(EXPORT_QUERY_LIMIT));
@@ -107,7 +108,7 @@ public class Preferences {
 		export.setWorkerCount(getInteger(EXPORT_WORKER_COUNT));
 	}
 
-	public static void configureImport(Import config) {
+	public static void configureImport(AbstractImport config) {
 		config.setBatchSize(getInteger(IMPORT_BATCH_SIZE));
 		config.setWorkerCount(getInteger(IMPORT_WORKER_COUNT));
 		config.setOperation(Operation.valueOf(getString(IMPORT_OPERATION)));

@@ -20,6 +20,13 @@
     <site-url>http://activespaces.tibco.com/tools/spacebar/</site-url>
     <site.deploy.path>/opt/products/apache2/htdocs/tools/spacebar/</site.deploy.path>
     <site.deploy.url>file://${site.deploy.path}</site.deploy.url>
+    <as-osgi.version>2.1.5</as-osgi.version>
+    <as-util.version>2.0.6</as-util.version>
+    <as-io.version>2.0.14</as-io.version>
+    <as-files.version>2.0.8</as-files.version>
+    <as-simulator.version>2.0.4</as-simulator.version>
+    <as-spreadsheets.version>2.0.6</as-spreadsheets.version>
+    <as-io-dependencies.version>2.0.0</as-io-dependencies.version>
   </properties>
 
   <modules>
@@ -35,37 +42,37 @@
     <dependency>
       <groupId>com.tibco.as</groupId>
       <artifactId>as-osgi</artifactId>
-      <version>2.1.5</version>
+      <version>${as-osgi.version}</version>
     </dependency>
     <dependency>
       <groupId>com.tibco.as</groupId>
       <artifactId>as-util</artifactId>
-      <version>2.0.0</version>
+      <version>${as-util.version}</version>
     </dependency>
     <dependency>
       <groupId>com.tibco.as</groupId>
       <artifactId>as-io</artifactId>
-      <version>2.0.0</version>
+      <version>${as-io.version}</version>
     </dependency>
     <dependency>
       <groupId>com.tibco.as</groupId>
       <artifactId>as-files</artifactId>
-      <version>2.0.0</version>
+      <version>${as-files.version}</version>
     </dependency>
     <dependency>
       <groupId>com.tibco.as</groupId>
       <artifactId>as-spreadsheets</artifactId>
-      <version>2.0.0</version>
+      <version>${as-spreadsheets.version}</version>
     </dependency>
     <dependency>
       <groupId>com.tibco.as</groupId>
       <artifactId>as-simulator</artifactId>
-      <version>2.0.0</version>
+      <version>${as-simulator.version}</version>
     </dependency>
     <dependency>
       <groupId>com.tibco.as</groupId>
       <artifactId>as-io-dependencies</artifactId>
-      <version>2.0.0</version>
+      <version>${as-io-dependencies.version}</version>
     </dependency>
   </dependencies>
 

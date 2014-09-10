@@ -12,11 +12,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 
+import com.tibco.as.io.AbstractExport;
+import com.tibco.as.spacebar.ui.editor.Export;
 import com.tibco.as.spacebar.ui.model.Space;
 import com.tibco.as.spacebar.ui.preferences.Preferences;
 import com.tibco.as.spacebar.ui.wizards.AbstractWizardPage;
-
-import com.tibco.as.io.Export;
 
 public class BrowseSpaceWizardPage extends AbstractWizardPage {
 
@@ -41,7 +41,7 @@ public class BrowseSpaceWizardPage extends AbstractWizardPage {
 		composite.setLayout(new GridLayout());
 		GridDataFactory gridDataFactory = GridDataFactory.fillDefaults().grab(
 				true, false);
-		Map<String, Export> defaults = new HashMap<String, Export>();
+		Map<String, AbstractExport> defaults = new HashMap<String, AbstractExport>();
 		defaults.put(Preferences.TIMESCOPE_ALL,
 				Preferences.getSpaceEditorExport(Preferences.TIMESCOPE_ALL));
 		defaults.put(Preferences.TIMESCOPE_NEW,

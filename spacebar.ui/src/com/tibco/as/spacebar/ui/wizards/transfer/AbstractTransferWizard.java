@@ -24,7 +24,7 @@ import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.transfer.MetaspaceTransferJob;
 
 import com.tibco.as.io.IMetaspaceTransfer;
-import com.tibco.as.io.Transfer;
+import com.tibco.as.io.AbstractTransfer;
 
 public abstract class AbstractTransferWizard<S, T, U> extends Wizard implements
 		IWorkbenchWizard {
@@ -33,7 +33,7 @@ public abstract class AbstractTransferWizard<S, T, U> extends Wizard implements
 	private String windowTitle;
 	private Image image;
 	private AbstractTransferWizardPage mainPage;
-	private Transfer defaultTransfer;
+	private AbstractTransfer defaultTransfer;
 
 	public AbstractTransferWizard(String sectionName, String windowTitle,
 			Image image) {
@@ -124,11 +124,11 @@ public abstract class AbstractTransferWizard<S, T, U> extends Wizard implements
 		addTransferOptionsPage(defaultTransfer);
 	}
 
-	protected IWizardPage getConfigurationPage(Transfer transfer) {
+	protected IWizardPage getConfigurationPage(AbstractTransfer transfer) {
 		return null;
 	}
 
-	protected abstract Transfer createTransfer();
+	protected abstract AbstractTransfer createTransfer();
 
 	protected abstract AbstractTransferWizardPage getMainPage(
 			IStructuredSelection selection);
@@ -148,7 +148,7 @@ public abstract class AbstractTransferWizard<S, T, U> extends Wizard implements
 	}
 
 	protected abstract Collection<IMetaspaceTransfer> getTransfers(
-			Transfer defaultTransfer);
+			AbstractTransfer defaultTransfer);
 
 	protected abstract String getJobName();
 
@@ -156,6 +156,6 @@ public abstract class AbstractTransferWizard<S, T, U> extends Wizard implements
 
 	protected abstract String getErrorMessage(IMetaspaceTransfer transfer);
 
-	protected abstract void addTransferOptionsPage(Transfer transfer);
+	protected abstract void addTransferOptionsPage(AbstractTransfer transfer);
 
 }

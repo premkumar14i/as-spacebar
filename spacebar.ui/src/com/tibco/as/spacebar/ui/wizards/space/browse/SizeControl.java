@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Text;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.model.Space;
 
-import com.tibco.as.io.Export;
+import com.tibco.as.io.AbstractExport;
 import com.tibco.as.space.ASException;
 
 public class SizeControl extends Composite {
@@ -32,9 +32,9 @@ public class SizeControl extends Composite {
 
 	private Space space;
 
-	private Export export;
+	private AbstractExport export;
 
-	public SizeControl(Composite parent, int style, Space space, Export export) {
+	public SizeControl(Composite parent, int style, Space space, AbstractExport export) {
 		super(parent, style);
 		this.space = space;
 		this.export = export;

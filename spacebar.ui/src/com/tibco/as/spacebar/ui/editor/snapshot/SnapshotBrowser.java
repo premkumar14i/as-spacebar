@@ -30,7 +30,7 @@ import ca.odell.glazedlists.SortedList;
 import com.tibco.as.convert.ConvertException;
 import com.tibco.as.convert.IConverter;
 import com.tibco.as.convert.UnsupportedConversionException;
-import com.tibco.as.io.Exporter;
+import com.tibco.as.io.AbstractExporter;
 import com.tibco.as.io.IMetaspaceTransferListener;
 import com.tibco.as.io.IOutputStream;
 import com.tibco.as.io.ITransfer;
@@ -223,23 +223,8 @@ public class SnapshotBrowser extends AbstractBrowser<Tuple> {
 	}
 
 	@Override
-	protected Exporter<Tuple> getExporter(Metaspace metaspace) {
-		Exporter<Tuple> exporter = new Exporter<Tuple>(metaspace) {
-
-			@Override
-			protected IConverter<Tuple, Tuple> getConverter(
-					com.tibco.as.io.Transfer transfer, SpaceDef spaceDef)
-					throws UnsupportedConversionException {
-				return new IConverter<Tuple, Tuple>() {
-
-					@Override
-					public Tuple convert(Tuple source) throws ConvertException {
-						return source;
-					}
-
-				};
-			}
-		};
+	protected AbstractExporter<Tuple> getExporter(Metaspace metaspace) {
+		Exporter exporter = new Exporter(metaspace);
 		exporter.addListener(new IMetaspaceTransferListener() {
 
 			@Override
@@ -253,7 +238,6 @@ public class SnapshotBrowser extends AbstractBrowser<Tuple> {
 			}
 
 		});
-
 		return exporter;
 	}
 
