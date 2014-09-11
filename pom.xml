@@ -21,11 +21,11 @@
     <site.deploy.path>/opt/products/apache2/htdocs/tools/spacebar/</site.deploy.path>
     <site.deploy.url>file://${site.deploy.path}</site.deploy.url>
     <as-osgi.version>2.1.5</as-osgi.version>
-    <as-util.version>2.0.6</as-util.version>
-    <as-io.version>2.0.14</as-io.version>
-    <as-files.version>2.0.8</as-files.version>
-    <as-simulator.version>2.0.4</as-simulator.version>
-    <as-spreadsheets.version>2.0.6</as-spreadsheets.version>
+    <as-util.version>2.0.7</as-util.version>
+    <as-io.version>2.0.16</as-io.version>
+    <as-files.version>2.0.9</as-files.version>
+    <as-simulator.version>2.0.5</as-simulator.version>
+    <as-spreadsheets.version>2.0.7</as-spreadsheets.version>
     <as-io-dependencies.version>2.0.0</as-io-dependencies.version>
   </properties>
 
