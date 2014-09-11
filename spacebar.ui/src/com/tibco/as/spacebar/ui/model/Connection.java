@@ -53,6 +53,12 @@ public class Connection {
 						.setAuthenticationCallback(new DialogAuthenticationCallback(
 								SpaceBarPlugin.getShell()));
 			}
+			if (Utils.hasMethod(MemberDef.class, "setIdentityPassword")) {
+				if (metaspace.getIdentityPassword() != null) {
+					memberDef.setIdentityPassword(metaspace
+							.getIdentityPassword().toCharArray());
+				}
+			}
 			ms = Metaspace.connect(metaspace.getMetaspaceName(), memberDef);
 		}
 		ms.listenSpaceMembers(new SpaceMemberListener() {

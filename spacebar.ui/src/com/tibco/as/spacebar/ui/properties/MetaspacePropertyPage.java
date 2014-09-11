@@ -33,7 +33,7 @@ public class MetaspacePropertyPage extends PropertyPage {
 	public boolean performOk() {
 		Metaspace metaspace = (Metaspace) getElement();
 		editor.getMetaspace().copyTo(metaspace);
-		SpaceBarPlugin.getDefault().saveMetaspaces();
+		SpaceBarPlugin.getDefault().save(metaspace);
 		return true;
 	}
 }

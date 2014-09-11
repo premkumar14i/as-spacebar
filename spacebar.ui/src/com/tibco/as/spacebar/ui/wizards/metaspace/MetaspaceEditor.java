@@ -30,6 +30,7 @@ public class MetaspaceEditor extends Composite {
 	private Text listenText;
 	private Text timeoutText;
 	private Text securityTokenFileText;
+	private Text identityPasswordText;
 	private Button autoconnectButton;
 	private Button browseFileButton;
 
@@ -104,6 +105,12 @@ public class MetaspaceEditor extends Composite {
 		browseFileButton.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
 				false, false));
 
+		Label identityPasswordLabel = new Label(this, SWT.NONE);
+		identityPasswordLabel.setText("Identity Password:");
+		
+		identityPasswordText = new Text(this, SWT.PASSWORD | SWT.BORDER);
+		identityPasswordText.setLayoutData(newGridData(2));
+
 		autoconnectButton = new Button(this, SWT.CHECK | SWT.LEFT);
 		autoconnectButton.setText("Autoconnect");
 		GridDataFactory.defaultsFor(remoteButton).span(3, 1)
@@ -158,6 +165,10 @@ public class MetaspaceEditor extends Composite {
 				.observeText(securityTokenFileText, SWT.Modify);
 		IObservableValue securityTokenFileObserveValue = PojoObservables
 				.observeValue(metaspace, "securityTokenFile");
+		IObservableValue identityPasswordObserveWidget = SWTObservables
+				.observeText(identityPasswordText, SWT.Modify);
+		IObservableValue identityPasswordObserveValue = PojoObservables
+				.observeValue(metaspace, "identityPassword");
 		IObservableValue autoconnectObserveWidget = SWTObservables
 				.observeSelection(autoconnectButton);
 		IObservableValue autoconnectObserveValue = PojoObservables
@@ -181,6 +192,8 @@ public class MetaspaceEditor extends Composite {
 				null, null);
 		bindingContext.bindValue(securityTokenFileObserveWidget,
 				securityTokenFileObserveValue, null, null);
+		bindingContext.bindValue(identityPasswordObserveWidget,
+				identityPasswordObserveValue, null, null);
 		bindingContext.bindValue(autoconnectObserveWidget,
 				autoconnectObserveValue, null, null);
 		//

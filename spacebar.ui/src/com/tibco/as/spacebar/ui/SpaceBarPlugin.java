@@ -1,6 +1,7 @@
 package com.tibco.as.spacebar.ui;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -18,6 +19,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.equinox.security.storage.SecurePreferencesFactory;
+import org.eclipse.equinox.security.storage.StorageException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -75,10 +78,14 @@ public class SpaceBarPlugin extends AbstractUIPlugin {
 
 	private AS metaModel;
 
+	private SpaceBarSecureStore secureStore;
+
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		secureStore = new SpaceBarSecureStore(
+				SecurePreferencesFactory.getDefault());
 		EventManager.addListener(new EventListener(StatusManager.getManager()));
 	}
 
@@ -96,6 +103,7 @@ public class SpaceBarPlugin extends AbstractUIPlugin {
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
+		secureStore = null;
 		super.stop(context);
 	}
 
@@ -183,6 +191,15 @@ public class SpaceBarPlugin extends AbstractUIPlugin {
 							.createUnmarshaller().unmarshal(file);
 					for (Metaspace metaspace : metaspaces.getMetaspaces()) {
 						metaspace.setMetaspaces(metaspaces);
+						try {
+							metaspace.setIdentityPassword(secureStore
+									.getPassword(metaspace));
+						} catch (StorageException e) {
+							logException(
+									NLS.bind(
+											"Could not retrieve password for profile ''{0}''",
+											metaspace.getName()), e);
+						}
 						if (metaspace.isAutoconnect()) {
 							// delay connection to give UI time to load
 							new ConnectJob(metaspace).schedule(1000);
@@ -346,14 +363,24 @@ public class SpaceBarPlugin extends AbstractUIPlugin {
 	public void delete(Metaspace metaspace) {
 		if (getMetaspaces().removeChild(metaspace)) {
 			saveMetaspaces();
+			try {
+				secureStore.clearPassword(metaspace);
+			} catch (IOException e) {
+				logException(NLS.bind(
+						"Could not clear password for profile ''{0}''",
+						metaspace.getName()), e);
+			}
 		}
 	}
 
-	public void saveMetaspaces() {
+	private void saveMetaspaces() {
+		if (metaspaces == null) {
+			return;
+		}
 		File file = getMetaspacesFile();
 		try {
-			getContext(Metaspaces.class).createMarshaller().marshal(
-					getMetaspaces(), file);
+			getContext(Metaspaces.class).createMarshaller().marshal(metaspaces,
+					file);
 		} catch (JAXBException e) {
 			logException(
 					NLS.bind("Could not save metaspaces to file ''{0}''", file),
@@ -361,9 +388,28 @@ public class SpaceBarPlugin extends AbstractUIPlugin {
 		}
 	}
 
+	public void save(Metaspace metaspace) {
+		saveMetaspaces();
+		savePassword(metaspace);
+	}
+
+	private void savePassword(Metaspace metaspace) {
+		if (metaspace.getIdentityPassword() == null) {
+			return;
+		}
+		try {
+			secureStore.putPassword(metaspace, metaspace.getIdentityPassword());
+		} catch (Exception e) {
+			logException(NLS.bind(
+					"Could not store password for profile ''{0}''",
+					metaspace.getName()), e);
+		}
+	}
+
 	public void add(Metaspace metaspace) {
 		if (getMetaspaces().addChild(metaspace)) {
 			saveMetaspaces();
+			savePassword(metaspace);
 		}
 	}
 

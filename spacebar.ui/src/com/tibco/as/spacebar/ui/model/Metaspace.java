@@ -48,6 +48,9 @@ public class Metaspace extends AbstractElement {
 	@XmlAttribute(name = "securityTokenFile")
 	private String securityTokenFile;
 
+	@XmlTransient
+	private String identityPassword;
+
 	@XmlAttribute(name = "remote")
 	private boolean remote;
 
@@ -121,6 +124,7 @@ public class Metaspace extends AbstractElement {
 		metaspace.setRemote(remote);
 		metaspace.setTimeout(timeout);
 		metaspace.setSecurityTokenFile(securityTokenFile);
+		metaspace.setIdentityPassword(identityPassword);
 	}
 
 	public String getSecurityTokenFile() {
@@ -130,6 +134,14 @@ public class Metaspace extends AbstractElement {
 	public void setSecurityTokenFile(String securityTokenFile) {
 		firePropertyChange("securityTokenFile", this.securityTokenFile,
 				this.securityTokenFile = securityTokenFile);
+	}
+
+	public String getIdentityPassword() {
+		return identityPassword;
+	}
+
+	public void setIdentityPassword(String identityPassword) {
+		this.identityPassword = identityPassword;
 	}
 
 	public long getTimeout() {
