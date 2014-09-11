@@ -24,8 +24,8 @@
     <as-util.version>2.0.7</as-util.version>
     <as-io.version>2.0.16</as-io.version>
     <as-files.version>2.0.9</as-files.version>
-    <as-simulator.version>2.0.5</as-simulator.version>
-    <as-spreadsheets.version>2.0.7</as-spreadsheets.version>
+    <as-simulator.version>2.0.6</as-simulator.version>
+    <as-spreadsheets.version>2.0.8</as-spreadsheets.version>
     <as-io-dependencies.version>2.0.0</as-io-dependencies.version>
   </properties>
 
