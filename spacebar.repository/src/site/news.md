@@ -2,7 +2,7 @@
 
 ### Security Token File
 
-Added support for security token file in metaspace connection profile.
+Added support for security token file and identity password in metaspace connection profile.
 
 ![Security Token File](images/news/security-token-file.png)
 
