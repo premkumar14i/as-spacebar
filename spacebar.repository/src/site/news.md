@@ -1,5 +1,12 @@
 # New and Noteworthy 
 
+### Browser Type
+
+Browser type (get, take or lock) can now be specified in the configuration editor (right-click a space, Browse, Browse...)
+
+![Browser Type](images/news/browser-type.png)
+
+
 ### Security Token File
 
 Added support for security token file and identity password in metaspace connection profile.
