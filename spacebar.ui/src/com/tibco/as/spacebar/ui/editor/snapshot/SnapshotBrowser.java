@@ -27,19 +27,15 @@ import org.eclipse.ui.IEditorInput;
 
 import ca.odell.glazedlists.SortedList;
 
-import com.tibco.as.convert.ConvertException;
-import com.tibco.as.convert.IConverter;
-import com.tibco.as.convert.UnsupportedConversionException;
 import com.tibco.as.io.AbstractExporter;
 import com.tibco.as.io.IMetaspaceTransferListener;
 import com.tibco.as.io.IOutputStream;
 import com.tibco.as.io.ITransfer;
 import com.tibco.as.space.Metaspace;
-import com.tibco.as.space.SpaceDef;
 import com.tibco.as.space.Tuple;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
-import com.tibco.as.spacebar.ui.editor.AbstractConfiguration;
 import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
+import com.tibco.as.spacebar.ui.editor.AbstractConfiguration;
 import com.tibco.as.spacebar.ui.editor.snapshot.Change.Type;
 import com.tibco.as.spacebar.ui.model.Space;
 
