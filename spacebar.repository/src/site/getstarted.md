@@ -23,7 +23,7 @@ Unzip the distribution.
 
 #### Run
 
-Launch the `spacebar` executable.
+Launch the `SpaceBar` executable.
 
 ## <a name="plugin" />Eclipse Plugin
 

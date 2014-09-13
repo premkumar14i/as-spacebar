@@ -24,7 +24,7 @@ Eclipse RCP application for TIBCO ActiveSpaces.
 
    <windowImages i16="/spacebar.rcp/icons/SpaceBar-16.png" i32="/spacebar.rcp/icons/SpaceBar-32.png" i48="/spacebar.rcp/icons/SpaceBar-48.png" i64="/spacebar.rcp/icons/SpaceBar-64.png" i128="/spacebar.rcp/icons/SpaceBar-128.png"/>
 
-   <launcher name="spacebar">
+   <launcher name="SpaceBar">
       <linux icon="icons/SpaceBar.xpm"/>
       <macosx icon="icons/SpaceBar.icns"/>
       <solaris/>
