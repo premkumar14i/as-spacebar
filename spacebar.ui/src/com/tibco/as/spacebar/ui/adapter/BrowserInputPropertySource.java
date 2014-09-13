@@ -9,6 +9,7 @@ import com.tibco.as.spacebar.ui.editor.SpaceEditorInput;
 public class BrowserInputPropertySource implements IPropertySource {
 
 	private static final String PROPERTY_SPACE = "space";
+	private static final String PROPERTY_BROWSER_TYPE = "browserType";
 	private static final String PROPERTY_TIME_SCOPE = "timeScope";
 	private static final String PROPERTY_DISTRIBUTION_SCOPE = "distributionScope";
 	private static final String PROPERTY_TIMEOUT = "timeout";
@@ -32,6 +33,7 @@ public class BrowserInputPropertySource implements IPropertySource {
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		return new IPropertyDescriptor[] {
 				new PropertyDescriptor(PROPERTY_SPACE, "Space"),
+				new PropertyDescriptor(PROPERTY_BROWSER_TYPE, "Browser type"),
 				new PropertyDescriptor(PROPERTY_TIME_SCOPE, "Time scope"),
 				new PropertyDescriptor(PROPERTY_DISTRIBUTION_SCOPE,
 						"Distribution scope"),
@@ -46,6 +48,9 @@ public class BrowserInputPropertySource implements IPropertySource {
 	public Object getPropertyValue(Object id) {
 		if (PROPERTY_SPACE.equals(id)) {
 			return input.getSpace().getName();
+		}
+		if (PROPERTY_BROWSER_TYPE.equals(id)) {
+			return input.getExport().getBrowserType();
 		}
 		if (PROPERTY_DISTRIBUTION_SCOPE.equals(id)) {
 			return input.getExport().getDistributionScope();

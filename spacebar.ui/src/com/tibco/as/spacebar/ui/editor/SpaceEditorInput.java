@@ -13,9 +13,9 @@ import com.tibco.as.spacebar.ui.model.Space;
 public class SpaceEditorInput implements IEditorInput {
 
 	private Space space;
-	private Export export;
+	private SpaceEditorExport export;
 
-	public SpaceEditorInput(Space space, Export export) {
+	public SpaceEditorInput(Space space, SpaceEditorExport export) {
 		this.space = space;
 		this.export = export;
 		export.setSpaceName(space.getName());
@@ -46,11 +46,11 @@ public class SpaceEditorInput implements IEditorInput {
 		return Platform.getAdapterManager().getAdapter(this, adapter);
 	}
 
-	public Export getExport() {
+	public SpaceEditorExport getExport() {
 		return export;
 	}
 
-	public void setExport(Export export) {
+	public void setExport(SpaceEditorExport export) {
 		this.export = export;
 	}
 

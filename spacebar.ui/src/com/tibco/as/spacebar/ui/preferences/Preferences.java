@@ -17,8 +17,9 @@ import com.tibco.as.excel.ExcelExport;
 import com.tibco.as.excel.ExcelImport;
 import com.tibco.as.file.text.delimited.DelimitedExport;
 import com.tibco.as.file.text.delimited.DelimitedImport;
+import com.tibco.as.space.browser.BrowserDef.BrowserType;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
-import com.tibco.as.spacebar.ui.editor.Export;
+import com.tibco.as.spacebar.ui.editor.SpaceEditorExport;
 
 /**
  * Constant definitions for plug-in preferences
@@ -99,6 +100,7 @@ public class Preferences {
 	}
 
 	public static void configureExport(AbstractExport export) {
+		export.setBrowserType(BrowserType.GET);
 		export.setBatchSize(getInteger(EXPORT_BATCH_SIZE));
 		export.setPrefetch(getLong(EXPORT_PREFETCH));
 		export.setQueryLimit(getLong(EXPORT_QUERY_LIMIT));
@@ -223,8 +225,9 @@ public class Preferences {
 		config.getAttributes().putAll(conversion);
 	}
 
-	public static Export getSpaceEditorExport(String timeScope) {
-		Export export = new Export();
+	public static SpaceEditorExport getSpaceEditorExport(String timeScope) {
+		SpaceEditorExport export = new SpaceEditorExport();
+		export.setBrowserType(BrowserType.GET);
 		export.setLimit(getLong(Preferences.SPACE_EDITOR_BROWSE_LIMIT));
 		export.setTimeScope(com.tibco.as.space.browser.BrowserDef.TimeScope
 				.valueOf(timeScope));

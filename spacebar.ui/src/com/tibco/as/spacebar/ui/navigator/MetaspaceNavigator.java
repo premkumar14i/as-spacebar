@@ -13,7 +13,7 @@ import org.eclipse.ui.navigator.CommonViewer;
 
 import com.tibco.as.spacebar.ui.ConnectJob;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
-import com.tibco.as.spacebar.ui.editor.Export;
+import com.tibco.as.spacebar.ui.editor.SpaceEditorExport;
 import com.tibco.as.spacebar.ui.editor.SpaceEditorInput;
 import com.tibco.as.spacebar.ui.model.IElement;
 import com.tibco.as.spacebar.ui.model.IModelListener;
@@ -107,7 +107,7 @@ public class MetaspaceNavigator extends CommonNavigator implements
 		} else {
 			if (element instanceof Space) {
 				Space space = (Space) element;
-				Export export = Preferences.getSpaceEditorExport(Preferences
+				SpaceEditorExport export = Preferences.getSpaceEditorExport(Preferences
 						.getString(Preferences.SPACE_EDITOR_BROWSE_TIME_SCOPE));
 				SpaceEditorInput input = new SpaceEditorInput(space, export);
 				IWorkbenchPartSite site = getSite();

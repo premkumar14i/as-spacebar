@@ -8,10 +8,9 @@ import org.eclipse.swt.widgets.Shell;
 import com.tibco.as.spacebar.ui.Image;
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
 import com.tibco.as.spacebar.ui.editor.AbstractBrowser;
-import com.tibco.as.spacebar.ui.editor.Export;
+import com.tibco.as.spacebar.ui.editor.SpaceEditorExport;
 import com.tibco.as.spacebar.ui.editor.SpaceEditorInput;
 import com.tibco.as.spacebar.ui.wizards.space.browse.BrowseSpaceWizard;
-import com.tibco.as.io.AbstractExport;
 
 public class BrowseAction extends SpaceEditorAction {
 
@@ -22,7 +21,7 @@ public class BrowseAction extends SpaceEditorAction {
 	@Override
 	protected void runWithEvent(Event event, AbstractBrowser<?> editor) {
 		SpaceEditorInput input = editor.getBrowserInput();
-		Export browse = input.getExport().clone();
+		SpaceEditorExport browse = input.getExport().clone();
 		BrowseSpaceWizard wizard = new BrowseSpaceWizard(input.getSpace(),
 				browse);
 		Shell shell = event.display.getActiveShell();

@@ -13,7 +13,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 
 import com.tibco.as.io.AbstractExport;
-import com.tibco.as.spacebar.ui.editor.Export;
+import com.tibco.as.spacebar.ui.editor.SpaceEditorExport;
 import com.tibco.as.spacebar.ui.model.Space;
 import com.tibco.as.spacebar.ui.preferences.Preferences;
 import com.tibco.as.spacebar.ui.wizards.AbstractWizardPage;
@@ -21,14 +21,14 @@ import com.tibco.as.spacebar.ui.wizards.AbstractWizardPage;
 public class BrowseSpaceWizardPage extends AbstractWizardPage {
 
 	private Space space;
-	private Export export;
+	private SpaceEditorExport export;
 
 	/**
 	 * Create the wizard.
 	 * 
 	 * @param space
 	 */
-	public BrowseSpaceWizardPage(Space space, Export export) {
+	public BrowseSpaceWizardPage(Space space, SpaceEditorExport export) {
 		super("browseSpaceWizardPage", "Browse", NLS.bind(
 				"Browse space ''{0}''", space));
 		this.space = space;
@@ -60,7 +60,7 @@ public class BrowseSpaceWizardPage extends AbstractWizardPage {
 		return composite;
 	}
 
-	public Export getExport() {
+	public SpaceEditorExport getExport() {
 		return export;
 	}
 

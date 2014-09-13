@@ -4,7 +4,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.osgi.util.NLS;
 
 import com.tibco.as.space.ASException;
-import com.tibco.as.spacebar.ui.editor.Export;
+import com.tibco.as.spacebar.ui.editor.SpaceEditorExport;
 import com.tibco.as.spacebar.ui.model.Space;
 import com.tibco.as.spacebar.ui.wizards.AbstractWizard;
 
@@ -20,7 +20,7 @@ public class BrowseSpaceWizard extends AbstractWizard {
 	 * 
 	 * @throws ASException
 	 */
-	public BrowseSpaceWizard(Space space, Export export) {
+	public BrowseSpaceWizard(Space space, SpaceEditorExport export) {
 		super("BrowseSpace", "Browse Error", NLS.bind(
 				"Could not browse space ''{0}''", space));
 		this.page = new BrowseSpaceWizardPage(space, export);
@@ -39,7 +39,7 @@ public class BrowseSpaceWizard extends AbstractWizard {
 		// do nothing
 	}
 
-	public Export getExport() {
+	public SpaceEditorExport getExport() {
 		return page.getExport();
 	}
 

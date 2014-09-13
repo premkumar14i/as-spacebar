@@ -9,7 +9,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import com.tibco.as.spacebar.ui.SpaceBarPlugin;
-import com.tibco.as.spacebar.ui.editor.Export;
+import com.tibco.as.spacebar.ui.editor.SpaceEditorExport;
 import com.tibco.as.spacebar.ui.editor.SpaceEditorInput;
 import com.tibco.as.spacebar.ui.handlers.space.AbstractSpaceHandler;
 import com.tibco.as.spacebar.ui.model.Space;
@@ -33,7 +33,7 @@ public abstract class AbstractBrowseHandler extends AbstractSpaceHandler {
 						page.activate(navigator);
 					}
 				});
-		Export export = Preferences.getSpaceEditorExport(getTimeScope());
+		SpaceEditorExport export = Preferences.getSpaceEditorExport(getTimeScope());
 		try {
 			openEditor(page, new SpaceEditorInput(space, export));
 		} catch (PartInitException e) {

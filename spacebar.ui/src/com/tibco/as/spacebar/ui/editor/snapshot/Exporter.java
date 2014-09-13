@@ -10,7 +10,7 @@ import com.tibco.as.io.TransferException;
 import com.tibco.as.space.Metaspace;
 import com.tibco.as.space.SpaceDef;
 import com.tibco.as.space.Tuple;
-import com.tibco.as.spacebar.ui.editor.Export;
+import com.tibco.as.spacebar.ui.editor.SpaceEditorExport;
 
 public class Exporter extends AbstractExporter<Tuple> {
 
@@ -33,8 +33,8 @@ public class Exporter extends AbstractExporter<Tuple> {
 	}
 
 	@Override
-	protected Export createTransfer() {
-		return new Export();
+	protected SpaceEditorExport createTransfer() {
+		return new SpaceEditorExport();
 	}
 
 	@Override

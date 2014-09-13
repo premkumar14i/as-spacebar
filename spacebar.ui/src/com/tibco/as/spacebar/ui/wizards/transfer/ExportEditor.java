@@ -16,16 +16,17 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import com.tibco.as.spacebar.ui.preferences.Preferences;
-
 import com.tibco.as.io.AbstractExport;
+import com.tibco.as.space.browser.BrowserDef.BrowserType;
 import com.tibco.as.space.browser.BrowserDef.TimeScope;
+import com.tibco.as.spacebar.ui.preferences.Preferences;
 
 public class ExportEditor extends Composite {
 
 	private DataBindingContext m_bindingContext;
 	private AbstractExport export;
 	protected ComboViewer timeScopeCombo;
+	protected ComboViewer browserTypeCombo;
 	protected Text timeoutText;
 	protected Text prefetchText;
 	protected Text queryLimitText;
@@ -35,6 +36,14 @@ public class ExportEditor extends Composite {
 		super(parent, style);
 		this.export = export;
 		setLayout(new GridLayout(2, false));
+
+		new Label(this, SWT.NONE).setText("Browser type:");
+
+		browserTypeCombo = new ComboViewer(this, SWT.READ_ONLY);
+		browserTypeCombo.getCombo().setLayoutData(
+				new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		browserTypeCombo.setContentProvider(ArrayContentProvider.getInstance());
+		browserTypeCombo.setInput(BrowserType.values());
 
 		new Label(this, SWT.NONE).setText("Time scope:");
 
@@ -86,6 +95,19 @@ public class ExportEditor extends Composite {
 	}
 
 	private DataBindingContext initDataBindings() {
+		IObservableValue browserTypeObserveWidget = ViewersObservables
+				.observeSingleSelection(browserTypeCombo);
+		IObservableValue browserTypeObserveValue = PojoObservables
+				.observeValue(export, "browserType");
+		browserTypeObserveValue
+				.addValueChangeListener(new IValueChangeListener() {
+
+					@Override
+					public void handleValueChange(ValueChangeEvent event) {
+						browseTypeUpdate();
+
+					}
+				});
 		IObservableValue timeScopeObserveWidget = ViewersObservables
 				.observeSingleSelection(timeScopeCombo);
 		IObservableValue timeScopeObserveValue = PojoObservables.observeValue(
@@ -118,6 +140,8 @@ public class ExportEditor extends Composite {
 		//
 		DataBindingContext bindingContext = new DataBindingContext();
 		//
+		bindingContext.bindValue(browserTypeObserveWidget,
+				browserTypeObserveValue, null, null);
 		bindingContext.bindValue(timeScopeObserveWidget, timeScopeObserveValue,
 				null, null);
 		bindingContext.bindValue(timeoutObserveWidget, timeoutObserveValue,
@@ -130,6 +154,15 @@ public class ExportEditor extends Composite {
 				null);
 		//
 		return bindingContext;
+	}
+
+	protected void browseTypeUpdate() {
+		BrowserType browseType = export.getBrowserType();
+		if (browseType == BrowserType.TAKE) {
+			timeScopeCombo.getCombo().setEnabled(false);
+		} else {
+			timeScopeCombo.getCombo().setEnabled(true);
+		}
 	}
 
 	protected void timeScopeUpdate() {

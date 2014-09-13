@@ -12,7 +12,7 @@ import com.tibco.as.io.TransferException;
 import com.tibco.as.space.FieldDef;
 import com.tibco.as.space.Metaspace;
 import com.tibco.as.space.SpaceDef;
-import com.tibco.as.spacebar.ui.editor.Export;
+import com.tibco.as.spacebar.ui.editor.SpaceEditorExport;
 import com.tibco.as.spacebar.ui.editor.continuous.coder.BlobHashCoder;
 import com.tibco.as.spacebar.ui.editor.continuous.coder.FieldHashCoder;
 import com.tibco.as.spacebar.ui.editor.continuous.coder.IFieldHashCoder;
@@ -28,8 +28,8 @@ public class Exporter extends AbstractExporter<ObservableTuple> {
 	}
 
 	@Override
-	protected Export createTransfer() {
-		return new Export();
+	protected SpaceEditorExport createTransfer() {
+		return new SpaceEditorExport();
 	}
 
 	@Override
