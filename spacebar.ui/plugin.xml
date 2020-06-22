@@ -324,6 +324,13 @@
             <visibleWhen checkEnabled="true"></visibleWhen>
          </command>
          <command
+               commandId="com.tibco.as.spacebar.ui.command.metaspace.reconnect"
+               icon="icons/reconnect_co.gif"
+               label="Reconnect"
+               style="push">
+            <visibleWhen checkEnabled="true"></visibleWhen>
+         </command>
+         <command
                commandId="com.tibco.as.spacebar.ui.command.metaspace.disconnect"
                icon="icons/disconnect_co.gif"
                label="Disconnect"
@@ -543,6 +550,12 @@
       </command>
       <command
             categoryId="com.tibco.as.spacebar.category"
+            description="Reconnect to metaspace"
+            id="com.tibco.as.spacebar.ui.command.metaspace.reconnect"
+            name="Reconnect Metaspace">
+      </command>
+      <command
+            categoryId="com.tibco.as.spacebar.category"
             description="Disconnect to a metaspace"
             id="com.tibco.as.spacebar.ui.command.metaspace.disconnect"
             name="Disconnect Metaspace">
@@ -692,6 +705,30 @@
             </with>
          </enabledWhen>
       </handler>
+      <handler
+            class="com.tibco.as.spacebar.ui.handlers.metaspace.Reconnect"
+            commandId="com.tibco.as.spacebar.ui.command.metaspace.reconnect">
+         <enabledWhen>
+            <with
+                  variable="selection">
+               <and>
+                  <count
+                        value="1">
+                  </count>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+		               <instanceof
+        	                   value="com.tibco.as.spacebar.ui.model.Metaspace">
+            		   </instanceof>
+		               <test 
+		                       property="com.tibco.as.spacebar.ui.model.metaspace.connected">
+		               </test>
+                  </iterate>
+               </and>
+            </with>
+         </enabledWhen>
+      </handler>      
       <handler
             class="com.tibco.as.spacebar.ui.handlers.metaspace.Disconnect"
             commandId="com.tibco.as.spacebar.ui.command.metaspace.disconnect">
