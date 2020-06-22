@@ -21,7 +21,8 @@ public class MetaspaceSorter extends ViewerSorter {
 		if (object1 instanceof IElement && object2 instanceof IElement) {
 			IElement element1 = (IElement) object1;
 			IElement element2 = (IElement) object2;
-			return getIndex(element1) - getIndex(element2);
+			
+			return element1.getName().compareTo(element2.getName());
 		}
 		return super.compare(viewer, object1, object2);
 	}
