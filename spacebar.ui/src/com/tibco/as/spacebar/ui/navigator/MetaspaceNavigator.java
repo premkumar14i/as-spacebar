@@ -40,9 +40,9 @@ public class MetaspaceNavigator extends CommonNavigator implements
 		for (Metaspace metaspace : metaspaces.getChildren()) {
 			Spaces spaces = metaspace.getSpaces();
 			if (spaces != null) {
-				reveal(spaces);
+				//reveal(spaces);
 				for (IElement space : spaces.getChildren()) {
-					reveal(space);
+					//reveal(space);
 				}
 			}
 		}
@@ -50,7 +50,7 @@ public class MetaspaceNavigator extends CommonNavigator implements
 
 	@Override
 	public void added(IElement element) {
-		reveal(element);
+		//reveal(element);
 	}
 
 	@Override
